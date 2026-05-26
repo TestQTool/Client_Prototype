@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Qentrix Login Test Suite" parallel="methods" thread-count="2">
+<suite name="Qentrix Login Test Suite" parallel="false" verbose="2">
     
     <listeners>
         <listener class-name="org.testng.reporters.EmailableReporter2"/>
@@ -13,10 +13,11 @@
                     <include name="testValidLogin"/>
                     <include name="testInvalidUsername"/>
                     <include name="testInvalidPassword"/>
+                    <include name="testEmptyCredentials"/>
                     <include name="testEmptyUsername"/>
                     <include name="testEmptyPassword"/>
-                    <include name="testEmptyCredentials"/>
                     <include name="testLoginWithDataProvider"/>
+                    <include name="testLogout"/>
                 </methods>
             </class>
         </classes>
