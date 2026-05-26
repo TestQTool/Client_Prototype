@@ -71,6 +71,14 @@ public class LoginPage {
         return welcomeMessage.getText();
     }
 
+    public boolean isLoginButtonDisplayed() {
+        try {
+            return loginButton.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean isLogoutButtonDisplayed() {
         try {
             wait.until(ExpectedConditions.visibilityOf(logoutButton));
@@ -80,12 +88,8 @@ public class LoginPage {
         }
     }
 
-    public boolean isLoginPageDisplayed() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(usernameInput));
-            return usernameInput.isDisplayed() && passwordInput.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public void clickLogoutButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+        logoutButton.click();
     }
 }
