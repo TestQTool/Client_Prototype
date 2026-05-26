@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>Qentrix Automation Framework</name>
-    <description>Hybrid Selenium TestNG Automation Framework for Qentrix</description>
+    <description>Selenium-based automation framework for Qentrix</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
