@@ -1,76 +1,36 @@
-const { expect } = require('@playwright/test');
+const { BasePage } = require('./BasePage');
 
-class DashboardPage {
+class DashboardPage extends BasePage {
   constructor(page) {
+    super(page);
     this.page = page;
-    this.dashboardContainer = page.locator('[data-testid="dashboard-container"]');
-    this.analyticsWidget = page.locator('[data-testid="analytics-widget"]');
-    this.realTimeDataSection = page.locator('[data-testid="real-time-data"]');
-    this.refreshButton = page.locator('[data-testid="refresh-btn"]');
-    this.dataLoadingSpinner = page.locator('[data-testid="loading-spinner"]');
-    this.chartContainer = page.locator('[data-testid="chart-container"]');
-    this.dataMetrics = page.locator('[data-testid="data-metrics"]');
-    this.filterDropdown = page.locator('[data-testid="filter-dropdown"]');
-    this.dateRangePicker = page.locator('[data-testid="date-range-picker"]');
-    this.exportButton = page.locator('[data-testid="export-btn"]');
-    this.lastUpdatedTimestamp = page.locator('[data-testid="last-updated"]');
+    
+    // Locators
+    this.dashboardHeader = page.locator('[data-testid="dashboard-header"]');
+    this.userProfileMenu = page.locator('[data-testid="user-profile-menu"]');
+    this.logoutButton = page.locator('[data-testid="logout-button"]');
+    this.welcomeMessage = page.locator('[data-testid="welcome-message"]');
   }
 
-  async navigate(baseUrl) {
-    await this.page.goto(`${baseUrl}/dashboard`);
+  async isDashboardVisible() {
+    return await this.dashboardHeader.isVisible();
   }
 
-  async verifyDashboardLoaded() {
-    await expect(this.dashboardContainer).toBeVisible();
+  async waitForDashboard() {
+    await this.dashboardHeader.waitFor({ state: 'visible', timeout: 15000 });
   }
 
-  async verifyRealTimeDataSectionVisible() {
-    await expect(this.realTimeDataSection).toBeVisible();
+  async getWelcomeMessage() {
+    return await this.welcomeMessage.textContent();
   }
 
-  async verifyAnalyticsWidgetDisplayed() {
-    await expect(this.analyticsWidget).toBeVisible();
+  async clickUserProfileMenu() {
+    await this.userProfileMenu.click();
   }
 
-  async clickRefreshData() {
-    await this.refreshButton.click();
-  }
-
-  async waitForDataLoad() {
-    await this.dataLoadingSpinner.waitFor({ state: 'hidden', timeout: 30000 });
-  }
-
-  async verifyChartContainerVisible() {
-    await expect(this.chartContainer).toBeVisible();
-  }
-
-  async verifyDataMetricsDisplayed() {
-    await expect(this.dataMetrics).toBeVisible();
-  }
-
-  async selectFilter(filterOption) {
-    await this.filterDropdown.click();
-    await this.page.locator(`[data-testid="filter-option-${filterOption}"]`).click();
-  }
-
-  async selectDateRange(startDate, endDate) {
-    await this.dateRangePicker.click();
-    await this.page.locator('[data-testid="start-date-input"]').fill(startDate);
-    await this.page.locator('[data-testid="end-date-input"]').fill(endDate);
-    await this.page.locator('[data-testid="apply-date-range"]').click();
-  }
-
-  async clickExport() {
-    await this.exportButton.click();
-  }
-
-  async getLastUpdatedTimestamp() {
-    return await this.lastUpdatedTimestamp.textContent();
-  }
-
-  async verifyDataRefreshed(previousTimestamp) {
-    const currentTimestamp = await this.getLastUpdatedTimestamp();
-    expect(currentTimestamp).not.toBe(previousTimestamp);
+  async logout() {
+    await this.clickUserProfileMenu();
+    await this.logoutButton.click();
   }
 }
 

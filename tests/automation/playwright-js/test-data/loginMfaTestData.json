@@ -1,0 +1,25 @@
+{
+  "baseUrl": "https://qentrix.example.com",
+  "validUser": {
+    "username": "${TEST_USERNAME}",
+    "password": "${TEST_PASSWORD}",
+    "mfaCode": "${TEST_MFA_CODE}"
+  },
+  "invalidUser": {
+    "username": "invaliduser@example.com",
+    "password": "InvalidPass123!"
+  },
+  "invalidMfaCode": "000000",
+  "expiredMfaCode": "111111",
+  "mfaMethods": {
+    "sms": "sms",
+    "email": "email",
+    "authenticatorApp": "authenticator"
+  },
+  "errorMessages": {
+    "invalidCredentials": "Invalid username or password",
+    "invalidMfaCode": "Invalid verification code",
+    "expiredMfaCode": "Verification code has expired",
+    "emptyMfaCode": "Please enter verification code"
+  }
+}
