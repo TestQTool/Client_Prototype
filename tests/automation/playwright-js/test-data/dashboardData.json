@@ -1,0 +1,19 @@
+{
+  "filters": {
+    "daily": "daily",
+    "weekly": "weekly",
+    "monthly": "monthly",
+    "yearly": "yearly"
+  },
+  "dateRange": {
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-31"
+  },
+  "exportFileName": "analytics-report",
+  "metrics": {
+    "totalUsers": "Total Users",
+    "activeUsers": "Active Users",
+    "revenue": "Revenue",
+    "conversions": "Conversions"
+  }
+}
