@@ -1,0 +1,27 @@
+{
+  "baseUrl": "https://qentrix.example.com",
+  "validUser": {
+    "username": "${VALID_USERNAME}",
+    "password": "${VALID_PASSWORD}"
+  },
+  "invalidUser": {
+    "username": "invaliduser@example.com",
+    "password": "InvalidP@ss123"
+  },
+  "mfaUser": {
+    "username": "${MFA_USERNAME}",
+    "password": "${MFA_PASSWORD}",
+    "validMfaCode": "${MFA_VALID_CODE}",
+    "invalidMfaCode": "000000",
+    "expiredMfaCode": "999999"
+  },
+  "errorMessages": {
+    "invalidCredentials": "Invalid username or password",
+    "emptyUsername": "Username is required",
+    "emptyPassword": "Password is required",
+    "emptyFields": "Please enter your credentials",
+    "invalidMfaCode": "Invalid verification code",
+    "emptyMfaCode": "Verification code is required",
+    "expiredMfaCode": "Verification code has expired"
+  }
+}
