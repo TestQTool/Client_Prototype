@@ -3,47 +3,42 @@ const { expect } = require('@playwright/test');
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email-input"]');
-    this.sendOtpButton = page.locator('[data-testid="send-otp-btn"]');
-    this.otpInput = page.locator('[data-testid="otp-input"]');
-    this.verifyOtpButton = page.locator('[data-testid="verify-otp-btn"]');
-    this.loginSuccessMessage = page.locator('[data-testid="login-success"]');
-    this.errorMessage = page.locator('[data-testid="error-message"]');
+    this.usernameInput = page.locator('input[name="username"], #username, [data-testid="username"]');
+    this.passwordInput = page.locator('input[name="password"], #password, [data-testid="password"]');
+    this.loginButton = page.locator('button[type="submit"], input[type="submit"], [data-testid="login-button"]');
+    this.errorMessage = page.locator('.error-message, [data-testid="error-message"], .oxd-alert-content-text');
+    this.dashboardHeader = page.locator('.dashboard-header, [data-testid="dashboard"], .oxd-topbar-header-breadcrumb');
   }
 
   async navigate(baseUrl) {
-    await this.page.goto(`${baseUrl}/login`);
+    await this.page.goto(baseUrl);
   }
 
-  async enterEmail(email) {
-    await this.emailInput.fill(email);
-  }
-
-  async clickSendOtp() {
-    await this.sendOtpButton.click();
-  }
-
-  async enterOtp(otp) {
-    await this.otpInput.fill(otp);
-  }
-
-  async clickVerifyOtp() {
-    await this.verifyOtpButton.click();
-  }
-
-  async loginWithOtp(email, otp) {
-    await this.enterEmail(email);
-    await this.clickSendOtp();
-    await this.enterOtp(otp);
-    await this.clickVerifyOtp();
+  async login(username, password) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
   }
 
   async verifyLoginSuccess() {
-    await expect(this.loginSuccessMessage).toBeVisible();
+    await expect(this.dashboardHeader).toBeVisible({ timeout: 10000 });
   }
 
-  async verifyErrorMessage(expectedMessage) {
-    await expect(this.errorMessage).toContainText(expectedMessage);
+  async verifyLoginFailure() {
+    await expect(this.errorMessage).toBeVisible({ timeout: 5000 });
+  }
+
+  async getErrorMessageText() {
+    return await this.errorMessage.textContent();
+  }
+
+  async isLoggedIn() {
+    try {
+      await this.dashboardHeader.waitFor({ state: 'visible', timeout: 5000 });
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
 

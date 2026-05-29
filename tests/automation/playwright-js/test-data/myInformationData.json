@@ -1,0 +1,16 @@
+{
+  "updatePersonalDetails": {
+    "firstName": "TestFirstName",
+    "middleName": "TestMiddle",
+    "lastName": "TestLastName"
+  },
+  "originalPersonalDetails": {
+    "firstName": "Paul",
+    "middleName": "",
+    "lastName": "Collings"
+  },
+  "validationMessages": {
+    "saveSuccess": "Successfully Updated",
+    "requiredField": "Required"
+  }
+}
