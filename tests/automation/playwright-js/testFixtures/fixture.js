@@ -1,8 +1,8 @@
-const base = require('@playwright/test');
+const { test: base } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
 const { DashboardPage } = require('../pageObjects/DashboardPage');
 
-exports.test = base.test.extend({
+exports.test = base.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
@@ -15,12 +15,15 @@ exports.test = base.test.extend({
   
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
+    const dashboardPage = new DashboardPage(page);
+    const baseUrl = process.env.BASE_URL;
+    const username = process.env.TEST_USERNAME;
+    const password = process.env.TEST_PASSWORD;
+    const mfaCode = process.env.TEST_MFA_CODE;
     
-    await loginPage.navigate(baseUrl);
-    await loginPage.loginWithOtp(loginData.validUser.email, loginData.validUser.otp);
-    await loginPage.verifyLoginSuccess();
+    await loginPage.navigateToLogin(baseUrl);
+    await loginPage.performMfaLogin(username, password, mfaCode);
+    await dashboardPage.waitForDashboard();
     
     await use(page);
   }
