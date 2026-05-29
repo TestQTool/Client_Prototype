@@ -1,0 +1,15 @@
+{
+  "baseUrl": "https://qentrix.example.com",
+  "validUser": {
+    "email": "testuser@qentrix.com",
+    "otp": "123456"
+  },
+  "invalidEmail": "invalid-email",
+  "invalidOtp": "000000",
+  "expiredOtp": "111111",
+  "errorMessages": {
+    "invalidOtp": "Invalid OTP. Please try again.",
+    "invalidEmail": "Please enter a valid email address.",
+    "expiredOtp": "OTP has expired. Please request a new one."
+  }
+}
