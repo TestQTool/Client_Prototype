@@ -1,29 +1,26 @@
-const base = require('@playwright/test');
+const { test: base } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
-const { DashboardPage } = require('../pageObjects/DashboardPage');
+const { MyInformationPage } = require('../pageObjects/MyInformationPage');
+const loginData = require('../test-data/loginData.json');
 
-exports.test = base.test.extend({
+const test = base.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
   
-  dashboardPage: async ({ page }, use) => {
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
+  myInformationPage: async ({ page }, use) => {
+    const myInformationPage = new MyInformationPage(page);
+    await use(myInformationPage);
   },
   
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
-    
-    await loginPage.navigate(baseUrl);
-    await loginPage.loginWithOtp(loginData.validUser.email, loginData.validUser.otp);
+    await loginPage.navigate(process.env.BASE_URL || loginData.baseUrl);
+    await loginPage.login(loginData.validCredentials.username, loginData.validCredentials.password);
     await loginPage.verifyLoginSuccess();
-    
     await use(page);
   }
 });
 
-exports.expect = base.expect;
+module.exports = { test };
