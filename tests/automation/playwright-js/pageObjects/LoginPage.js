@@ -3,47 +3,68 @@ const { expect } = require('@playwright/test');
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email-input"]');
-    this.sendOtpButton = page.locator('[data-testid="send-otp-btn"]');
-    this.otpInput = page.locator('[data-testid="otp-input"]');
-    this.verifyOtpButton = page.locator('[data-testid="verify-otp-btn"]');
-    this.loginSuccessMessage = page.locator('[data-testid="login-success"]');
-    this.errorMessage = page.locator('[data-testid="error-message"]');
+    this.usernameInput = page.locator('[data-testid="username"], #username, input[name="username"], input[type="email"]');
+    this.passwordInput = page.locator('[data-testid="password"], #password, input[name="password"], input[type="password"]');
+    this.loginButton = page.locator('[data-testid="login-button"], button[type="submit"], #login-btn, button:has-text("Login"), button:has-text("Sign In")');
+    this.errorMessage = page.locator('[data-testid="error-message"], .error-message, .alert-danger, #error');
+    this.successMessage = page.locator('[data-testid="success-message"], .success-message, .alert-success');
+    this.logoutButton = page.locator('[data-testid="logout"], button:has-text("Logout"), a:has-text("Logout")');
+    this.dashboardHeader = page.locator('[data-testid="dashboard"], .dashboard, #dashboard, h1:has-text("Dashboard")');
   }
 
   async navigate(baseUrl) {
-    await this.page.goto(`${baseUrl}/login`);
+    const loginUrl = baseUrl ? `${baseUrl}/login` : '/login';
+    await this.page.goto(loginUrl);
+    await this.page.waitForLoadState('domcontentloaded');
   }
 
-  async enterEmail(email) {
-    await this.emailInput.fill(email);
+  async enterUsername(username) {
+    await this.usernameInput.waitFor({ state: 'visible' });
+    await this.usernameInput.fill(username);
   }
 
-  async clickSendOtp() {
-    await this.sendOtpButton.click();
+  async enterPassword(password) {
+    await this.passwordInput.waitFor({ state: 'visible' });
+    await this.passwordInput.fill(password);
   }
 
-  async enterOtp(otp) {
-    await this.otpInput.fill(otp);
+  async clickLoginButton() {
+    await this.loginButton.waitFor({ state: 'visible' });
+    await this.loginButton.click();
   }
 
-  async clickVerifyOtp() {
-    await this.verifyOtpButton.click();
-  }
-
-  async loginWithOtp(email, otp) {
-    await this.enterEmail(email);
-    await this.clickSendOtp();
-    await this.enterOtp(otp);
-    await this.clickVerifyOtp();
+  async login(username, password) {
+    await this.enterUsername(username);
+    await this.enterPassword(password);
+    await this.clickLoginButton();
+    await this.page.waitForLoadState('networkidle');
   }
 
   async verifyLoginSuccess() {
-    await expect(this.loginSuccessMessage).toBeVisible();
+    await expect(this.dashboardHeader.or(this.logoutButton)).toBeVisible({ timeout: 10000 });
   }
 
-  async verifyErrorMessage(expectedMessage) {
-    await expect(this.errorMessage).toContainText(expectedMessage);
+  async verifyLoginFailure(expectedErrorMessage) {
+    await expect(this.errorMessage).toBeVisible({ timeout: 5000 });
+    if (expectedErrorMessage) {
+      await expect(this.errorMessage).toContainText(expectedErrorMessage);
+    }
+  }
+
+  async isLoggedIn() {
+    try {
+      await this.logoutButton.waitFor({ state: 'visible', timeout: 3000 });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async logout() {
+    if (await this.isLoggedIn()) {
+      await this.logoutButton.click();
+      await this.page.waitForLoadState('networkidle');
+    }
   }
 }
 
