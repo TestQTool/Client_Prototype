@@ -1,0 +1,9 @@
+{
+  "testCaseId": "160",
+  "title": "Check system response when data is empty",
+  "method": "GET",
+  "endpointPath": "/users",
+  "expectedStatusCode": 200,
+  "responseAssertion": "body-not-empty",
+  "tags": ["Smoke", "Regression", "API"]
+}
