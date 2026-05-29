@@ -1,15 +1,19 @@
 {
-  "baseUrl": "https://qentrix.example.com",
-  "validUser": {
-    "email": "testuser@qentrix.com",
-    "otp": "123456"
+  "baseUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+  "validCredentials": {
+    "username": "Admin",
+    "password": "admin123"
   },
-  "invalidEmail": "invalid-email",
-  "invalidOtp": "000000",
-  "expiredOtp": "111111",
-  "errorMessages": {
-    "invalidOtp": "Invalid OTP. Please try again.",
-    "invalidEmail": "Please enter a valid email address.",
-    "expiredOtp": "OTP has expired. Please request a new one."
+  "invalidUsername": {
+    "username": "InvalidUser",
+    "password": "admin123"
+  },
+  "invalidPassword": {
+    "username": "Admin",
+    "password": "wrongpassword"
+  },
+  "expectedErrorMessages": {
+    "invalidCredentials": "Invalid credentials",
+    "requiredField": "Required"
   }
 }
