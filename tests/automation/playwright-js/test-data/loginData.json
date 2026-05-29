@@ -1,15 +1,30 @@
 {
   "baseUrl": "https://qentrix.example.com",
-  "validUser": {
-    "email": "testuser@qentrix.com",
-    "otp": "123456"
+  "validCredentials": {
+    "username": "${QENTRIX_USERNAME}",
+    "password": "${QENTRIX_PASSWORD}"
   },
-  "invalidEmail": "invalid-email",
-  "invalidOtp": "000000",
-  "expiredOtp": "111111",
+  "invalidUsername": {
+    "username": "invalid_user@test.com",
+    "password": "${QENTRIX_PASSWORD}"
+  },
+  "invalidPassword": {
+    "username": "${QENTRIX_USERNAME}",
+    "password": "InvalidPassword123!"
+  },
+  "otpEnabledCredentials": {
+    "username": "${QENTRIX_OTP_USERNAME}",
+    "password": "${QENTRIX_OTP_PASSWORD}"
+  },
+  "otpData": {
+    "validOtp": "${QENTRIX_VALID_OTP}",
+    "invalidOtp": "000000",
+    "expiredOtp": "999999"
+  },
   "errorMessages": {
-    "invalidOtp": "Invalid OTP. Please try again.",
-    "invalidEmail": "Please enter a valid email address.",
-    "expiredOtp": "OTP has expired. Please request a new one."
+    "invalidCredentials": "Invalid username or password",
+    "invalidOtp": "Invalid OTP",
+    "expiredOtp": "OTP has expired",
+    "emptyFields": "Please fill in all required fields"
   }
 }
