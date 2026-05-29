@@ -1,29 +1,40 @@
-const base = require('@playwright/test');
+const { test: base } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
-const { DashboardPage } = require('../pageObjects/DashboardPage');
 
-exports.test = base.test.extend({
+const test = base.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
   
-  dashboardPage: async ({ page }, use) => {
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
-  },
-  
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
+    const baseUrl = process.env.BASE_URL || 'https://qentrix.example.com';
+    const username = process.env.QENTRIX_USERNAME;
+    const password = process.env.QENTRIX_PASSWORD;
     
     await loginPage.navigate(baseUrl);
-    await loginPage.loginWithOtp(loginData.validUser.email, loginData.validUser.otp);
-    await loginPage.verifyLoginSuccess();
+    await loginPage.login(username, password);
+    await loginPage.waitForDashboard();
+    
+    await use(page);
+  },
+  
+  authenticatedWithOtpPage: async ({ page }, use) => {
+    const loginPage = new LoginPage(page);
+    const baseUrl = process.env.BASE_URL || 'https://qentrix.example.com';
+    const username = process.env.QENTRIX_OTP_USERNAME;
+    const password = process.env.QENTRIX_OTP_PASSWORD;
+    const otp = process.env.QENTRIX_VALID_OTP;
+    
+    await loginPage.navigate(baseUrl);
+    await loginPage.login(username, password);
+    await loginPage.waitForOtpScreen();
+    await loginPage.verifyOtp(otp);
+    await loginPage.waitForDashboard();
     
     await use(page);
   }
 });
 
-exports.expect = base.expect;
+module.exports = { test };
