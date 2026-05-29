@@ -1,0 +1,31 @@
+{
+  "validUser": {
+    "username": "${VALID_USERNAME}",
+    "password": "${VALID_PASSWORD}",
+    "description": "Valid user credentials for successful login"
+  },
+  "invalidUser": {
+    "username": "invaliduser@test.com",
+    "password": "wrongpassword",
+    "expectedError": "Invalid credentials",
+    "description": "Invalid credentials for login failure test"
+  },
+  "emptyCredentials": {
+    "username": "",
+    "password": "",
+    "expectedError": "Username is required",
+    "description": "Empty credentials test"
+  },
+  "emptyPassword": {
+    "username": "testuser@test.com",
+    "password": "",
+    "expectedError": "Password is required",
+    "description": "Empty password test"
+  },
+  "specialCharacters": {
+    "username": "test<script>alert('xss')</script>@test.com",
+    "password": "pass<>word",
+    "expectedError": "Invalid credentials",
+    "description": "Special characters input test"
+  }
+}
