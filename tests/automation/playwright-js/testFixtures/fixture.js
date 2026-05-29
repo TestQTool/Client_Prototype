@@ -1,29 +1,31 @@
-const base = require('@playwright/test');
+const { test: base } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
-const { DashboardPage } = require('../pageObjects/DashboardPage');
 
-exports.test = base.test.extend({
+const test = base.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
-  
-  dashboardPage: async ({ page }, use) => {
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
-  },
-  
+
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
-    
+    const baseUrl = process.env.BASE_URL || 'https://qentrix.example.com';
     await loginPage.navigate(baseUrl);
-    await loginPage.loginWithOtp(loginData.validUser.email, loginData.validUser.otp);
-    await loginPage.verifyLoginSuccess();
-    
+    await loginPage.login(process.env.VALID_USERNAME, process.env.VALID_PASSWORD);
+    await loginPage.verifySuccessfulLogin();
+    await use(page);
+  },
+
+  mfaAuthenticatedPage: async ({ page }, use) => {
+    const loginPage = new LoginPage(page);
+    const baseUrl = process.env.BASE_URL || 'https://qentrix.example.com';
+    await loginPage.navigate(baseUrl);
+    await loginPage.login(process.env.MFA_USERNAME, process.env.MFA_PASSWORD);
+    await loginPage.verifyMfaScreenDisplayed();
+    await loginPage.completeMfaVerification(process.env.MFA_VALID_CODE);
+    await loginPage.verifySuccessfulLogin();
     await use(page);
   }
 });
 
-exports.expect = base.expect;
+module.exports = { test };
