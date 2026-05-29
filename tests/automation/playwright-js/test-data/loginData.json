@@ -1,15 +1,23 @@
 {
-  "baseUrl": "https://qentrix.example.com",
   "validUser": {
-    "email": "testuser@qentrix.com",
-    "otp": "123456"
+    "username": "${VALID_USERNAME}",
+    "password": "${VALID_PASSWORD}",
+    "mfaCode": "${VALID_MFA_CODE}"
   },
-  "invalidEmail": "invalid-email",
-  "invalidOtp": "000000",
-  "expiredOtp": "111111",
-  "errorMessages": {
-    "invalidOtp": "Invalid OTP. Please try again.",
-    "invalidEmail": "Please enter a valid email address.",
-    "expiredOtp": "OTP has expired. Please request a new one."
+  "invalidUser": {
+    "username": "invaliduser@test.com",
+    "password": "wrongpassword",
+    "mfaCode": "000000"
+  },
+  "mfaTestUser": {
+    "username": "${MFA_TEST_USERNAME}",
+    "password": "${MFA_TEST_PASSWORD}",
+    "validMfaCode": "${VALID_MFA_CODE}",
+    "invalidMfaCode": "123456",
+    "expiredMfaCode": "999999"
+  },
+  "lockedUser": {
+    "username": "lockeduser@test.com",
+    "password": "password123"
   }
 }
