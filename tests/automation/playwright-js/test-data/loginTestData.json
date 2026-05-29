@@ -1,0 +1,43 @@
+{
+  "baseUrl": "https://qentrix-app.example.com",
+  "mfaLogin": {
+    "validUser": {
+      "username": "${MFA_USER_USERNAME}",
+      "password": "${MFA_USER_PASSWORD}",
+      "mfaCode": "${MFA_CODE}"
+    },
+    "invalidUser": {
+      "username": "invaliduser@test.com",
+      "password": "wrongpassword",
+      "expectedError": "Invalid username or password"
+    },
+    "invalidMfaCode": {
+      "mfaCode": "000000",
+      "expectedError": "Invalid MFA code. Please try again."
+    },
+    "expiredMfaCode": {
+      "mfaCode": "111111",
+      "expectedError": "MFA code has expired. Please request a new code."
+    }
+  },
+  "otpLogin": {
+    "validUser": {
+      "username": "${OTP_USER_USERNAME}",
+      "password": "${OTP_USER_PASSWORD}",
+      "otpCode": "${OTP_CODE}"
+    },
+    "invalidUser": {
+      "username": "invaliduser@test.com",
+      "password": "wrongpassword",
+      "expectedError": "Invalid username or password"
+    },
+    "invalidOtpCode": {
+      "otpCode": "000000",
+      "expectedError": "Invalid OTP code. Please try again."
+    },
+    "expiredOtpCode": {
+      "otpCode": "222222",
+      "expectedError": "OTP has expired. Please request a new code."
+    }
+  }
+}
