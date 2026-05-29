@@ -1,0 +1,30 @@
+{
+  "testProducts": [
+    {
+      "productId": "PROD001",
+      "productName": "Sample Product 1",
+      "category": "Electronics"
+    },
+    {
+      "productId": "PROD002",
+      "productName": "Sample Product 2",
+      "category": "Clothing"
+    },
+    {
+      "productId": "PROD003",
+      "productName": "Sample Product 3",
+      "category": "Home & Garden"
+    }
+  ],
+  "dateRanges": [
+    "last-7-days",
+    "last-30-days",
+    "last-90-days",
+    "custom"
+  ],
+  "filterOptions": [
+    "category-sales",
+    "region",
+    "customer-segment"
+  ]
+}
