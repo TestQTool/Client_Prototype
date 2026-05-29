@@ -1,0 +1,29 @@
+{
+  "newIntegration": {
+    "name": "Test Integration API",
+    "type": "api",
+    "apiKey": "${INTEGRATION_API_KEY}"
+  },
+  "webhookIntegration": {
+    "name": "Test Webhook Integration",
+    "type": "webhook",
+    "webhookUrl": "${WEBHOOK_URL}"
+  },
+  "existingIntegration": {
+    "name": "Existing Integration"
+  },
+  "integrationToDelete": {
+    "name": "Integration To Delete"
+  },
+  "connectionStatuses": {
+    "success": "Connected",
+    "failure": "Connection Failed",
+    "pending": "Pending"
+  },
+  "integrationTypes": [
+    "api",
+    "webhook",
+    "oauth",
+    "database"
+  ]
+}
