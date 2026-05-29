@@ -1,29 +1,27 @@
-const base = require('@playwright/test');
+const { test: base } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
-const { DashboardPage } = require('../pageObjects/DashboardPage');
 
-exports.test = base.test.extend({
+const test = base.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
-  
-  dashboardPage: async ({ page }, use) => {
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
+  baseUrl: async ({}, use) => {
+    const url = process.env.BASE_URL || 'https://app.qentrix.com';
+    await use(url);
   },
-  
-  authenticatedPage: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
-    
-    await loginPage.navigate(baseUrl);
-    await loginPage.loginWithOtp(loginData.validUser.email, loginData.validUser.otp);
-    await loginPage.verifyLoginSuccess();
-    
-    await use(page);
+  testData: async ({}, use) => {
+    const data = require('../test-data/loginData.json');
+    const resolvedData = JSON.parse(
+      JSON.stringify(data)
+        .replace(/\$\{VALID_USERNAME\}/g, process.env.VALID_USERNAME || '')
+        .replace(/\$\{VALID_PASSWORD\}/g, process.env.VALID_PASSWORD || '')
+        .replace(/\$\{VALID_MFA_CODE\}/g, process.env.VALID_MFA_CODE || '')
+        .replace(/\$\{MFA_TEST_USERNAME\}/g, process.env.MFA_TEST_USERNAME || '')
+        .replace(/\$\{MFA_TEST_PASSWORD\}/g, process.env.MFA_TEST_PASSWORD || '')
+    );
+    await use(resolvedData);
   }
 });
 
-exports.expect = base.expect;
+module.exports = { test };

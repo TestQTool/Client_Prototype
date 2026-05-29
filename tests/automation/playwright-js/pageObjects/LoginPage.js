@@ -3,47 +3,98 @@ const { expect } = require('@playwright/test');
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email-input"]');
-    this.sendOtpButton = page.locator('[data-testid="send-otp-btn"]');
-    this.otpInput = page.locator('[data-testid="otp-input"]');
-    this.verifyOtpButton = page.locator('[data-testid="verify-otp-btn"]');
-    this.loginSuccessMessage = page.locator('[data-testid="login-success"]');
-    this.errorMessage = page.locator('[data-testid="error-message"]');
+    this.usernameInput = page.locator('#username');
+    this.passwordInput = page.locator('#password');
+    this.loginButton = page.locator('#loginButton');
+    this.errorMessage = page.locator('.error-message');
+    this.mfaCodeInput = page.locator('#mfaCode');
+    this.mfaVerifyButton = page.locator('#verifyMfaButton');
+    this.mfaResendLink = page.locator('#resendMfaCode');
+    this.mfaErrorMessage = page.locator('.mfa-error-message');
+    this.rememberDeviceCheckbox = page.locator('#rememberDevice');
+    this.dashboardHeader = page.locator('.dashboard-header');
   }
 
   async navigate(baseUrl) {
     await this.page.goto(`${baseUrl}/login`);
   }
 
-  async enterEmail(email) {
-    await this.emailInput.fill(email);
+  async enterUsername(username) {
+    await this.usernameInput.fill(username);
   }
 
-  async clickSendOtp() {
-    await this.sendOtpButton.click();
+  async enterPassword(password) {
+    await this.passwordInput.fill(password);
   }
 
-  async enterOtp(otp) {
-    await this.otpInput.fill(otp);
+  async clickLoginButton() {
+    await this.loginButton.click();
   }
 
-  async clickVerifyOtp() {
-    await this.verifyOtpButton.click();
+  async login(username, password) {
+    await this.enterUsername(username);
+    await this.enterPassword(password);
+    await this.clickLoginButton();
   }
 
-  async loginWithOtp(email, otp) {
-    await this.enterEmail(email);
-    await this.clickSendOtp();
-    await this.enterOtp(otp);
-    await this.clickVerifyOtp();
+  async enterMfaCode(mfaCode) {
+    await this.mfaCodeInput.fill(mfaCode);
   }
 
-  async verifyLoginSuccess() {
-    await expect(this.loginSuccessMessage).toBeVisible();
+  async clickVerifyMfaButton() {
+    await this.mfaVerifyButton.click();
   }
 
-  async verifyErrorMessage(expectedMessage) {
-    await expect(this.errorMessage).toContainText(expectedMessage);
+  async verifyMfa(mfaCode) {
+    await this.enterMfaCode(mfaCode);
+    await this.clickVerifyMfaButton();
+  }
+
+  async clickResendMfaCode() {
+    await this.mfaResendLink.click();
+  }
+
+  async checkRememberDevice() {
+    await this.rememberDeviceCheckbox.check();
+  }
+
+  async uncheckRememberDevice() {
+    await this.rememberDeviceCheckbox.uncheck();
+  }
+
+  async getErrorMessage() {
+    return await this.errorMessage.textContent();
+  }
+
+  async getMfaErrorMessage() {
+    return await this.mfaErrorMessage.textContent();
+  }
+
+  async isLoginButtonVisible() {
+    return await this.loginButton.isVisible();
+  }
+
+  async isMfaCodeInputVisible() {
+    return await this.mfaCodeInput.isVisible();
+  }
+
+  async isDashboardVisible() {
+    return await this.dashboardHeader.isVisible();
+  }
+
+  async waitForMfaScreen() {
+    await this.mfaCodeInput.waitFor({ state: 'visible' });
+  }
+
+  async waitForDashboard() {
+    await this.dashboardHeader.waitFor({ state: 'visible' });
+  }
+
+  async loginWithMfa(username, password, mfaCode) {
+    await this.login(username, password);
+    await this.waitForMfaScreen();
+    await this.verifyMfa(mfaCode);
+    await this.waitForDashboard();
   }
 }
 
