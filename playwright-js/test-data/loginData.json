@@ -1,0 +1,21 @@
+{
+  "baseUrl": "https://qentrix.example.com",
+  "validUser": {
+    "username": "${QENTRIX_USERNAME}",
+    "password": "${QENTRIX_PASSWORD}"
+  },
+  "invalidUsername": {
+    "username": "invaliduser@test.com",
+    "password": "${QENTRIX_PASSWORD}"
+  },
+  "invalidPassword": {
+    "username": "${QENTRIX_USERNAME}",
+    "password": "wrongpassword123"
+  },
+  "errorMessages": {
+    "invalidCredentials": "Invalid username or password",
+    "requiredFields": "Please fill in all required fields",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required"
+  }
+}
