@@ -1,0 +1,37 @@
+{
+  "baseUrl": "https://qentrix-app.example.com",
+  "validPayment": {
+    "paymentMethod": "credit_card",
+    "cardNumber": "4111111111111111",
+    "cardHolder": "Test User",
+    "expiryDate": "12/25",
+    "cvv": "123",
+    "amount": "100.00"
+  },
+  "invalidPayment": {
+    "paymentMethod": "credit_card",
+    "cardNumber": "1234567890123456",
+    "cardHolder": "Invalid User",
+    "expiryDate": "01/20",
+    "cvv": "000",
+    "amount": "50.00"
+  },
+  "paymentMethods": [
+    {
+      "paymentMethod": "credit_card",
+      "cardNumber": "4111111111111111",
+      "cardHolder": "Credit Card User",
+      "expiryDate": "12/26",
+      "cvv": "456",
+      "amount": "75.00"
+    },
+    {
+      "paymentMethod": "debit_card",
+      "cardNumber": "5500000000000004",
+      "cardHolder": "Debit Card User",
+      "expiryDate": "06/27",
+      "cvv": "789",
+      "amount": "150.00"
+    }
+  ]
+}
