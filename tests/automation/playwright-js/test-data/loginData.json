@@ -1,0 +1,13 @@
+{
+  "baseUrl": "https://qentrix-app.example.com",
+  "validCredentials": {
+    "email": "testuser@example.com",
+    "phone": "+1234567890",
+    "otp": "123456"
+  },
+  "invalidOtpCredentials": {
+    "email": "testuser@example.com",
+    "phone": "+1234567890",
+    "otp": "000000"
+  }
+}
