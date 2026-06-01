@@ -7,8 +7,8 @@
   "tags" : [ "Smoke", "Regression", "API" ],
   "apiDetails" : {
     "method" : "POST",
-    "endpointPath" : "/auth/login",
-    "expectedStatusCode" : "201",
+    "endpointPath" : "/user/data",
+    "expectedStatusCode" : "200",
     "responseAssertion" : "body-not-empty",
     "pathParams" : null,
     "queryParams" : null,
