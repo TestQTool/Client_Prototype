@@ -1,38 +1,25 @@
-const { expect } = require('@playwright/test');
-
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.usernameInput = page.locator('#username');
-    this.passwordInput = page.locator('#password');
-    this.loginButton = page.locator('#login-button');
-    this.errorMessage = page.locator('.error-message');
-    this.welcomeMessage = page.locator('.welcome-message');
+    this.usernameInput = page.locator('input[name="username"]');
+    this.passwordInput = page.locator('input[name="password"]');
+    this.loginButton = page.locator('button[type="submit"]');
+    this.dashboardHeader = page.locator('h6.oxd-text--h6');
   }
 
   async navigate(baseUrl) {
-    await this.page.goto(`${baseUrl}/login`);
+    await this.page.goto(baseUrl);
   }
 
   async login(username, password) {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
-  }
-
-  async verifyLoginSuccess() {
-    await expect(this.welcomeMessage).toBeVisible();
-  }
-
-  async verifyLoginFailure(expectedMessage) {
-    await expect(this.errorMessage).toBeVisible();
-    if (expectedMessage) {
-      await expect(this.errorMessage).toContainText(expectedMessage);
-    }
+    await this.dashboardHeader.waitFor({ state: 'visible' });
   }
 
   async isLoggedIn() {
-    return await this.welcomeMessage.isVisible();
+    return await this.dashboardHeader.isVisible();
   }
 }
 
