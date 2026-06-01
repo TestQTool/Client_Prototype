@@ -6,9 +6,9 @@
   "projectName" : "AG-Helix",
   "tags" : [ "Smoke", "Regression", "API" ],
   "apiDetails" : {
-    "method" : "POST",
+    "method" : "GET",
     "endpointPath" : "/api/auth/login",
-    "expectedStatusCode" : "200",
+    "expectedStatusCode" : "201",
     "responseAssertion" : "body-not-empty",
     "pathParams" : null,
     "queryParams" : null,
