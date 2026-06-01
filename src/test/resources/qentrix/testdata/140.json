@@ -13,8 +13,11 @@
     "pathParams" : null,
     "queryParams" : null,
     "headers" : null,
-    "requestBody" : null,
-    "contentType" : null,
+    "requestBody" : {
+      "email" : "hithaadmin@yopmail.com",
+      "password" : "Test@122"
+    },
+    "contentType" : "application/json",
     "assertionPath" : null,
     "expectedValue" : null,
     "responseHeader" : null,
