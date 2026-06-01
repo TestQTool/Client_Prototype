@@ -18,8 +18,6 @@ public class Api140Test {
 
         Response response = given()
                 .headers(QentrixConfig.authHeaders())
-                .contentType("application/json")
-                .body(QentrixTestData.requestBody("140.json"))
         .when()
                 .post("/api/auth/login");
 
