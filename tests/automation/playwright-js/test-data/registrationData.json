@@ -1,0 +1,119 @@
+{
+  "validUser": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe.test@example.com",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "SecureP@ssw0rd123",
+    "phone": "+1234567890",
+    "acceptTerms": true
+  },
+  "existingUser": {
+    "firstName": "Existing",
+    "lastName": "User",
+    "email": "existing.user@example.com",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "SecureP@ssw0rd123",
+    "phone": "+1234567890",
+    "acceptTerms": true
+  },
+  "invalidEmailUser": {
+    "firstName": "Invalid",
+    "lastName": "Email",
+    "email": "invalid-email-format",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "SecureP@ssw0rd123",
+    "phone": "+1234567890",
+    "acceptTerms": true
+  },
+  "passwordMismatchUser": {
+    "firstName": "Password",
+    "lastName": "Mismatch",
+    "email": "password.mismatch@example.com",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "DifferentP@ssw0rd456",
+    "phone": "+1234567890",
+    "acceptTerms": true
+  },
+  "weakPasswordUser": {
+    "firstName": "Weak",
+    "lastName": "Password",
+    "email": "weak.password@example.com",
+    "password": "123",
+    "confirmPassword": "123",
+    "phone": "+1234567890",
+    "acceptTerms": true
+  },
+  "userWithPhone": {
+    "firstName": "Phone",
+    "lastName": "User",
+    "email": "phone.user@example.com",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "SecureP@ssw0rd123",
+    "phone": "+1987654321",
+    "acceptTerms": true
+  },
+  "invalidPhoneUser": {
+    "firstName": "Invalid",
+    "lastName": "Phone",
+    "email": "invalid.phone@example.com",
+    "password": "SecureP@ssw0rd123",
+    "confirmPassword": "SecureP@ssw0rd123",
+    "phone": "abc123",
+    "acceptTerms": true
+  },
+  "messages": {
+    "registrationSuccess": "Registration successful",
+    "emailExists": "Email already exists",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordMismatch": "Passwords do not match",
+    "weakPassword": "Password must be at least 8 characters",
+    "termsRequired": "You must accept the terms and conditions",
+    "requiredFields": "Please fill in all required fields",
+    "invalidPhone": "Please enter a valid phone number"
+  },
+  "dataDrivenCases": [
+    {
+      "description": "Valid registration with all fields",
+      "userData": {
+        "firstName": "DataDriven",
+        "lastName": "User1",
+        "email": "datadriven.user1@example.com",
+        "password": "SecureP@ssw0rd123",
+        "confirmPassword": "SecureP@ssw0rd123",
+        "phone": "+1111111111",
+        "acceptTerms": true
+      },
+      "expectedResult": "success",
+      "expectedMessage": "Registration successful"
+    },
+    {
+      "description": "Invalid registration with short password",
+      "userData": {
+        "firstName": "DataDriven",
+        "lastName": "User2",
+        "email": "datadriven.user2@example.com",
+        "password": "short",
+        "confirmPassword": "short",
+        "phone": "+2222222222",
+        "acceptTerms": true
+      },
+      "expectedResult": "error",
+      "expectedMessage": "Password must be at least 8 characters"
+    },
+    {
+      "description": "Invalid registration without terms acceptance",
+      "userData": {
+        "firstName": "DataDriven",
+        "lastName": "User3",
+        "email": "datadriven.user3@example.com",
+        "password": "SecureP@ssw0rd123",
+        "confirmPassword": "SecureP@ssw0rd123",
+        "phone": "+3333333333",
+        "acceptTerms": false
+      },
+      "expectedResult": "error",
+      "expectedMessage": "You must accept the terms and conditions"
+    }
+  ]
+}
