@@ -4,83 +4,239 @@ class MyInformationPage {
   constructor(page) {
     this.page = page;
     
-    // Locators for My Information section
-    this.myInfoMenu = page.locator('a:has-text("My Info")');
-    this.personalDetailsHeader = page.locator('h6:has-text("Personal Details")');
+    // Section tabs
+    this.personalDetailsTab = page.locator('a:has-text("Personal Details")');
+    this.contactDetailsTab = page.locator('a:has-text("Contact Details")');
+    this.emergencyContactsTab = page.locator('a:has-text("Emergency Contacts")');
+    this.dependentsTab = page.locator('a:has-text("Dependents")');
+    this.immigrationTab = page.locator('a:has-text("Immigration")');
+    this.qualificationsTab = page.locator('a:has-text("Qualifications")');
+    
+    // Section containers
+    this.personalDetailsSection = page.locator('.orangehrm-main-title:has-text("Personal Details")');
+    this.contactDetailsSection = page.locator('.orangehrm-main-title:has-text("Contact Details")');
+    this.emergencyContactsSection = page.locator('.orangehrm-main-title:has-text("Emergency Contacts")');
+    this.dependentsSection = page.locator('.orangehrm-main-title:has-text("Dependents")');
+    this.immigrationSection = page.locator('.orangehrm-main-title:has-text("Immigration")');
+    this.qualificationsSection = page.locator('.orangehrm-main-title:has-text("Qualifications")');
+    
+    // Navigation elements
+    this.myInfoMenu = page.locator('a.oxd-main-menu-item:has-text("My Info")');
+    this.sectionTabs = page.locator('.orangehrm-tabs-wrapper a');
+    this.activeTab = page.locator('.orangehrm-tabs-wrapper a.--active');
+    
+    // Form fields
     this.firstNameInput = page.locator('input[name="firstName"]');
-    this.middleNameInput = page.locator('input[name="middleName"]');
     this.lastNameInput = page.locator('input[name="lastName"]');
-    this.employeeIdInput = page.locator('//label[text()="Employee Id"]/following::input[1]');
-    this.otherIdInput = page.locator('//label[text()="Other Id"]/following::input[1]');
-    this.driverLicenseInput = page.locator('//label[text()="Driver\'s License Number"]/following::input[1]');
-    this.licenseExpiryDateInput = page.locator('//label[text()="License Expiry Date"]/following::input[1]');
-    this.nationalityDropdown = page.locator('//label[text()="Nationality"]/following::div[contains(@class,"select")][1]');
-    this.maritalStatusDropdown = page.locator('//label[text()="Marital Status"]/following::div[contains(@class,"select")][1]');
-    this.dateOfBirthInput = page.locator('//label[text()="Date of Birth"]/following::input[1]');
-    this.genderMaleRadio = page.locator('input[type="radio"][value="1"]');
-    this.genderFemaleRadio = page.locator('input[type="radio"][value="2"]');
-    this.saveButton = page.locator('button[type="submit"]:has-text("Save")');
-    this.successMessage = page.locator('.oxd-toast-content--success');
-    this.profilePicture = page.locator('.employee-image');
-    this.attachmentsSection = page.locator('h6:has-text("Attachments")');
+    this.middleNameInput = page.locator('input[name="middleName"]');
+    
+    // Error elements
+    this.errorMessage = page.locator('.oxd-alert-content-text');
+    this.toastMessage = page.locator('.oxd-toast-content');
   }
 
-  async navigateToMyInfo() {
+  async navigateToMyInformation() {
     await this.myInfoMenu.click();
     await this.page.waitForLoadState('networkidle');
   }
 
-  async verifyMyInfoPageLoaded() {
-    await expect(this.personalDetailsHeader).toBeVisible();
+  async clickPersonalDetailsTab() {
+    await this.personalDetailsTab.click();
+    await this.page.waitForLoadState('networkidle');
   }
 
-  async updateFirstName(firstName) {
-    await this.firstNameInput.clear();
-    await this.firstNameInput.fill(firstName);
+  async clickContactDetailsTab() {
+    await this.contactDetailsTab.click();
+    await this.page.waitForLoadState('networkidle');
   }
 
-  async updateMiddleName(middleName) {
-    await this.middleNameInput.clear();
-    await this.middleNameInput.fill(middleName);
+  async clickEmergencyContactsTab() {
+    await this.emergencyContactsTab.click();
+    await this.page.waitForLoadState('networkidle');
   }
 
-  async updateLastName(lastName) {
-    await this.lastNameInput.clear();
-    await this.lastNameInput.fill(lastName);
+  async clickDependentsTab() {
+    await this.dependentsTab.click();
+    await this.page.waitForLoadState('networkidle');
   }
 
-  async updatePersonalDetails(personalData) {
-    if (personalData.firstName) {
-      await this.updateFirstName(personalData.firstName);
+  async clickImmigrationTab() {
+    await this.immigrationTab.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clickQualificationsTab() {
+    await this.qualificationsTab.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async getAllSectionTabs() {
+    return await this.sectionTabs.all();
+  }
+
+  async verifyAllTabsVisible() {
+    await expect(this.personalDetailsTab).toBeVisible();
+    await expect(this.contactDetailsTab).toBeVisible();
+    await expect(this.emergencyContactsTab).toBeVisible();
+    await expect(this.dependentsTab).toBeVisible();
+    await expect(this.immigrationTab).toBeVisible();
+    await expect(this.qualificationsTab).toBeVisible();
+  }
+
+  async verifyPersonalDetailsSectionDisplayed() {
+    await expect(this.personalDetailsSection).toBeVisible();
+  }
+
+  async verifyContactDetailsSectionDisplayed() {
+    await expect(this.contactDetailsSection).toBeVisible();
+  }
+
+  async verifyEmergencyContactsSectionDisplayed() {
+    await expect(this.emergencyContactsSection).toBeVisible();
+  }
+
+  async verifyDependentsSectionDisplayed() {
+    await expect(this.dependentsSection).toBeVisible();
+  }
+
+  async verifyImmigrationSectionDisplayed() {
+    await expect(this.immigrationSection).toBeVisible();
+  }
+
+  async verifyQualificationsSectionDisplayed() {
+    await expect(this.qualificationsSection).toBeVisible();
+  }
+
+  async verifyActiveTabHighlighted(tabName) {
+    const activeTabText = await this.activeTab.textContent();
+    expect(activeTabText).toContain(tabName);
+  }
+
+  async navigateThroughAllSectionsSequentially() {
+    await this.clickPersonalDetailsTab();
+    await this.verifyPersonalDetailsSectionDisplayed();
+    
+    await this.clickContactDetailsTab();
+    await this.verifyContactDetailsSectionDisplayed();
+    
+    await this.clickEmergencyContactsTab();
+    await this.verifyEmergencyContactsSectionDisplayed();
+    
+    await this.clickDependentsTab();
+    await this.verifyDependentsSectionDisplayed();
+    
+    await this.clickImmigrationTab();
+    await this.verifyImmigrationSectionDisplayed();
+    
+    await this.clickQualificationsTab();
+    await this.verifyQualificationsSectionDisplayed();
+  }
+
+  async enterPersonalDetails(firstName, middleName, lastName) {
+    if (firstName) {
+      await this.firstNameInput.clear();
+      await this.firstNameInput.fill(firstName);
     }
-    if (personalData.middleName) {
-      await this.updateMiddleName(personalData.middleName);
+    if (middleName) {
+      await this.middleNameInput.clear();
+      await this.middleNameInput.fill(middleName);
     }
-    if (personalData.lastName) {
-      await this.updateLastName(personalData.lastName);
+    if (lastName) {
+      await this.lastNameInput.clear();
+      await this.lastNameInput.fill(lastName);
     }
   }
 
-  async savePersonalDetails() {
-    await this.saveButton.first().click();
+  async verifyEnteredPersonalDetails(firstName, middleName, lastName) {
+    if (firstName) {
+      await expect(this.firstNameInput).toHaveValue(firstName);
+    }
+    if (middleName) {
+      await expect(this.middleNameInput).toHaveValue(middleName);
+    }
+    if (lastName) {
+      await expect(this.lastNameInput).toHaveValue(lastName);
+    }
   }
 
-  async verifySuccessMessage() {
-    await expect(this.successMessage).toBeVisible();
+  async navigateUsingKeyboard() {
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('ArrowRight');
+    await this.page.keyboard.press('Enter');
   }
 
-  async getFirstName() {
-    return await this.firstNameInput.inputValue();
+  async tabToSectionTabs() {
+    let maxTabs = 20;
+    while (maxTabs > 0) {
+      await this.page.keyboard.press('Tab');
+      const focusedElement = await this.page.locator(':focus');
+      const tagName = await focusedElement.evaluate(el => el.tagName);
+      if (tagName === 'A') {
+        const parent = await focusedElement.evaluate(el => el.closest('.orangehrm-tabs-wrapper'));
+        if (parent) break;
+      }
+      maxTabs--;
+    }
   }
 
-  async getLastName() {
-    return await this.lastNameInput.inputValue();
+  async navigateWithArrowKeys(direction) {
+    if (direction === 'right') {
+      await this.page.keyboard.press('ArrowRight');
+    } else if (direction === 'left') {
+      await this.page.keyboard.press('ArrowLeft');
+    }
   }
 
-  async verifyPersonalDetailsDisplayed() {
-    await expect(this.firstNameInput).toBeVisible();
-    await expect(this.lastNameInput).toBeVisible();
-    await expect(this.employeeIdInput).toBeVisible();
+  async pressEnterOnFocusedTab() {
+    await this.page.keyboard.press('Enter');
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async rapidSectionSwitching(iterations = 5) {
+    for (let i = 0; i < iterations; i++) {
+      await this.personalDetailsTab.click();
+      await this.contactDetailsTab.click();
+      await this.emergencyContactsTab.click();
+      await this.dependentsTab.click();
+      await this.immigrationTab.click();
+      await this.qualificationsTab.click();
+    }
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async checkForJSErrors() {
+    const errors = [];
+    this.page.on('console', msg => {
+      if (msg.type() === 'error') {
+        errors.push(msg.text());
+      }
+    });
+    return errors;
+  }
+
+  async getPageLoadTime() {
+    const startTime = Date.now();
+    await this.page.waitForLoadState('networkidle');
+    const endTime = Date.now();
+    return endTime - startTime;
+  }
+
+  async verifyHTTPS() {
+    const url = this.page.url();
+    expect(url).toMatch(/^https:\/\//);
+  }
+
+  async navigateToInvalidSection(invalidPath) {
+    const baseUrl = this.page.url().split('/web/')[0];
+    await this.page.goto(`${baseUrl}/web/index.php/pim/viewMyDetails/${invalidPath}`);
+  }
+
+  async verifyErrorHandlingOrRedirect() {
+    const currentUrl = this.page.url();
+    const hasError = await this.errorMessage.isVisible().catch(() => false);
+    const isRedirected = !currentUrl.includes('invalid');
+    return hasError || isRedirected;
   }
 }
 
