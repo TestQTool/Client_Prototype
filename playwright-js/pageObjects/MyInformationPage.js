@@ -10,21 +10,19 @@ class MyInformationPage {
     this.firstNameInput = page.locator('input[name="firstName"]');
     this.middleNameInput = page.locator('input[name="middleName"]');
     this.lastNameInput = page.locator('input[name="lastName"]');
-    this.employeeIdInput = page.locator('input.oxd-input').nth(4);
-    this.otherIdInput = page.locator('input.oxd-input').nth(5);
-    this.licenseNumberInput = page.locator('input.oxd-input').nth(6);
-    this.licenseExpiryDateInput = page.locator('input[placeholder="yyyy-mm-dd"]').first();
-    this.nationalityDropdown = page.locator('.oxd-select-text').first();
-    this.maritalStatusDropdown = page.locator('.oxd-select-text').nth(1);
-    this.dateOfBirthInput = page.locator('input[placeholder="yyyy-mm-dd"]').nth(1);
+    this.employeeIdInput = page.locator('//label[text()="Employee Id"]/following::input[1]');
+    this.otherIdInput = page.locator('//label[text()="Other Id"]/following::input[1]');
+    this.driverLicenseInput = page.locator('//label[text()="Driver\'s License Number"]/following::input[1]');
+    this.licenseExpiryDateInput = page.locator('//label[text()="License Expiry Date"]/following::input[1]');
+    this.nationalityDropdown = page.locator('//label[text()="Nationality"]/following::div[contains(@class,"select")][1]');
+    this.maritalStatusDropdown = page.locator('//label[text()="Marital Status"]/following::div[contains(@class,"select")][1]');
+    this.dateOfBirthInput = page.locator('//label[text()="Date of Birth"]/following::input[1]');
     this.genderMaleRadio = page.locator('input[type="radio"][value="1"]');
     this.genderFemaleRadio = page.locator('input[type="radio"][value="2"]');
-    this.saveButton = page.locator('button[type="submit"]').first();
+    this.saveButton = page.locator('button[type="submit"]:has-text("Save")');
     this.successMessage = page.locator('.oxd-toast-content--success');
-    
-    // Profile picture section
-    this.profilePictureSection = page.locator('.orangehrm-edit-employee-image');
-    this.profileImageUpload = page.locator('input[type="file"]');
+    this.profilePicture = page.locator('.employee-image');
+    this.attachmentsSection = page.locator('h6:has-text("Attachments")');
   }
 
   async navigateToMyInfo() {
@@ -32,7 +30,7 @@ class MyInformationPage {
     await this.page.waitForLoadState('networkidle');
   }
 
-  async verifyPersonalDetailsDisplayed() {
+  async verifyMyInfoPageLoaded() {
     await expect(this.personalDetailsHeader).toBeVisible();
   }
 
@@ -51,20 +49,20 @@ class MyInformationPage {
     await this.lastNameInput.fill(lastName);
   }
 
-  async updatePersonalDetails(userData) {
-    if (userData.firstName) {
-      await this.updateFirstName(userData.firstName);
+  async updatePersonalDetails(personalData) {
+    if (personalData.firstName) {
+      await this.updateFirstName(personalData.firstName);
     }
-    if (userData.middleName) {
-      await this.updateMiddleName(userData.middleName);
+    if (personalData.middleName) {
+      await this.updateMiddleName(personalData.middleName);
     }
-    if (userData.lastName) {
-      await this.updateLastName(userData.lastName);
+    if (personalData.lastName) {
+      await this.updateLastName(personalData.lastName);
     }
   }
 
   async savePersonalDetails() {
-    await this.saveButton.click();
+    await this.saveButton.first().click();
   }
 
   async verifySuccessMessage() {
@@ -77,6 +75,12 @@ class MyInformationPage {
 
   async getLastName() {
     return await this.lastNameInput.inputValue();
+  }
+
+  async verifyPersonalDetailsDisplayed() {
+    await expect(this.firstNameInput).toBeVisible();
+    await expect(this.lastNameInput).toBeVisible();
+    await expect(this.employeeIdInput).toBeVisible();
   }
 }
 
