@@ -18,13 +18,11 @@ public class Api140Test {
 
         Response response = given()
                 .headers(QentrixConfig.authHeaders())
-                .contentType("application/json")
-                .body(QentrixTestData.requestBody("140.json"))
         .when()
-                .post("/api/auth/login");
+                .post("/ai/Title/summary/feedback");
 
         QentrixReport.capture(response);
         Assert.assertEquals(response.statusCode(), 200, "Unexpected response status code");
-        Assert.assertFalse(response.getBody().asString().isBlank(), "Response body should not be empty");
+        Assert.assertNotNull(response.jsonPath().get("id"), "Expected JSON path to exist: id");
     }
 }
