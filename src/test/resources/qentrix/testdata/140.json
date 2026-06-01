@@ -7,17 +7,14 @@
   "tags" : [ "Smoke", "Regression", "API" ],
   "apiDetails" : {
     "method" : "POST",
-    "endpointPath" : "/api/auth/login",
+    "endpointPath" : "/ai/Title/summary/feedback",
     "expectedStatusCode" : "200",
-    "responseAssertion" : "body-not-empty",
+    "responseAssertion" : "json-field-exists",
     "pathParams" : null,
     "queryParams" : null,
     "headers" : null,
-    "requestBody" : {
-      "email" : "hithaadmin@yopmail.com",
-      "password" : "Test@122"
-    },
-    "contentType" : "application/json",
+    "requestBody" : null,
+    "contentType" : null,
     "assertionPath" : null,
     "expectedValue" : null,
     "responseHeader" : null,
