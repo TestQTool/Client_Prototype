@@ -7,9 +7,9 @@
   "tags" : [ "Smoke", "Regression", "API" ],
   "apiDetails" : {
     "method" : "POST",
-    "endpointPath" : "/ai/Title/summary/feedback",
-    "expectedStatusCode" : "200",
-    "responseAssertion" : "json-field-exists",
+    "endpointPath" : "/user/userid",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "body-not-empty",
     "pathParams" : null,
     "queryParams" : null,
     "headers" : null,
