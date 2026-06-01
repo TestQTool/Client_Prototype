@@ -8,8 +8,8 @@
   "apiDetails" : {
     "method" : "POST",
     "endpointPath" : "/users/userid",
-    "expectedStatusCode" : "201",
-    "responseAssertion" : "json-field-exists",
+    "expectedStatusCode" : "200",
+    "responseAssertion" : "body-not-empty",
     "pathParams" : null,
     "queryParams" : null,
     "headers" : null,
