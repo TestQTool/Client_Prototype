@@ -1,0 +1,26 @@
+{
+  "baseUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+  "credentials": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "personalDetails": {
+    "firstName": "TestFirstName",
+    "middleName": "TestMiddle",
+    "lastName": "TestLastName",
+    "nickname": "TestNick",
+    "employeeId": "EMP001",
+    "otherId": "OTH001",
+    "licenseNumber": "LIC12345",
+    "nationality": "American",
+    "maritalStatus": "Single",
+    "dateOfBirth": "1990-01-15",
+    "gender": "Male"
+  },
+  "updatedPersonalDetails": {
+    "firstName": "UpdatedFirst",
+    "middleName": "UpdatedMiddle",
+    "lastName": "UpdatedLast",
+    "nickname": "UpdatedNick"
+  }
+}
