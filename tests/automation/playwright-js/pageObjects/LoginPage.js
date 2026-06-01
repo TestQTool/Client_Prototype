@@ -3,47 +3,79 @@ const { expect } = require('@playwright/test');
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email-input"]');
-    this.sendOtpButton = page.locator('[data-testid="send-otp-btn"]');
+    this.usernameInput = page.locator('[data-testid="username"]');
+    this.passwordInput = page.locator('[data-testid="password"]');
+    this.loginButton = page.locator('[data-testid="login-button"]');
     this.otpInput = page.locator('[data-testid="otp-input"]');
-    this.verifyOtpButton = page.locator('[data-testid="verify-otp-btn"]');
-    this.loginSuccessMessage = page.locator('[data-testid="login-success"]');
+    this.verifyOtpButton = page.locator('[data-testid="verify-otp-button"]');
+    this.resendOtpLink = page.locator('[data-testid="resend-otp"]');
     this.errorMessage = page.locator('[data-testid="error-message"]');
+    this.successMessage = page.locator('[data-testid="success-message"]');
   }
 
   async navigate(baseUrl) {
     await this.page.goto(`${baseUrl}/login`);
   }
 
-  async enterEmail(email) {
-    await this.emailInput.fill(email);
+  async enterUsername(username) {
+    await this.usernameInput.fill(username);
   }
 
-  async clickSendOtp() {
-    await this.sendOtpButton.click();
+  async enterPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  async clickLoginButton() {
+    await this.loginButton.click();
   }
 
   async enterOtp(otp) {
     await this.otpInput.fill(otp);
   }
 
-  async clickVerifyOtp() {
+  async clickVerifyOtpButton() {
     await this.verifyOtpButton.click();
   }
 
-  async loginWithOtp(email, otp) {
-    await this.enterEmail(email);
-    await this.clickSendOtp();
+  async clickResendOtp() {
+    await this.resendOtpLink.click();
+  }
+
+  async login(username, password) {
+    await this.enterUsername(username);
+    await this.enterPassword(password);
+    await this.clickLoginButton();
+  }
+
+  async verifyOtp(otp) {
     await this.enterOtp(otp);
-    await this.clickVerifyOtp();
+    await this.clickVerifyOtpButton();
+  }
+
+  async loginWithOtpVerification(username, password, otp) {
+    await this.login(username, password);
+    await this.verifyOtp(otp);
+  }
+
+  async getErrorMessage() {
+    return await this.errorMessage.textContent();
+  }
+
+  async getSuccessMessage() {
+    return await this.successMessage.textContent();
+  }
+
+  async isOtpInputVisible() {
+    return await this.otpInput.isVisible();
   }
 
   async verifyLoginSuccess() {
-    await expect(this.loginSuccessMessage).toBeVisible();
+    await expect(this.successMessage).toBeVisible();
   }
 
-  async verifyErrorMessage(expectedMessage) {
-    await expect(this.errorMessage).toContainText(expectedMessage);
+  async verifyOtpScreenDisplayed() {
+    await expect(this.otpInput).toBeVisible();
+    await expect(this.verifyOtpButton).toBeVisible();
   }
 }
 
