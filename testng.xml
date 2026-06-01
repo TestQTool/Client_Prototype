@@ -8,6 +8,7 @@
         <classes>
             <class name="tests.qentrix.Api140Test"/>
             <class name="tests.qentrix.Api155Test"/>
+            <class name="tests.qentrix.Api142Test"/>
         </classes>
     </test>
 </suite>
