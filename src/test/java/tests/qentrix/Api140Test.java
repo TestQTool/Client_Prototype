@@ -19,7 +19,7 @@ public class Api140Test {
         Response response = given()
                 .headers(QentrixConfig.authHeaders())
         .when()
-                .post("/users/userid");
+                .post("/api/auth/login");
 
         QentrixReport.capture(response);
         Assert.assertEquals(response.statusCode(), 200, "Unexpected response status code");
