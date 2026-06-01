@@ -1,30 +1,24 @@
 const base = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
-const { IntegrationsPage } = require('../pageObjects/IntegrationsPage');
+const { MyInfoPage } = require('../pageObjects/MyInfoPage');
 
 exports.test = base.test.extend({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
   },
-
-  integrationsPage: async ({ page }, use) => {
-    const integrationsPage = new IntegrationsPage(page);
-    await use(integrationsPage);
+  myInfoPage: async ({ page }, use) => {
+    const myInfoPage = new MyInfoPage(page);
+    await use(myInfoPage);
   },
-
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
-    const loginData = require('../test-data/loginData.json');
-    const baseUrl = process.env.BASE_URL || loginData.baseUrl;
-    
-    await loginPage.navigate(baseUrl);
+    const testData = require('../test-data/myInfoTestData.json');
+    await loginPage.navigate(process.env.BASE_URL || testData.baseUrl);
     await loginPage.login(
-      process.env.QENTRIX_USERNAME || loginData.validUser.username,
-      process.env.QENTRIX_PASSWORD || loginData.validUser.password
+      process.env.USERNAME || testData.credentials.username,
+      process.env.PASSWORD || testData.credentials.password
     );
-    await loginPage.verifyLoginSuccess();
-    
     await use(page);
   }
 });
