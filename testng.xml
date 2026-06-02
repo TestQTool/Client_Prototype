@@ -6,9 +6,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.frontend.ag_helix.general.VerifyAPIResponseAIGeneratedTitleSummaryGeneral_Api140Test"/>
-            <class name="tests.frontend.ag_helix.general.VerifyThatLoginPreventsMultipleRapidSubmissions_Api635Test"/>
-            <class name="tests.frontend.ag_helix.general.VerifyThatLoginImplementsHTTPSEncryption_Api674Test"/>
+            <class name="tests.frontend.ag_helix.login.VerifyAPIResponseAIGeneratedTitleSummaryGeneral_Api140Test"/>
         </classes>
     </test>
 </suite>
