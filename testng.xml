@@ -6,7 +6,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.frontend.qentrix.login.VerifyThatDashboardAPIReturnsRealTimeData_Api493Test"/>
+            <class name="tests.frontend.qentrix.dashboard.VerifyThatLoginCredentialsTransmittedSecurelyOverHTTPS_Api1106Test"/>
         </classes>
     </test>
 </suite>
