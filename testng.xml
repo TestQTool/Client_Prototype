@@ -6,7 +6,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.frontend.ag_helix.dashboard.VerifyAPIResponseAIGeneratedTitleSummaryGeneral_Api140Test"/>
+            <class name="tests.frontend.ag_helix.gmail.VerifyThatLoginSendsCorrectAPIRequestFormat_Api646Test"/>
         </classes>
     </test>
 </suite>
