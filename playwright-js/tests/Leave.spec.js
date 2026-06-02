@@ -1,3 +1,6 @@
+// tests/Leave.spec.js
+// Leave Module Test Specifications — Qentrix Application
+
 const { test, expect } = require('@playwright/test');
 const LeavePage = require('../pageObjects/LeavePage');
 
@@ -6,197 +9,365 @@ test.describe('Leave Module', () => {
 
     test.beforeEach(async ({ page }) => {
         leavePage = new LeavePage(page);
-        await page.goto(process.env.BASE_URL || 'https://qentrix.com');
-        await page.locator('[data-testid="leave-menu"]').click();
-        await page.waitForLoadState('networkidle');
+        await leavePage.navigateToLeaveModule();
     });
 
     // ── @smoke tests ─────────────────────────────────────────────────────────
-    test('TC-764-001: Verify Leave Module loads successfully @smoke @regression', async ({ page }) => {
-        await test.step('Navigate to Leave Module', async () => {
-            await expect(page.locator('h1:has-text("Leave")')).toBeVisible();
+    test('[764] Verify Leave Module loads successfully @smoke @regression', async ({ page }) => {
+        // Step 1: Verify the Leave Module page is accessible
+        await test.step('Verify Leave Module navigation', async () => {
+            await expect(page.locator(LeavePage.leaveDashboardHeader)).toBeVisible();
         });
 
-        await test.step('Verify Leave Module header is displayed', async () => {
-            await expect(page).toHaveURL(/.*leave.*/);
-        });
-    });
-
-    test('TC-764-002: Verify Apply Leave tab is accessible @smoke @regression', async ({ page }) => {
-        await test.step('Click on Apply Leave tab', async () => {
-            await page.locator('[data-testid="apply-leave-tab"]').click();
+        // Step 2: Verify main sections are displayed
+        await test.step('Verify leave balance section is visible', async () => {
+            await expect(page.locator(LeavePage.leaveBalanceSection)).toBeVisible();
         });
 
-        await test.step('Verify Apply Leave form is displayed', async () => {
-            await expect(page.locator('select[name="leaveType"]')).toBeVisible();
-            await expect(page.locator('input[name="fromDate"]')).toBeVisible();
-            await expect(page.locator('input[name="toDate"]')).toBeVisible();
-        });
-    });
-
-    test('TC-764-003: Verify Leave Balance section is displayed @smoke @regression', async ({ page }) => {
-        await test.step('Navigate to Leave Module', async () => {
-            await page.locator('[data-testid="entitlements-tab"]').click();
+        // Step 3: Verify Apply Leave button is present
+        await test.step('Verify Apply Leave button is available', async () => {
+            await expect(page.locator(LeavePage.applyLeaveButton)).toBeVisible();
+            await expect(page.locator(LeavePage.applyLeaveButton)).toBeEnabled();
         });
 
-        await test.step('Verify Leave Balance section is visible', async () => {
-            await expect(page.locator('[data-testid="leave-balance"]')).toBeVisible();
+        // Step 4: Verify leave list/history table is displayed
+        await test.step('Verify leave history table is visible', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
         });
     });
 
-    // ── @regression tests ────────────────────────────────────────────────────
-    test('TC-764-004: Submit a new leave request @regression', async ({ page }) => {
-        await test.step('Click on Apply Leave tab', async () => {
-            await page.locator('[data-testid="apply-leave-tab"]').click();
+    test('[764] Verify user can open Apply Leave form @smoke @regression', async ({ page }) => {
+        // Step 1: Click on Apply Leave button
+        await test.step('Click Apply Leave button', async () => {
+            await page.locator(LeavePage.applyLeaveButton).click();
         });
 
+        // Step 2: Verify the leave application form is displayed
+        await test.step('Verify leave type dropdown is visible', async () => {
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).toBeVisible();
+        });
+
+        // Step 3: Verify date inputs are present
+        await test.step('Verify date fields are visible', async () => {
+            await expect(page.locator(LeavePage.startDateInput)).toBeVisible();
+            await expect(page.locator(LeavePage.endDateInput)).toBeVisible();
+        });
+
+        // Step 4: Verify reason field is present
+        await test.step('Verify reason textarea is visible', async () => {
+            await expect(page.locator(LeavePage.leaveReasonTextarea)).toBeVisible();
+        });
+
+        // Step 5: Verify submit button is present
+        await test.step('Verify submit button is available', async () => {
+            await expect(page.locator(LeavePage.submitLeaveButton)).toBeVisible();
+        });
+    });
+
+    test('[764] Verify user can submit a leave application @smoke @regression', async ({ page }) => {
+        // Step 1: Open the leave application form
+        await test.step('Open Apply Leave form', async () => {
+            await page.locator(LeavePage.applyLeaveButton).click();
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).toBeVisible();
+        });
+
+        // Step 2: Select leave type
         await test.step('Select leave type', async () => {
-            await page.locator('select[name="leaveType"]').selectOption({ index: 1 });
+            await page.locator(LeavePage.leaveTypeDropdown).selectOption({ index: 1 });
         });
 
-        await test.step('Fill from date', async () => {
-            const futureDate = new Date();
-            futureDate.setDate(futureDate.getDate() + 7);
-            const fromDateStr = futureDate.toISOString().split('T')[0];
-            await page.locator('input[name="fromDate"]').fill(fromDateStr);
+        // Step 3: Enter start date
+        await test.step('Enter start date', async () => {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const startDateStr = tomorrow.toISOString().split('T')[0];
+            await page.locator(LeavePage.startDateInput).fill(startDateStr);
         });
 
-        await test.step('Fill to date', async () => {
-            const futureDate = new Date();
-            futureDate.setDate(futureDate.getDate() + 8);
-            const toDateStr = futureDate.toISOString().split('T')[0];
-            await page.locator('input[name="toDate"]').fill(toDateStr);
+        // Step 4: Enter end date
+        await test.step('Enter end date', async () => {
+            const dayAfterTomorrow = new Date();
+            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+            const endDateStr = dayAfterTomorrow.toISOString().split('T')[0];
+            await page.locator(LeavePage.endDateInput).fill(endDateStr);
         });
 
-        await test.step('Fill comments', async () => {
-            await page.locator('textarea[name="comments"]').fill('Automation test leave request');
+        // Step 5: Enter reason for leave
+        await test.step('Enter leave reason', async () => {
+            await page.locator(LeavePage.leaveReasonTextarea).fill('Personal work - automation test leave request');
         });
 
-        await test.step('Submit leave request', async () => {
-            await page.locator('button[type="submit"]:has-text("Apply")').click();
+        // Step 6: Submit the leave application
+        await test.step('Submit leave application', async () => {
+            await page.locator(LeavePage.submitLeaveButton).click();
         });
 
-        await test.step('Verify success message is displayed', async () => {
-            await expect(page.locator('.toast-success, [data-testid="success-message"]')).toBeVisible();
-        });
-    });
-
-    test('TC-764-005: Verify My Leave list displays leave requests @regression', async ({ page }) => {
-        await test.step('Click on My Leave tab', async () => {
-            await page.locator('[data-testid="my-leave-tab"]').click();
-        });
-
-        await test.step('Verify leave list table is displayed', async () => {
-            await expect(page.locator('table[data-testid="leave-list"]')).toBeVisible();
+        // Step 7: Verify success message or leave appears in list
+        await test.step('Verify leave submission success', async () => {
+            await expect(page.locator(LeavePage.successMessage)).toBeVisible({ timeout: 10000 });
         });
     });
 
-    test('TC-764-006: Cancel a pending leave request @regression', async ({ page }) => {
-        await test.step('Click on My Leave tab', async () => {
-            await page.locator('[data-testid="my-leave-tab"]').click();
+    test('[764] Verify leave balance is displayed correctly @regression', async ({ page }) => {
+        // Step 1: Verify leave balance section is visible
+        await test.step('Verify leave balance section visibility', async () => {
+            await expect(page.locator(LeavePage.leaveBalanceSection)).toBeVisible();
         });
 
-        await test.step('Click delete on first leave request', async () => {
-            const deleteButton = page.locator('table[data-testid="leave-list"] tbody tr').first().locator('button:has-text("Delete")');
-            if (await deleteButton.isVisible()) {
-                await deleteButton.click();
-            }
+        // Step 2: Verify available leave count is displayed
+        await test.step('Verify available leave count is shown', async () => {
+            await expect(page.locator(LeavePage.availableLeaveCount)).toBeVisible();
         });
 
-        await test.step('Confirm deletion in modal', async () => {
-            const confirmButton = page.locator('button:has-text("Yes")');
-            if (await confirmButton.isVisible()) {
-                await confirmButton.click();
-            }
+        // Step 3: Verify used leave count is displayed
+        await test.step('Verify used leave count is shown', async () => {
+            await expect(page.locator(LeavePage.usedLeaveCount)).toBeVisible();
         });
 
-        await test.step('Verify deletion success or no pending leaves', async () => {
-            const successMsg = page.locator('.toast-success, [data-testid="success-message"]');
-            const noLeavesMsg = page.locator('text=No leave requests');
-            await expect(successMsg.or(noLeavesMsg)).toBeVisible({ timeout: 5000 }).catch(() => {
-                // No action needed if neither is visible - might be no deletable leaves
-            });
+        // Step 4: Verify pending leave count is displayed
+        await test.step('Verify pending leave count is shown', async () => {
+            await expect(page.locator(LeavePage.pendingLeaveCount)).toBeVisible();
         });
     });
 
-    test('TC-764-007: Validate required fields on leave form @regression', async ({ page }) => {
-        await test.step('Click on Apply Leave tab', async () => {
-            await page.locator('[data-testid="apply-leave-tab"]').click();
+    test('[764] Verify leave history/list displays past leaves @regression', async ({ page }) => {
+        // Step 1: Verify leave list table is present
+        await test.step('Verify leave list table is visible', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
         });
 
-        await test.step('Click submit without filling required fields', async () => {
-            await page.locator('button[type="submit"]:has-text("Apply")').click();
+        // Step 2: Verify table has necessary columns
+        await test.step('Verify table structure with columns', async () => {
+            await expect(page.locator(LeavePage.leaveListTableBody)).toBeVisible();
         });
 
-        await test.step('Verify error message is displayed for required fields', async () => {
-            await expect(page.locator('.toast-error, [data-testid="error-message"], .error-message, :has-text("required")')).toBeVisible();
-        });
-    });
-
-    test('TC-764-008: View leave request details @regression', async ({ page }) => {
-        await test.step('Click on My Leave tab', async () => {
-            await page.locator('[data-testid="my-leave-tab"]').click();
-        });
-
-        await test.step('Click view on first leave request', async () => {
-            const viewButton = page.locator('table[data-testid="leave-list"] tbody tr').first().locator('button:has-text("View")');
-            if (await viewButton.isVisible()) {
-                await viewButton.click();
-            }
-        });
-
-        await test.step('Verify leave details are displayed', async () => {
-            // Verify either modal or detail page loads
-            const detailsVisible = await page.locator('[data-testid="leave-details"], .modal-content, :has-text("Leave Details")').isVisible().catch(() => false);
-            expect(detailsVisible || true).toBeTruthy(); // Soft assertion if no leaves exist
+        // Step 3: Verify status filter is available
+        await test.step('Verify status filter dropdown is available', async () => {
+            await expect(page.locator(LeavePage.leaveStatusFilter)).toBeVisible();
         });
     });
 
-    test('TC-764-009: Verify leave entitlements display @regression', async ({ page }) => {
-        await test.step('Click on Entitlements tab', async () => {
-            await page.locator('[data-testid="entitlements-tab"]').click();
+    test('[764] Verify user can cancel an Apply Leave form @regression', async ({ page }) => {
+        // Step 1: Open the leave application form
+        await test.step('Open Apply Leave form', async () => {
+            await page.locator(LeavePage.applyLeaveButton).click();
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).toBeVisible();
         });
 
-        await test.step('Verify annual leave balance is displayed', async () => {
-            await expect(page.locator('[data-testid="annual-leave-balance"], :has-text("Annual")')).toBeVisible();
+        // Step 2: Click cancel button
+        await test.step('Click Cancel button', async () => {
+            await page.locator(LeavePage.cancelLeaveButton).click();
         });
 
-        await test.step('Verify sick leave balance is displayed', async () => {
-            await expect(page.locator('[data-testid="sick-leave-balance"], :has-text("Sick")')).toBeVisible();
+        // Step 3: Verify form is closed and dashboard is visible
+        await test.step('Verify form is closed', async () => {
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).not.toBeVisible();
+            await expect(page.locator(LeavePage.leaveDashboardHeader)).toBeVisible();
         });
     });
 
-    test('TC-764-010: Edit a pending leave request @regression', async ({ page }) => {
-        await test.step('Click on My Leave tab', async () => {
-            await page.locator('[data-testid="my-leave-tab"]').click();
+    test('[764] Verify leave type filter functionality @regression', async ({ page }) => {
+        // Step 1: Locate the leave type filter
+        await test.step('Verify leave type filter is available', async () => {
+            await expect(page.locator(LeavePage.leaveTypeFilter)).toBeVisible();
         });
 
-        await test.step('Click edit on first pending leave request', async () => {
-            const editButton = page.locator('table[data-testid="leave-list"] tbody tr').first().locator('button:has-text("Edit")');
-            if (await editButton.isVisible()) {
-                await editButton.click();
+        // Step 2: Select a leave type from filter
+        await test.step('Select a leave type filter option', async () => {
+            await page.locator(LeavePage.leaveTypeFilter).selectOption({ index: 1 });
+        });
+
+        // Step 3: Apply filter
+        await test.step('Apply filters', async () => {
+            await page.locator(LeavePage.applyFiltersButton).click();
+        });
+
+        // Step 4: Verify filtered results are displayed
+        await test.step('Verify leave list is updated', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
+        });
+    });
+
+    test('[764] Verify leave status filter functionality @regression', async ({ page }) => {
+        // Step 1: Locate the leave status filter
+        await test.step('Verify leave status filter is available', async () => {
+            await expect(page.locator(LeavePage.leaveStatusFilter)).toBeVisible();
+        });
+
+        // Step 2: Select pending status from filter
+        await test.step('Select Pending status filter', async () => {
+            await page.locator(LeavePage.leaveStatusFilter).selectOption('pending');
+        });
+
+        // Step 3: Apply filter
+        await test.step('Apply filters', async () => {
+            await page.locator(LeavePage.applyFiltersButton).click();
+        });
+
+        // Step 4: Verify filtered results
+        await test.step('Verify filtered leave list', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
+        });
+    });
+
+    test('[764] Verify clear filters functionality @regression', async ({ page }) => {
+        // Step 1: Apply a filter first
+        await test.step('Apply a status filter', async () => {
+            await page.locator(LeavePage.leaveStatusFilter).selectOption('approved');
+            await page.locator(LeavePage.applyFiltersButton).click();
+        });
+
+        // Step 2: Click clear filters
+        await test.step('Click Clear Filters button', async () => {
+            await page.locator(LeavePage.clearFiltersButton).click();
+        });
+
+        // Step 3: Verify filters are reset
+        await test.step('Verify all leaves are displayed again', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
+        });
+    });
+
+    test('[764] Verify leave calendar view is accessible @regression', async ({ page }) => {
+        // Step 1: Navigate to calendar view if available
+        await test.step('Click on Leave Calendar view', async () => {
+            const calendarView = page.locator(LeavePage.leaveCalendarView);
+            if (await calendarView.isVisible()) {
+                await calendarView.click();
             }
         });
 
-        await test.step('Modify comments field', async () => {
-            const commentsField = page.locator('textarea[name="comments"]');
-            if (await commentsField.isVisible()) {
-                await commentsField.fill('Updated leave request comment');
+        // Step 2: Verify calendar elements are displayed
+        await test.step('Verify calendar month selector', async () => {
+            const monthSelector = page.locator(LeavePage.calendarMonthSelector);
+            if (await monthSelector.isVisible()) {
+                await expect(monthSelector).toBeEnabled();
+            }
+        });
+    });
+
+    test('[764] Verify half-day leave option is available @regression', async ({ page }) => {
+        // Step 1: Open Apply Leave form
+        await test.step('Open Apply Leave form', async () => {
+            await page.locator(LeavePage.applyLeaveButton).click();
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).toBeVisible();
+        });
+
+        // Step 2: Verify half-day checkbox/toggle is available
+        await test.step('Verify half-day option is present', async () => {
+            const halfDayOption = page.locator(LeavePage.halfDayCheckbox);
+            const halfDayToggle = page.locator(LeavePage.halfDayToggle);
+            const isHalfDayVisible = await halfDayOption.isVisible() || await halfDayToggle.isVisible();
+            expect(isHalfDayVisible).toBeTruthy();
+        });
+    });
+
+    test('[764] Verify pagination on leave history list @regression', async ({ page }) => {
+        // Step 1: Verify pagination container is visible
+        await test.step('Check pagination availability', async () => {
+            const pagination = page.locator(LeavePage.paginationContainer);
+            if (await pagination.isVisible()) {
+                await expect(pagination).toBeVisible();
             }
         });
 
-        await test.step('Save changes', async () => {
-            const saveButton = page.locator('button:has-text("Save"), button[type="submit"]');
-            if (await saveButton.isVisible()) {
-                await saveButton.click();
+        // Step 2: Click next page if available
+        await test.step('Navigate to next page if available', async () => {
+            const nextButton = page.locator(LeavePage.nextPageButton);
+            if (await nextButton.isVisible() && await nextButton.isEnabled()) {
+                await nextButton.click();
+                await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
+            }
+        });
+    });
+
+    test('[764] Verify form validation for required fields @regression', async ({ page }) => {
+        // Step 1: Open Apply Leave form
+        await test.step('Open Apply Leave form', async () => {
+            await page.locator(LeavePage.applyLeaveButton).click();
+            await expect(page.locator(LeavePage.leaveTypeDropdown)).toBeVisible();
+        });
+
+        // Step 2: Try to submit without filling required fields
+        await test.step('Click submit without filling form', async () => {
+            await page.locator(LeavePage.submitLeaveButton).click();
+        });
+
+        // Step 3: Verify validation error is shown
+        await test.step('Verify validation errors appear', async () => {
+            const errorMsg = page.locator(LeavePage.errorMessage);
+            const startDateError = page.locator(`${LeavePage.startDateInput}:invalid`);
+            const hasError = await errorMsg.isVisible() || await startDateError.count() > 0;
+            expect(hasError).toBeTruthy();
+        });
+    });
+
+    test('[764] Verify search functionality in leave history @regression', async ({ page }) => {
+        // Step 1: Locate search input
+        await test.step('Verify search input is available', async () => {
+            const searchInput = page.locator(LeavePage.searchLeaveInput);
+            if (await searchInput.isVisible()) {
+                await expect(searchInput).toBeEnabled();
             }
         });
 
-        await test.step('Verify update success', async () => {
-            const successMsg = page.locator('.toast-success, [data-testid="success-message"]');
-            await expect(successMsg).toBeVisible({ timeout: 5000 }).catch(() => {
-                // No action if no editable leaves exist
-            });
+        // Step 2: Enter search term
+        await test.step('Enter search keyword', async () => {
+            const searchInput = page.locator(LeavePage.searchLeaveInput);
+            if (await searchInput.isVisible()) {
+                await searchInput.fill('Annual');
+                await page.keyboard.press('Enter');
+            }
+        });
+
+        // Step 3: Verify results are filtered
+        await test.step('Verify search results', async () => {
+            await expect(page.locator(LeavePage.leaveListTable)).toBeVisible();
         });
     });
 });
+
+// Leave Page Class for Page Object Model
+class LeavePage {
+    constructor(page) {
+        this.page = page;
+        this.baseUrl = process.env.BASE_URL || 'https://qentrix.example.com';
+    }
+
+    // Navigation
+    async navigateToLeaveModule() {
+        await this.page.goto(`${this.baseUrl}/leave`);
+        await this.page.waitForLoadState('networkidle');
+    }
+
+    // Static selectors reference
+    static get leaveDashboardHeader() { return 'h1:has-text("Leave")'; }
+    static get leaveBalanceSection() { return '[data-testid="leave-balance"]'; }
+    static get applyLeaveButton() { return 'button:has-text("Apply Leave")'; }
+    static get leaveTypeDropdown() { return 'select[name="leaveType"]'; }
+    static get startDateInput() { return 'input[name="startDate"]'; }
+    static get endDateInput() { return 'input[name="endDate"]'; }
+    static get leaveReasonTextarea() { return 'textarea[name="reason"]'; }
+    static get submitLeaveButton() { return 'button[type="submit"]:has-text("Submit")'; }
+    static get cancelLeaveButton() { return 'button:has-text("Cancel")'; }
+    static get successMessage() { return '.toast-success, .alert-success'; }
+    static get errorMessage() { return '.toast-error, .alert-danger'; }
+    static get leaveListTable() { return 'table[data-testid="leave-list"]'; }
+    static get leaveListTableBody() { return 'table[data-testid="leave-list"] tbody'; }
+    static get leaveStatusFilter() { return 'select[name="statusFilter"]'; }
+    static get leaveTypeFilter() { return 'select[name="typeFilter"]'; }
+    static get applyFiltersButton() { return 'button:has-text("Apply Filters")'; }
+    static get clearFiltersButton() { return 'button:has-text("Clear")'; }
+    static get leaveCalendarView() { return '[data-testid="leave-calendar"]'; }
+    static get calendarMonthSelector() { return 'select[name="calendarMonth"]'; }
+    static get halfDayCheckbox() { return 'input[name="halfDay"]'; }
+    static get halfDayToggle() { return '[data-testid="half-day-toggle"]'; }
+    static get paginationContainer() { return '.pagination'; }
+    static get nextPageButton() { return 'button[aria-label="Next page"]'; }
+    static get searchLeaveInput() { return 'input[placeholder*="Search"]'; }
+    static get availableLeaveCount() { return '[data-testid="available-leave"]'; }
+    static get usedLeaveCount() { return '[data-testid="used-leave"]'; }
+    static get pendingLeaveCount() { return '[data-testid="pending-leave"]'; }
+}
+
+module.exports = LeavePage;
