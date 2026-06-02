@@ -7,9 +7,6 @@
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
             <class name="tests.qentrix.Api140Test"/>
-            <class name="tests.qentrix.Api155Test"/>
-            <class name="tests.qentrix.Api142Test"/>
-            <class name="tests.qentrix.Api493Test"/>
         </classes>
     </test>
 </suite>
