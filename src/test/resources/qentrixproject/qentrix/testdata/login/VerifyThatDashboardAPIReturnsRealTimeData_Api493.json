@@ -1,0 +1,25 @@
+{
+  "id" : "493",
+  "backendId" : "493",
+  "title" : "Verify that dashboard API returns real-time data with correct response code",
+  "module" : "login",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "Smoke", "Regression", "API" ],
+  "apiDetails" : {
+    "method" : "GET",
+    "endpointPath" : "/users",
+    "expectedStatusCode" : "200",
+    "responseAssertion" : "body-not-empty",
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null
+  }
+}
