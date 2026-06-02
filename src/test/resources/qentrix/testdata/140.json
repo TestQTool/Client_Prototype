@@ -6,15 +6,18 @@
   "projectName" : "AG-Helix",
   "tags" : [ "Smoke", "Regression", "API" ],
   "apiDetails" : {
-    "method" : "GET",
+    "method" : "POST",
     "endpointPath" : "/api/auth/login",
-    "expectedStatusCode" : "201",
+    "expectedStatusCode" : "200",
     "responseAssertion" : "body-not-empty",
     "pathParams" : null,
     "queryParams" : null,
     "headers" : null,
-    "requestBody" : null,
-    "contentType" : null,
+    "requestBody" : {
+      "email" : "adithya@quality-matrix.com",
+      "password" : "Test@122"
+    },
+    "contentType" : "application/json",
     "assertionPath" : null,
     "expectedValue" : null,
     "responseHeader" : null,
