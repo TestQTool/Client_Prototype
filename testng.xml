@@ -6,10 +6,8 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.qentrix.Api140Test"/>
-            <class name="tests.qentrix.Api155Test"/>
-            <class name="tests.qentrix.Api142Test"/>
-            <class name="tests.qentrix.Api493Test"/>
+            <class name="tests.qentrixproject.qentrix.login.VerifyThatDashboardAPIReturnsRealTimeData_Api493Test"/>
+            <class name="tests.frontend_quality_engineering.qentrix.dashboard.VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229Test"/>
         </classes>
     </test>
 </suite>
