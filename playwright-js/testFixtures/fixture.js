@@ -1,9 +1,9 @@
-// UPDATE REQUIRED: Add these lines to existing testFixtures/fixture.js
+// INSTRUCTION: Add the following to your existing testFixtures/fixture.js
 
-// Add import at the top:
+// Add this import at the top with other page imports:
 import ForgotPasswordPage from '../pages/forgotPasswordPage.js';
 
-// Add fixture inside test.extend({...}):
+// Add this fixture inside the test.extend({ ... }) block:
 forgotPasswordPage: async ({ page }, use) => {
     await use(new ForgotPasswordPage(page));
 },
