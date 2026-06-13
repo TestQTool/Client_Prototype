@@ -1,0 +1,7 @@
+{
+  "leave": {
+    "leaveTypes": ["Sick Leave", "Annual Leave", "Casual Leave"],
+    "durations": ["Full Day", "Half Day - Morning", "Half Day - Evening"],
+    "statuses": ["Pending", "Approved", "Rejected"]
+  }
+}
