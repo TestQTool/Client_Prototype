@@ -1,0 +1,22 @@
+{
+  "name" : "playwright-js",
+  "version" : "1.0.0",
+  "description" : "Playwright JavaScript Automation Framework",
+  "main" : "index.js",
+  "scripts" : {
+    "test" : "npx playwright test",
+    "test:Leave-Smoke-Chrome" : "npx playwright test tests/Leave.test.js --grep @smoke --project=Chrome",
+    "test:Leave-Regression-Chrome" : "npx playwright test tests/Leave.test.js --grep @regression --project=Chrome",
+    "test:Leave-Smoke-Firefox" : "npx playwright test tests/Leave.test.js --grep @smoke --project=Firefox",
+    "test:Leave-Regression-Firefox" : "npx playwright test tests/Leave.test.js --grep @regression --project=Firefox"
+  },
+  "keywords" : [ "playwright", "automation", "testing" ],
+  "author" : "Qentrix",
+  "license" : "ISC",
+  "devDependencies" : {
+    "@playwright/test" : "^1.40.0"
+  },
+  "dependencies" : {
+    "csv-parse" : "^5.5.6"
+  }
+}
