@@ -1,16 +1,23 @@
 {
-  "name" : "playwright-js-automation",
+  "name" : "ag-helix-playwright-automation",
   "version" : "1.0.0",
-  "description" : "Playwright JavaScript Automation Framework",
+  "description" : "Playwright automation framework for AG-Helix",
+  "main" : "index.js",
   "scripts" : {
     "test" : "npx playwright test",
-    "test:Login-Smoke-Chrome" : "npx playwright test tests/Login.test.js --grep @smoke --project=Chrome",
-    "test:Login-Regression-Chrome" : "npx playwright test tests/Login.test.js --grep @regression --project=Chrome",
-    "test:Login-Smoke-Firefox" : "npx playwright test tests/Login.test.js --grep @smoke --project=Firefox",
-    "test:Login-Regression-Firefox" : "npx playwright test tests/Login.test.js --grep @regression --project=Firefox"
+    "test:Authentication-Smoke-Chrome" : "npx playwright test tests/Authentication.test.js --grep @smoke --project=Chrome",
+    "test:Authentication-Regression-Chrome" : "npx playwright test tests/Authentication.test.js --grep @regression --project=Chrome",
+    "test:Authentication-Smoke-Firefox" : "npx playwright test tests/Authentication.test.js --grep @smoke --project=Firefox",
+    "test:Authentication-Regression-Firefox" : "npx playwright test tests/Authentication.test.js --grep @regression --project=Firefox",
+    "test:Profile-Smoke-Chrome" : "npx playwright test tests/Profile.test.js --grep @smoke --project=Chrome",
+    "test:Profile-Regression-Chrome" : "npx playwright test tests/Profile.test.js --grep @regression --project=Chrome",
+    "test:Profile-Smoke-Firefox" : "npx playwright test tests/Profile.test.js --grep @smoke --project=Firefox",
+    "test:Profile-Regression-Firefox" : "npx playwright test tests/Profile.test.js --grep @regression --project=Firefox",
+    "test:Performance-Regression-Chrome" : "npx playwright test tests/Performance.test.js --grep @regression --project=Chrome",
+    "test:Performance-Regression-Firefox" : "npx playwright test tests/Performance.test.js --grep @regression --project=Firefox"
   },
   "keywords" : [ "playwright", "automation", "testing" ],
-  "author" : "",
+  "author" : "Qentrix",
   "license" : "ISC",
   "devDependencies" : {
     "@playwright/test" : "^1.40.0"
