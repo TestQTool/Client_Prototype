@@ -1,11 +1,11 @@
-// testFixtures/fixture.js
-// ADD THIS IMPORT AND FIXTURE TO YOUR EXISTING fixture.js FILE
+import { test as base } from '@playwright/test';
+import LoginPage from '../pages/loginPage.js';
 
-import LeavePage from '../pages/leavePage.js';
+const test = base.extend({
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  }
+});
 
-// Inside your test.extend() block, add:
-/*
-leavePage: async ({ page }, use) => {
-    await use(new LeavePage(page));
-},
-*/
+export default test;
+
