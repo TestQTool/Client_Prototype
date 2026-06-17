@@ -1,19 +1,16 @@
 {
-  "name" : "playwright-automation",
+  "name" : "orangehrm-playwright-automation",
   "version" : "1.0.0",
-  "description" : "Playwright automation framework for OrangeHRM",
+  "description" : "Playwright JavaScript automation framework for OrangeHRM",
   "scripts" : {
     "test" : "npx playwright test",
     "test:Registration-Smoke-Chrome" : "npx playwright test tests/Registration.test.js --grep @smoke --project=Chrome",
     "test:Registration-Regression-Chrome" : "npx playwright test tests/Registration.test.js --grep @regression --project=Chrome",
     "test:Registration-Smoke-Firefox" : "npx playwright test tests/Registration.test.js --grep @smoke --project=Firefox",
-    "test:Registration-Regression-Firefox" : "npx playwright test tests/Registration.test.js --grep @regression --project=Firefox",
-    "test:RegistrationApi-Smoke-Chrome" : "npx playwright test tests/RegistrationApi.test.js --grep @smoke --project=Chrome",
-    "test:RegistrationApi-Regression-Chrome" : "npx playwright test tests/RegistrationApi.test.js --grep @regression --project=Chrome",
-    "test:RegistrationPerformance-Regression-Chrome" : "npx playwright test tests/RegistrationPerformance.test.js --grep @regression --project=Chrome"
+    "test:Registration-Regression-Firefox" : "npx playwright test tests/Registration.test.js --grep @regression --project=Firefox"
   },
   "keywords" : [ "playwright", "automation", "testing" ],
-  "author" : "",
+  "author" : "QA Team",
   "license" : "ISC",
   "devDependencies" : {
     "@playwright/test" : "^1.40.0"
