@@ -1,7 +1,7 @@
 {
-  "name" : "playwright-js-automation",
+  "name" : "ag-helix-playwright-automation",
   "version" : "1.0.0",
-  "description" : "Playwright JavaScript automation framework",
+  "description" : "Playwright automation framework for AG-Helix",
   "scripts" : {
     "test" : "npx playwright test",
     "test:Login-Smoke-Chrome" : "npx playwright test tests/Login.test.js --grep @smoke --project=Chrome",
@@ -10,8 +10,8 @@
     "test:Login-Regression-Firefox" : "npx playwright test tests/Login.test.js --grep @regression --project=Firefox"
   },
   "keywords" : [ "playwright", "automation", "testing" ],
-  "author" : "",
-  "license" : "ISC",
+  "author" : "Qentrix",
+  "license" : "MIT",
   "devDependencies" : {
     "@playwright/test" : "^1.40.0"
   },
