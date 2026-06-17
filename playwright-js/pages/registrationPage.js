@@ -1,141 +1,174 @@
+// Registration Page - Actions and Assertions
 import BasePage from './basePage.js';
 import { expect } from '@playwright/test';
-import { registrationPageLocators } from '../pageObjects/registrationPage.js';
+import * as registrationPage from '../pageObjects/registrationPage.js';
 
 class RegistrationPage extends BasePage {
-  constructor(page) {
-    super(page);
-  }
-
-  async navigateToRegistration() {
-    await this.open('/register');
-    return await this.waitForPageLoad();
-  }
-
-  async verifyRegistrationFormDisplayed() {
-    await this.wait();
-    const formVisible = await this.isElementVisible(registrationPageLocators.registrationForm) || 
-                        await this.isElementVisible(registrationPageLocators.registrationFormAlt);
-    expect(formVisible).toBeTruthy();
-  }
-
-  async verifyAllRequiredFieldsDisplayed() {
-    await this.wait();
-    
-    const emailVisible = await this.isElementVisible(registrationPageLocators.emailInput) || 
-                         await this.isElementVisible(registrationPageLocators.emailInputAlt);
-    const passwordVisible = await this.isElementVisible(registrationPageLocators.passwordInput) || 
-                           await this.isElementVisible(registrationPageLocators.passwordInputAlt);
-    const confirmPasswordVisible = await this.isElementVisible(registrationPageLocators.confirmPasswordInput) || 
-                                  await this.isElementVisible(registrationPageLocators.confirmPasswordInputAlt);
-    const submitVisible = await this.isElementVisible(registrationPageLocators.submitButton) || 
-                         await this.isElementVisible(registrationPageLocators.submitButtonAlt);
-    
-    expect(emailVisible).toBeTruthy();
-    expect(passwordVisible).toBeTruthy();
-    expect(confirmPasswordVisible).toBeTruthy();
-    expect(submitVisible).toBeTruthy();
-  }
-
-  async fillRegistrationForm(email, password, confirmPassword = null) {
-    try {
-      await this.waitAndFill(registrationPageLocators.emailInput, email);
-    } catch {
-      await this.waitAndFill(registrationPageLocators.emailInputAlt, email);
+    constructor(page) {
+        super(page);
     }
-    
-    try {
-      await this.waitAndFill(registrationPageLocators.passwordInput, password);
-    } catch {
-      await this.waitAndFill(registrationPageLocators.passwordInputAlt, password);
+
+    // Navigation
+    async navigateToRegistration() {
+        await this.open('/register');
+        return await super.waitForPageLoad();
     }
-    
-    if (confirmPassword !== null) {
-      try {
-        await this.waitAndFill(registrationPageLocators.confirmPasswordInput, confirmPassword);
-      } catch {
-        await this.waitAndFill(registrationPageLocators.confirmPasswordInputAlt, confirmPassword);
-      }
+
+    // Form Actions
+    async fillEmail(email) {
+        await this.waitAndFill(registrationPage.emailInput, email);
     }
-  }
 
-  async submitRegistration() {
-    try {
-      await this.waitAndClick(registrationPageLocators.submitButton);
-    } catch {
-      await this.waitAndClick(registrationPageLocators.submitButtonAlt);
+    async fillPassword(password) {
+        await this.waitAndFill(registrationPage.passwordInput, password);
     }
-    await this.waitforNetworkIdle();
-  }
 
-  async registerUser(email, password, confirmPassword = null) {
-    const confirmPwd = confirmPassword === null ? password : confirmPassword;
-    await this.fillRegistrationForm(email, password, confirmPwd);
-    await this.submitRegistration();
-  }
-
-  async verifySuccessfulRegistration() {
-    await this.wait();
-    const successVisible = await this.isElementVisible(registrationPageLocators.successMessage) || 
-                          await this.isElementVisible(registrationPageLocators.successMessageAlt);
-    expect(successVisible).toBeTruthy();
-  }
-
-  async verifyEmailRequiredError() {
-    await this.wait();
-    const errorVisible = await this.isElementVisible(registrationPageLocators.emailRequiredError);
-    expect(errorVisible).toBeTruthy();
-  }
-
-  async verifyPasswordRequiredError() {
-    await this.wait();
-    const errorVisible = await this.isElementVisible(registrationPageLocators.passwordRequiredError);
-    expect(errorVisible).toBeTruthy();
-  }
-
-  async verifyInvalidEmailFormatError() {
-    await this.wait();
-    const errorVisible = await this.isElementVisible(registrationPageLocators.emailFormatError);
-    expect(errorVisible).toBeTruthy();
-  }
-
-  async verifyPasswordMismatchError() {
-    await this.wait();
-    const errorVisible = await this.isElementVisible(registrationPageLocators.passwordMismatchError);
-    expect(errorVisible).toBeTruthy();
-  }
-
-  async verifyDuplicateEmailError() {
-    await this.wait();
-    const errorVisible = await this.isElementVisible(registrationPageLocators.duplicateEmailError);
-    expect(errorVisible).toBeTruthy();
-  }
-
-  async verifyRegistrationFails() {
-    await this.wait();
-    const successNotVisible = !(await this.isElementVisible(registrationPageLocators.successMessage)) && 
-                              !(await this.isElementVisible(registrationPageLocators.successMessageAlt));
-    expect(successNotVisible).toBeTruthy();
-  }
-
-  async fillEmailWithMaxLength(maxLength = 255) {
-    const longEmail = 'a'.repeat(maxLength - 13) + '@example.com';
-    try {
-      await this.waitAndFill(registrationPageLocators.emailInput, longEmail);
-    } catch {
-      await this.waitAndFill(registrationPageLocators.emailInputAlt, longEmail);
+    async fillConfirmPassword(confirmPassword) {
+        await this.waitAndFill(registrationPage.confirmPasswordInput, confirmPassword);
     }
-    return longEmail;
-  }
 
-  generateUniqueEmail() {
-    const timestamp = Date.now();
-    return `testuser${timestamp}@example.com`;
-  }
+    async clickSubmit() {
+        await this.waitAndClick(registrationPage.submitButton);
+        await this.waitforNetworkIdle();
+    }
 
-  generateValidPassword() {
-    return 'ValidPass123!';
-  }
+    async clickRegisterButton() {
+        await this.waitAndClick(registrationPage.registerButton);
+        await this.waitforNetworkIdle();
+    }
+
+    async registerUser(email, password, confirmPassword = null) {
+        await this.fillEmail(email);
+        await this.fillPassword(password);
+        if (confirmPassword !== null) {
+            await this.fillConfirmPassword(confirmPassword);
+        } else {
+            await this.fillConfirmPassword(password);
+        }
+        await this.clickSubmit();
+    }
+
+    async registerUserWithMismatchedPassword(email, password, confirmPassword) {
+        await this.fillEmail(email);
+        await this.fillPassword(password);
+        await this.fillConfirmPassword(confirmPassword);
+        await this.clickSubmit();
+    }
+
+    async submitEmptyForm() {
+        await this.clickSubmit();
+    }
+
+    async submitWithoutEmail(password) {
+        await this.fillPassword(password);
+        await this.fillConfirmPassword(password);
+        await this.clickSubmit();
+    }
+
+    async submitWithoutPassword(email) {
+        await this.fillEmail(email);
+        await this.clickSubmit();
+    }
+
+    async fillEmailWithMaxLength(maxLength) {
+        const longEmail = 'a'.repeat(maxLength - 10) + '@test.com';
+        await this.fillEmail(longEmail);
+    }
+
+    // Assertions
+    async verifyRegistrationFormDisplayed() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.registrationFormTitle)).toBeVisible();
+    }
+
+    async verifyAllRequiredFieldsDisplayed() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.emailLabel)).toBeVisible();
+        await expect(this.page.locator(registrationPage.passwordLabel)).toBeVisible();
+        await expect(this.page.locator(registrationPage.confirmPasswordLabel)).toBeVisible();
+        await expect(this.page.locator(registrationPage.emailInput)).toBeVisible();
+        await expect(this.page.locator(registrationPage.passwordInput)).toBeVisible();
+        await expect(this.page.locator(registrationPage.confirmPasswordInput)).toBeVisible();
+        await expect(this.page.locator(registrationPage.submitButton)).toBeVisible();
+    }
+
+    async verifyRegistrationSuccess() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.registrationSuccessText)).toBeVisible();
+    }
+
+    async verifyEmailRequiredError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.emailRequiredError)).toBeVisible();
+    }
+
+    async verifyPasswordRequiredError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.passwordRequiredError)).toBeVisible();
+    }
+
+    async verifyInvalidEmailFormatError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.emailFormatError)).toBeVisible();
+    }
+
+    async verifyDuplicateEmailError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.duplicateEmailError)).toBeVisible();
+    }
+
+    async verifyPasswordMismatchError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.passwordMismatchError)).toBeVisible();
+    }
+
+    async verifyPasswordLengthError() {
+        await this.wait();
+        await expect(this.page.locator(registrationPage.passwordLengthError)).toBeVisible();
+    }
+
+    async verifyEmailFieldAcceptsInput() {
+        await this.wait();
+        const emailValue = await this.page.locator(registrationPage.emailInput).inputValue();
+        expect(emailValue.length).toBeGreaterThan(0);
+    }
+
+    // API Methods
+    async registerUserViaAPI(email, password) {
+        const response = await this.page.request.post(registrationPage.registrationApiEndpoint, {
+            data: {
+                email: email,
+                password: password
+            }
+        });
+        return response;
+    }
+
+    async verifyAPIResponse(response, expectedStatus) {
+        expect(response.status()).toBe(expectedStatus);
+        return await response.json();
+    }
+
+    async verifyAPIResponseContainsUserProfile(responseBody) {
+        expect(responseBody).toHaveProperty('id');
+        expect(responseBody).toHaveProperty('email');
+    }
+
+    async verifyPasswordNotInResponse(responseBody) {
+        expect(responseBody).not.toHaveProperty('password');
+    }
+
+    async verifyAPIHeaders(response) {
+        const headers = response.headers();
+        expect(headers).toHaveProperty('content-type');
+        expect(headers['content-type']).toContain('application/json');
+    }
+
+    async verifyAPIResponseTime(startTime, maxTime) {
+        const endTime = Date.now();
+        const responseTime = endTime - startTime;
+        expect(responseTime).toBeLessThan(maxTime);
+    }
 }
 
 export default RegistrationPage;
