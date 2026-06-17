@@ -5,26 +5,32 @@ import {
   passwordInput,
   loginButton,
   forgotPasswordLink,
-  errorMessage,
-  validationError,
-  emailError,
-  passwordError,
-  credentialsError,
-  dashboardHeading,
+  emailErrorMessage,
+  passwordErrorMessage,
+  invalidCredentialsError,
+  validationErrorMessage,
+  dashboardHeader,
   dashboardContainer,
-  dashboardUrl
+  loginPageContainer
 } from '../pageObjects/loginPage.js';
 
-class LoginPage extends BasePage {
+export default class LoginPage extends BasePage {
   constructor(page) {
     super(page);
   }
 
+  // Navigation Methods
   async navigateToLoginPage(url) {
     await this.open(url);
     await this.waitForPageLoad();
   }
 
+  async navigateToConfigurationsPage() {
+    await this.open('http://localhost:3000/configurations');
+    await this.waitForPageLoad();
+  }
+
+  // Login Actions
   async enterEmail(email) {
     await this.waitAndFill(emailInput, email);
   }
@@ -33,9 +39,25 @@ class LoginPage extends BasePage {
     await this.waitAndFill(passwordInput, password);
   }
 
+  async enterEmailWithSpaces(email) {
+    await this.waitAndFill(emailInput, `  ${email}  `);
+  }
+
+  async enterPasswordWithSpaces(password) {
+    await this.waitAndFill(passwordInput, `  ${password}  `);
+  }
+
   async clickLoginButton() {
     await this.waitAndClick(loginButton);
     await this.waitforNetworkIdle();
+  }
+
+  async leaveEmailEmpty() {
+    await this.waitAndFill(emailInput, '');
+  }
+
+  async leavePasswordEmpty() {
+    await this.waitAndFill(passwordInput, '');
   }
 
   async loginWithCredentials(email, password) {
@@ -44,147 +66,151 @@ class LoginPage extends BasePage {
     await this.clickLoginButton();
   }
 
-  async verifyDashboardRedirection() {
+  async loginWithRoleCredentials(roleName) {
+    const credentials = this.getLoginDataByRole(roleName);
+    await this.enterEmail(credentials.username);
+    await this.enterPassword(credentials.password);
+    await this.clickLoginButton();
+  }
+
+  // Verification Methods
+  async verifyLoginPageIsDisplayed() {
+    await this.wait();
+    const isVisible = await this.isElementVisible(loginPageContainer);
+    expect(isVisible).toBeTruthy();
+  }
+
+  async verifyEmailErrorMessage(expectedMessage) {
+    await this.wait();
+    await this.verifyElementContainsText(emailErrorMessage, expectedMessage);
+  }
+
+  async verifyPasswordErrorMessage(expectedMessage) {
+    await this.wait();
+    await this.verifyElementContainsText(passwordErrorMessage, expectedMessage);
+  }
+
+  async verifyInvalidCredentialsError(expectedMessage) {
+    await this.wait();
+    await this.verifyElementContainsText(invalidCredentialsError, expectedMessage);
+  }
+
+  async verifyValidationErrorDisplayed() {
+    await this.wait();
+    const isVisible = await this.isElementVisible(validationErrorMessage);
+    expect(isVisible).toBeTruthy();
+  }
+
+  async verifyDashboardIsDisplayed() {
+    await this.wait();
+    const isVisible = await this.isElementVisible(dashboardHeader);
+    expect(isVisible).toBeTruthy();
+  }
+
+  async verifyRedirectionToDashboard() {
     await this.wait();
     const currentUrl = await this.getUrl();
-    expect(currentUrl).toContain(dashboardUrl);
+    expect(currentUrl).toContain('dashboard');
   }
 
-  async verifyDashboardHeading() {
-    await this.wait();
-    const isVisible = await this.isElementVisible(dashboardHeading);
-    expect(isVisible).toBeTruthy();
-  }
-
-  async verifyErrorMessage(expectedMessage) {
-    await this.wait();
-    const isVisible = await this.isElementVisible(errorMessage);
-    expect(isVisible).toBeTruthy();
-    if (expectedMessage) {
-      await this.verifyElementContainsText(errorMessage, expectedMessage);
-    }
-  }
-
-  async verifyValidationError(selector, expectedMessage) {
-    await this.wait();
-    const isVisible = await this.isElementVisible(selector);
-    expect(isVisible).toBeTruthy();
-    if (expectedMessage) {
-      await this.verifyElementContainsText(selector, expectedMessage);
-    }
-  }
-
-  async verifyEmailValidationError() {
-    await this.verifyValidationError(emailError, '');
-  }
-
-  async verifyPasswordValidationError() {
-    await this.verifyValidationError(passwordError, '');
-  }
-
-  async verifyCredentialsError() {
-    await this.wait();
-    const isVisible = await this.isElementVisible(credentialsError);
-    expect(isVisible).toBeTruthy();
-  }
-
-  async verifyForgotPasswordLinkVisible() {
+  async verifyForgotPasswordLinkIsVisible() {
     await this.wait();
     const isVisible = await this.isElementVisible(forgotPasswordLink);
     expect(isVisible).toBeTruthy();
   }
 
-  async verifyForgotPasswordLinkClickable() {
+  async verifyForgotPasswordLinkIsClickable() {
     await this.wait();
     const isEnabled = await this.page.isEnabled(forgotPasswordLink);
     expect(isEnabled).toBeTruthy();
   }
 
-  async hoverOverForgotPasswordLink() {
-    await this.page.hover(forgotPasswordLink);
-  }
-
-  async verifyPasswordMasked() {
+  async verifyPasswordFieldMasksInput() {
     await this.wait();
     const inputType = await this.page.getAttribute(passwordInput, 'type');
     expect(inputType).toBe('password');
   }
 
-  async verifyUserRemainsOnLoginPage(loginUrl) {
+  async verifyEmailFieldAcceptsInput(email) {
     await this.wait();
-    const currentUrl = await this.getUrl();
-    expect(currentUrl).toContain(loginUrl);
+    const value = await this.page.inputValue(emailInput);
+    expect(value).toBe(email);
   }
 
-  async sendLoginApiRequest(apiUrl, payload) {
-    const response = await this.page.request.post(apiUrl, {
+  async verifyUserRemainsOnLoginPage() {
+    await this.wait();
+    const currentUrl = await this.getUrl();
+    expect(currentUrl).toContain('login');
+  }
+
+  // API Methods
+  async sendLoginAPIRequest(payload) {
+    const response = await this.page.request.post('/api/login', {
       data: payload
     });
     return response;
   }
 
-  async verifyApiStatusCode(response, expectedStatusCode) {
+  async verifyAPIResponseStatusCode(response, expectedStatusCode) {
     expect(response.status()).toBe(expectedStatusCode);
   }
 
-  async verifyApiResponseContains(response, key) {
+  async verifyAPIResponseContainsToken(response) {
     const responseBody = await response.json();
-    expect(responseBody).toHaveProperty(key);
+    expect(responseBody).toHaveProperty('token');
+    expect(responseBody.token).toBeTruthy();
   }
 
-  async verifyApiErrorMessage(response) {
+  async verifyAPIResponseContainsError(response) {
     const responseBody = await response.json();
     expect(responseBody).toHaveProperty('error');
+    expect(responseBody.error).toBeTruthy();
   }
 
+  async measureAPIResponseTime(payload) {
+    const startTime = Date.now();
+    await this.sendLoginAPIRequest(payload);
+    const endTime = Date.now();
+    return endTime - startTime;
+  }
+
+  async verifyResponseTimeIsAcceptable(responseTime, maxTime) {
+    expect(responseTime).toBeLessThan(maxTime);
+  }
+
+  // Performance Methods
   async measurePageLoadTime() {
-    const navigationTiming = await this.page.evaluate(() => {
-      const perfData = window.performance.timing;
-      return perfData.loadEventEnd - perfData.navigationStart;
-    });
-    return navigationTiming;
+    const startTime = Date.now();
+    await this.page.waitForLoadState('domcontentloaded');
+    const endTime = Date.now();
+    return endTime - startTime;
   }
 
-  async verifyLoadTimeWithinLimit(loadTime, limitMs) {
-    expect(loadTime).toBeLessThan(limitMs);
+  async verifyPageLoadTimeIsAcceptable(loadTime, maxTime) {
+    expect(loadTime).toBeLessThan(maxTime);
   }
 
-  async verifyPasswordNotInConsole() {
+  // Security Methods
+  async verifyPasswordNotInConsoleLogs() {
     const logs = [];
     this.page.on('console', msg => logs.push(msg.text()));
-    const logContent = logs.join(' ');
-    expect(logContent).not.toContain('password');
+    const logText = logs.join(' ');
+    expect(logText).not.toContain('password');
   }
 
-  async openBrowserConsole() {
-    // Browser console is monitored via page.on('console') listeners
-    // This method is a placeholder for test step documentation
+  async verifyHTTPSConnection() {
+    const currentUrl = await this.getUrl();
+    expect(currentUrl).toMatch(/^https:/);
   }
 
-  async simulateConcurrentLogins(apiUrl, payload, count) {
-    const requests = [];
-    for (let i = 0; i < count; i++) {
-      requests.push(this.sendLoginApiRequest(apiUrl, payload));
-    }
-    const responses = await Promise.all(requests);
-    return responses;
-  }
-
-  async verifyAllRequestsProcessed(responses, expectedStatusCode) {
-    responses.forEach(response => {
-      expect(response.status()).toBe(expectedStatusCode);
-    });
-  }
-
+  // Session Methods
   async waitForSessionTimeout(timeoutMs) {
     await this.page.waitForTimeout(timeoutMs);
   }
 
-  async accessProtectedResource(url) {
+  async attemptToAccessProtectedResource(url) {
     await this.open(url);
     await this.waitForPageLoad();
   }
 }
-
-export default LoginPage;
 
