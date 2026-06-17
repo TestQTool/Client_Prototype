@@ -1,37 +1,22 @@
 // Login Page Object - Locators Only
+// Generated for AG-Helix Login Module
 
-// Email Field
-export const emailInput = '#email';
-export const emailInputByPlaceholder = 'input[placeholder*="Email"]';
-export const emailInputByName = 'input[name="email"]';
-
-// Password Field
-export const passwordInput = '#password';
-export const passwordInputByType = 'input[type="password"]';
-export const passwordInputByName = 'input[name="password"]';
-
-// Login Button
-export const loginButton = '#login-button';
-export const loginButtonByText = 'button:has-text("Login")';
-export const loginButtonByType = 'button[type="submit"]';
-
-// Forgot Password Link
-export const forgotPasswordLink = 'a:has-text("Forgot Password")';
-export const forgotPasswordLinkByHref = 'a[href*="forgot"]';
+// Login Form Elements
+export const emailInput = '#email'; // TODO: verify selector against live app
+export const passwordInput = '#password'; // TODO: verify selector against live app
+export const loginButton = 'button[type="submit"]'; // TODO: verify selector against live app
+export const forgotPasswordLink = 'a:has-text("Forgot Password")'; // TODO: verify selector against live app
 
 // Error Messages
-export const errorMessage = '.error-message';
-export const validationError = '.validation-error';
-export const emailError = '#email-error';
-export const passwordError = '#password-error';
-export const credentialsError = '.credentials-error';
+export const emailErrorMessage = '[data-testid="email-error"]'; // TODO: verify selector against live app
+export const passwordErrorMessage = '[data-testid="password-error"]'; // TODO: verify selector against live app
+export const invalidCredentialsError = '[data-testid="login-error"]'; // TODO: verify selector against live app
+export const validationErrorMessage = '.error-message'; // TODO: verify selector against live app
 
-// Dashboard Elements
-export const dashboardHeading = 'h1:has-text("Dashboard")';
-export const dashboardContainer = '#dashboard';
-export const dashboardUrl = '/dashboard';
+// Dashboard Page Elements
+export const dashboardHeader = 'h1:has-text("Dashboard")'; // TODO: verify selector against live app
+export const dashboardContainer = '[data-testid="dashboard"]'; // TODO: verify selector against live app
 
-// Login Form
-export const loginForm = 'form#login-form';
-export const loginFormByRole = 'form[role="form"]';
+// Login Page Container
+export const loginPageContainer = '[data-testid="login-page"]'; // TODO: verify selector against live app
 
