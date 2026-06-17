@@ -1,36 +1,31 @@
 // Registration Page Object - Locators Only
-// TODO: verify selectors against live app
+// Generated for OrangeHRM Registration Module
 
-export const registrationPageLocators = {
-  // Form Fields
-  emailInput: '#email',
-  passwordInput: '#password',
-  confirmPasswordInput: '#confirmPassword',
-  submitButton: 'button[type="submit"]',
-  
-  // Alternative selectors if above are not stable
-  emailInputAlt: 'input[name="email"]',
-  passwordInputAlt: 'input[name="password"]',
-  confirmPasswordInputAlt: 'input[name="confirmPassword"]',
-  submitButtonAlt: '//button[contains(., "Register")]',
-  
-  // Validation Messages
-  emailRequiredError: '//input[@id="email"]/following-sibling::span[contains(@class, "error")]',
-  passwordRequiredError: '//input[@id="password"]/following-sibling::span[contains(@class, "error")]',
-  emailFormatError: '//*[contains(text(), "valid email") or contains(text(), "email format")]',
-  passwordMismatchError: '//*[contains(text(), "match") or contains(text(), "Password")]',
-  duplicateEmailError: '//*[contains(text(), "already exists") or contains(text(), "already registered")]',
-  
-  // Success Messages
-  successMessage: '[role="alert"]',
-  successMessageAlt: '//*[contains(@class, "success") or contains(text(), "successfully")]',
-  
-  // Form Container
-  registrationForm: 'form[id*="registration"]',
-  registrationFormAlt: '//form[contains(@class, "registration")]',
-  
-  // Page Title/Heading
-  pageHeading: 'h1, h2',
-  pageHeadingAlt: '//*[contains(text(), "Register") or contains(text(), "Sign Up")]'
-};
+// Form Fields
+export const emailInput = '#email';
+export const passwordInput = '#password';
+export const confirmPasswordInput = '#confirmPassword';
+export const submitButton = "button[type='submit']";
+export const registerButton = "//button[contains(., 'Register')]";
+
+// Form Labels and Headers
+export const registrationFormTitle = "h1:has-text('Register')";
+export const emailLabel = "label:has-text('Email')";
+export const passwordLabel = "label:has-text('Password')";
+export const confirmPasswordLabel = "label:has-text('Confirm Password')";
+
+// Validation Messages
+export const emailRequiredError = "//span[contains(., 'Email is required')]";
+export const passwordRequiredError = "//span[contains(., 'Password is required')]";
+export const emailFormatError = "//span[contains(., 'Invalid email format')]";
+export const duplicateEmailError = "//span[contains(., 'Email already exists')]";
+export const passwordMismatchError = "//span[contains(., 'Passwords do not match')]";
+export const passwordLengthError = "//span[contains(., 'Password must be at least')]";
+
+// Success Messages
+export const successMessage = ".success-message";
+export const registrationSuccessText = "//div[contains(., 'Registration successful')]";
+
+// API Endpoints - for reference in page methods
+export const registrationApiEndpoint = '/api/register';
 
