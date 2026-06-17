@@ -1,9 +1,15 @@
-// UPDATE REQUIRED: Add these lines to existing testFixtures/fixture.js
+import { test as base } from '@playwright/test';
+import BasePage from '../pages/basePage.js';
+import RegistrationPage from '../pages/registrationPage.js';
 
-// Add import at the top:
-import ForgotPasswordPage from '../pages/forgotPasswordPage.js';
+const test = base.extend({
+  basePage: async ({ page }, use) => {
+    await use(new BasePage(page));
+  },
+  registrationPage: async ({ page }, use) => {
+    await use(new RegistrationPage(page));
+  }
+});
 
-// Add fixture inside test.extend({...}):
-forgotPasswordPage: async ({ page }, use) => {
-    await use(new ForgotPasswordPage(page));
-},
+export default test;
+
