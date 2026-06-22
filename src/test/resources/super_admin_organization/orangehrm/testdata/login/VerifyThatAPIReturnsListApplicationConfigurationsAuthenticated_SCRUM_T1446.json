@@ -1,0 +1,28 @@
+{
+  "id" : "SCRUM-T1446",
+  "backendId" : "353050507",
+  "title" : "Verify that API returns list of application configurations for authenticated admin user",
+  "module" : "login",
+  "projectId" : "OrangeHRM",
+  "projectName" : "OrangeHRM",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/api/login",
+    "expectedStatusCode" : "200",
+    "responseAssertion" : "body-not-empty",
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : {
+      "email" : "Kishore2@yopmail.com",
+      "password" : "Test@122"
+    },
+    "contentType" : "application/json",
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null
+  }
+}
