@@ -23,7 +23,7 @@ public class VerifyAPIResponseAIGeneratedTitleSummaryGeneral_Api140Test {
         Response response = given()
                 .headers(QentrixConfig.authHeaders())
         .when()
-                .post("/user");
+                .get("/user");
 
         QentrixReport.capture(response);
         Assert.assertEquals(response.statusCode(), 202, "Unexpected response status code");
