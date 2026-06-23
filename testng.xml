@@ -6,7 +6,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.super_admin_organization.orangehrm.login.VerifyThatAPIReturnsListApplicationConfigurationsAuthenticated_SCRUM_T1446Test"/>
+            <class name="tests.frontend_quality_engineering.ag_helix.login.VerifyThatUserDataAPIReturnsCompleteUser_Api603Test"/>
             <class name="tests.frontend_quality_engineering.ag_helix.login.VerifyAPIResponseAIGeneratedTitleSummaryGeneral_Api140Test"/>
         </classes>
     </test>
