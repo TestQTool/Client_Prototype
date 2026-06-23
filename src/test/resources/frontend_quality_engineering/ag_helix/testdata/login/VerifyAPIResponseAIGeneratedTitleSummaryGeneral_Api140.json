@@ -7,7 +7,7 @@
   "projectName" : "AG-Helix",
   "tags" : [ "Smoke" ],
   "apiDetails" : {
-    "method" : "POST",
+    "method" : "GET",
     "endpointPath" : "/user",
     "expectedStatusCode" : "202",
     "responseAssertion" : "body-not-empty",
