@@ -8,4 +8,3 @@ const test = base.extend({
 });
 
 export default test;
-
