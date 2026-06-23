@@ -1,15 +1,14 @@
 {
-  "name" : "ag-helix-playwright-automation",
+  "name" : "playwright-js-automation",
   "version" : "1.0.0",
-  "description" : "Playwright automation framework for AG-Helix",
+  "description" : "Playwright JavaScript Automation Framework for AG-Helix",
+  "main" : "index.js",
   "scripts" : {
     "test" : "npx playwright test",
-    "test:Authentication-Smoke-Chrome" : "npx playwright test tests/Authentication.test.js --grep @smoke --project=Chrome",
-    "test:Authentication-Regression-Chrome" : "npx playwright test tests/Authentication.test.js --grep @regression --project=Chrome",
-    "test:Authentication-API-Chrome" : "npx playwright test tests/Authentication.test.js --grep @api --project=Chrome",
-    "test:Authentication-Smoke-Firefox" : "npx playwright test tests/Authentication.test.js --grep @smoke --project=Firefox",
-    "test:Authentication-Regression-Firefox" : "npx playwright test tests/Authentication.test.js --grep @regression --project=Firefox",
-    "test:Authentication-API-Firefox" : "npx playwright test tests/Authentication.test.js --grep @api --project=Firefox"
+    "test:Login-Smoke-Chrome" : "npx playwright test tests/Login.test.js --grep @smoke --project=Chrome",
+    "test:Login-Regression-Chrome" : "npx playwright test tests/Login.test.js --grep @regression --project=Chrome",
+    "test:Login-Smoke-Firefox" : "npx playwright test tests/Login.test.js --grep @smoke --project=Firefox",
+    "test:Login-Regression-Firefox" : "npx playwright test tests/Login.test.js --grep @regression --project=Firefox"
   },
   "keywords" : [ "playwright", "automation", "testing" ],
   "author" : "Qentrix",
