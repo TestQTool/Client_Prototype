@@ -1,8 +1,7 @@
 {
-  "name" : "playwright-js-automation",
+  "name" : "ag-helix-playwright-automation",
   "version" : "1.0.0",
-  "description" : "Playwright JavaScript Automation Framework for AG-Helix",
-  "main" : "index.js",
+  "description" : "Playwright automation framework for AG-Helix project",
   "scripts" : {
     "test" : "npx playwright test",
     "test:Login-Smoke-Chrome" : "npx playwright test tests/Login.test.js --grep @smoke --project=Chrome",
