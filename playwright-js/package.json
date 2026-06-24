@@ -1,16 +1,20 @@
 {
-  "name" : "ag-helix-playwright-automation",
+  "name" : "playwright-automation",
   "version" : "1.0.0",
-  "description" : "Playwright automation framework for AG-Helix project",
+  "description" : "Playwright JavaScript Automation Framework",
   "scripts" : {
     "test" : "npx playwright test",
-    "test:Login-Smoke-Chrome" : "npx playwright test tests/Login.test.js --grep @smoke --project=Chrome",
-    "test:Login-Regression-Chrome" : "npx playwright test tests/Login.test.js --grep @regression --project=Chrome",
-    "test:Login-Smoke-Firefox" : "npx playwright test tests/Login.test.js --grep @smoke --project=Firefox",
-    "test:Login-Regression-Firefox" : "npx playwright test tests/Login.test.js --grep @regression --project=Firefox"
+    "test:Search-Smoke-Chrome" : "npx playwright test tests/Search.test.js --grep @smoke --project=Chrome",
+    "test:Search-Regression-Chrome" : "npx playwright test tests/Search.test.js --grep @regression --project=Chrome",
+    "test:SearchApi-Smoke-Chrome" : "npx playwright test tests/SearchApi.test.js --grep @smoke --project=Chrome",
+    "test:SearchApi-Regression-Chrome" : "npx playwright test tests/SearchApi.test.js --grep @regression --project=Chrome",
+    "test:Search-Smoke-Firefox" : "npx playwright test tests/Search.test.js --grep @smoke --project=Firefox",
+    "test:Search-Regression-Firefox" : "npx playwright test tests/Search.test.js --grep @regression --project=Firefox",
+    "test:SearchApi-Smoke-Firefox" : "npx playwright test tests/SearchApi.test.js --grep @smoke --project=Firefox",
+    "test:SearchApi-Regression-Firefox" : "npx playwright test tests/SearchApi.test.js --grep @regression --project=Firefox"
   },
   "keywords" : [ "playwright", "automation", "testing" ],
-  "author" : "Qentrix",
+  "author" : "",
   "license" : "ISC",
   "devDependencies" : {
     "@playwright/test" : "^1.40.0"
