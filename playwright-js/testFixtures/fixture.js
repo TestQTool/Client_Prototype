@@ -1,10 +1,11 @@
 import { test as base } from '@playwright/test';
-import LoginPage from '../pages/loginPage.js';
+import ForgotPasswordPage from '../pages/forgotPasswordPage.js';
 
 const test = base.extend({
-    loginPage: async ({ page }, use) => {
-        await use(new LoginPage(page));
-    },
+  forgotPasswordPage: async ({ page }, use) => {
+    await use(new ForgotPasswordPage(page));
+  }
 });
 
 export default test;
+
