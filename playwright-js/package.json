@@ -1,0 +1,22 @@
+{
+  "name" : "playwright-automation",
+  "version" : "1.0.0",
+  "description" : "Playwright automation framework for leave request testing",
+  "scripts" : {
+    "test" : "npx playwright test",
+    "test:LeaveRequest-Smoke-Chrome" : "npx playwright test tests/LeaveRequest.test.js --grep @smoke --project=Chrome",
+    "test:LeaveRequest-Regression-Chrome" : "npx playwright test tests/LeaveRequest.test.js --grep @regression --project=Chrome",
+    "test:LeaveRequest-Smoke-Firefox" : "npx playwright test tests/LeaveRequest.test.js --grep @smoke --project=Firefox",
+    "test:LeaveRequest-Regression-Firefox" : "npx playwright test tests/LeaveRequest.test.js --grep @regression --project=Firefox",
+    "test:LeaveRequestAPI-Smoke-Chrome" : "npx playwright test tests/LeaveRequestAPI.test.js --grep @smoke --project=Chrome",
+    "test:LeaveRequestAPI-Regression-Chrome" : "npx playwright test tests/LeaveRequestAPI.test.js --grep @regression --project=Chrome",
+    "test:LeaveRequestAPI-Smoke-Firefox" : "npx playwright test tests/LeaveRequestAPI.test.js --grep @smoke --project=Firefox",
+    "test:LeaveRequestAPI-Regression-Firefox" : "npx playwright test tests/LeaveRequestAPI.test.js --grep @regression --project=Firefox"
+  },
+  "devDependencies" : {
+    "@playwright/test" : "^1.40.0"
+  },
+  "dependencies" : {
+    "csv-parse" : "^5.5.6"
+  }
+}
