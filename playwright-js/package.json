@@ -1,14 +1,17 @@
 {
-  "name" : "playwright-automation",
+  "name" : "playwright-automation-framework",
   "version" : "1.0.0",
-  "description" : "Playwright automation framework",
+  "description" : "Playwright JavaScript automation framework for export functionality testing",
   "scripts" : {
     "test" : "npx playwright test",
-    "test:ForgotPassword-Smoke-Chrome" : "npx playwright test tests/ForgotPassword.test.js --grep @smoke --project=Chrome",
-    "test:ForgotPassword-Regression-Chrome" : "npx playwright test tests/ForgotPassword.test.js --grep @regression --project=Chrome",
-    "test:ForgotPassword-Smoke-Firefox" : "npx playwright test tests/ForgotPassword.test.js --grep @smoke --project=Firefox",
-    "test:ForgotPassword-Regression-Firefox" : "npx playwright test tests/ForgotPassword.test.js --grep @regression --project=Firefox"
+    "test:ExportFunctionality-Smoke-Chrome" : "npx playwright test tests/ExportFunctionality.test.js --grep @smoke --project=Chrome",
+    "test:ExportFunctionality-Regression-Chrome" : "npx playwright test tests/ExportFunctionality.test.js --grep @regression --project=Chrome",
+    "test:ExportFunctionality-Smoke-Firefox" : "npx playwright test tests/ExportFunctionality.test.js --grep @smoke --project=Firefox",
+    "test:ExportFunctionality-Regression-Firefox" : "npx playwright test tests/ExportFunctionality.test.js --grep @regression --project=Firefox"
   },
+  "keywords" : [ "playwright", "automation", "testing" ],
+  "author" : "Qentrix",
+  "license" : "MIT",
   "devDependencies" : {
     "@playwright/test" : "^1.40.0"
   },
