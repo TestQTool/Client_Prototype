@@ -1,0 +1,25 @@
+{
+  "id" : "1417",
+  "backendId" : "1417",
+  "title" : "Verify that registration API endpoint accepts valid POST request with email and password",
+  "module" : "login",
+  "projectId" : "Backend",
+  "projectName" : "Backend",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/user",
+    "expectedStatusCode" : "202",
+    "responseAssertion" : "body-not-empty",
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null
+  }
+}
