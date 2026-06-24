@@ -1,30 +1,23 @@
-// Login Page Locators
+// Login Page Object - Locators Only
+// Generated for AG-Helix project
 
-export const loginPageLocators = {
-  // Form fields
-  usernameInput: 'input[name="username"]',
-  passwordInput: 'input[type="password"]',
-  loginButton: 'button[type="submit"]',
-  
-  // Error messages and validation
-  errorMessage: '[role="alert"], .error-message, .validation-error',
-  usernameRequiredError: '//input[@name="username"]/following-sibling::*[contains(@class, "error") or contains(text(), "required")]',
-  passwordRequiredError: '//input[@type="password"]/following-sibling::*[contains(@class, "error") or contains(text(), "required")]',
-  invalidCredentialsError: '//*[contains(text(), "invalid") or contains(text(), "Invalid") or contains(text(), "incorrect")]',
-  
-  // Post-login elements
-  configurationsPageHeading: 'h1, h2, [role="heading"]',
-  logoutButton: 'button:has-text("Logout"), a:has-text("Logout"), [aria-label="Logout"]',
-  
-  // Session and security
-  sessionIndicator: '[data-testid="user-session"], .user-info, .session-active',
-  protectedPageContent: '[data-testid="protected-content"], .dashboard, .configurations-content'
-};
+// Login Form Elements
+export const emailInput = 'input[type="email"], input[name="email"], input[placeholder*="Email"], #email';
+export const passwordInput = 'input[type="password"], input[name="password"], input[placeholder*="Password"], #password';
+export const loginButton = 'button[type="submit"], button:has-text("Login"), #login-button, //button[contains(., "Login")]';
+export const registerLink = 'a:has-text("Register"), a[href*="register"], //a[contains(., "Register")]';
 
-export const configurationsPageLocators = {
-  pageTitle: 'h1:has-text("Configurations"), [data-testid="page-title"]',
-  pageContent: '[data-testid="configurations-content"], .configurations-page, main',
-  navigationMenu: 'nav, [role="navigation"]',
-  userMenu: '[data-testid="user-menu"], .user-dropdown'
-};
+// Error Messages
+export const errorMessage = '.error-message, .alert-danger, [role="alert"], .invalid-feedback, //div[contains(@class, "error")]';
+export const usernameErrorMessage = '.username-error, .email-error, //label[contains(., "Email")]/following::*[contains(@class, "error")][1]';
+export const passwordErrorMessage = '.password-error, //label[contains(., "Password")]/following::*[contains(@class, "error")][1]';
+
+// Success Indicators
+export const dashboardHeading = 'h1, .dashboard-title, [role="heading"]';
+export const logoutButton = 'button:has-text("Logout"), a:has-text("Logout"), #logout';
+
+// API Response Elements (for validation)
+export const responseStatusCode = 'status';
+export const authToken = 'token, access_token, authToken';
+export const responseErrorMessage = 'error, message, errorMessage';
 
