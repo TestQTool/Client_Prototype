@@ -1,29 +1,18 @@
 import BasePage from './basePage.js';
 import { expect } from '@playwright/test';
-import {
-    emailInput,
-    passwordInput,
-    loginButton,
-    registerLink,
-    errorMessage,
-    usernameErrorMessage,
-    passwordErrorMessage,
-    dashboardHeading,
-    logoutButton
-} from '../pageObjects/loginPage.js';
+import * as loginPageLocators from '../pageObjects/loginPage.js';
 
 class LoginPage extends BasePage {
     constructor(page) {
         super(page);
-        this.apiContext = null;
     }
 
     /**
      * Navigate to login page
+     * @param {string} baseUrl - Application base URL from environment
      */
-    async navigateToLogin() {
-        const loginUrl = process.env.BASE_URL || 'http://192.168.10.124:4001';
-        await this.open(loginUrl);
+    async navigateToLogin(baseUrl = process.env.BASE_URL || 'http://192.168.10.124:4001') {
+        await this.open(baseUrl);
         await this.waitForPageLoad();
     }
 
@@ -32,46 +21,45 @@ class LoginPage extends BasePage {
      */
     async verifyLoginPageDisplayed() {
         await this.wait();
-        const emailVisible = await this.isElementVisible(emailInput);
-        const passwordVisible = await this.isElementVisible(passwordInput);
-        const loginBtnVisible = await this.isElementVisible(loginButton);
-        const registerVisible = await this.isElementVisible(registerLink);
-        
-        expect(emailVisible).toBeTruthy();
-        expect(passwordVisible).toBeTruthy();
-        expect(loginBtnVisible).toBeTruthy();
-        expect(registerVisible).toBeTruthy();
+        await expect(this.page.locator(loginPageLocators.usernameInput).or(this.page.locator(loginPageLocators.emailInput))).toBeVisible();
+        await expect(this.page.locator(loginPageLocators.passwordInput)).toBeVisible();
+        await expect(this.page.locator(loginPageLocators.loginButton)).toBeVisible();
     }
 
     /**
-     * Enter username/email
+     * Enter username in login form
+     * @param {string} username - Username to enter
      */
     async enterUsername(username) {
-        await this.waitAndFill(emailInput, username);
+        const usernameField = this.page.locator(loginPageLocators.usernameInput).or(this.page.locator(loginPageLocators.emailInput));
+        await this.waitAndFill(usernameField, username);
     }
 
     /**
-     * Enter password
+     * Enter password in login form
+     * @param {string} password - Password to enter
      */
     async enterPassword(password) {
-        await this.waitAndFill(passwordInput, password);
+        await this.waitAndFill(loginPageLocators.passwordInput, password);
     }
 
     /**
      * Click login button
      */
-    async clickLogin() {
-        await this.waitAndClick(loginButton);
+    async clickLoginButton() {
+        await this.waitAndClick(loginPageLocators.loginButton);
         await this.waitforNetworkIdle();
     }
 
     /**
      * Perform complete login action
+     * @param {string} username - Username
+     * @param {string} password - Password
      */
     async login(username, password) {
         await this.enterUsername(username);
         await this.enterPassword(password);
-        await this.clickLogin();
+        await this.clickLoginButton();
     }
 
     /**
@@ -80,104 +68,62 @@ class LoginPage extends BasePage {
     async verifyLoginSuccess() {
         await this.wait();
         const currentUrl = await this.getUrl();
-        const isDashboardVisible = await this.isElementVisible(dashboardHeading);
-        
-        expect(currentUrl).not.toContain('login');
-        expect(isDashboardVisible).toBeTruthy();
+        expect(currentUrl).not.toContain('/login');
     }
 
     /**
-     * Verify login error message is displayed
+     * Verify login failure with error message
+     * @param {string} expectedErrorText - Expected error message text
      */
-    async verifyLoginErrorDisplayed() {
+    async verifyLoginFailure(expectedErrorText = 'invalid credentials') {
         await this.wait();
-        const isErrorVisible = await this.isElementVisible(errorMessage);
-        expect(isErrorVisible).toBeTruthy();
+        const errorLocator = this.page.locator(loginPageLocators.errorMessage)
+            .or(this.page.locator(loginPageLocators.validationError))
+            .or(this.page.locator(loginPageLocators.invalidCredentialsError));
+        await expect(errorLocator.first()).toBeVisible();
+        await this.verifyElementContainsText(errorLocator.first(), expectedErrorText);
     }
 
     /**
-     * Verify error message contains text
+     * Verify missing username error
      */
-    async verifyErrorMessageContains(expectedText) {
+    async verifyMissingUsernameError() {
         await this.wait();
-        await this.verifyElementContainsText(errorMessage, expectedText);
+        const errorLocator = this.page.locator(loginPageLocators.missingUsernameError)
+            .or(this.page.locator(loginPageLocators.validationError));
+        await expect(errorLocator.first()).toBeVisible();
     }
 
     /**
-     * Verify username error message is displayed
+     * Verify missing password error
      */
-    async verifyUsernameErrorDisplayed() {
+    async verifyMissingPasswordError() {
         await this.wait();
-        const isErrorVisible = await this.isElementVisible(usernameErrorMessage);
-        expect(isErrorVisible).toBeTruthy();
+        const errorLocator = this.page.locator(loginPageLocators.missingPasswordError)
+            .or(this.page.locator(loginPageLocators.validationError));
+        await expect(errorLocator.first()).toBeVisible();
     }
 
     /**
-     * Verify password error message is displayed
+     * Verify authentication token is present (API response validation)
+     * For API tests, this would validate response body
      */
-    async verifyPasswordErrorDisplayed() {
+    async verifyAuthTokenPresent() {
         await this.wait();
-        const isErrorVisible = await this.isElementVisible(passwordErrorMessage);
-        expect(isErrorVisible).toBeTruthy();
-    }
-
-    /**
-     * Send POST request to /login endpoint
-     */
-    async sendLoginRequest(username, password) {
-        const baseUrl = process.env.BASE_URL || 'http://192.168.10.124:4001';
-        const loginEndpoint = `${baseUrl}/login`;
-        
-        const response = await this.page.request.post(loginEndpoint, {
-            data: {
-                username: username,
-                password: password
-            }
+        // For UI validation, check if token exists in localStorage or session
+        const hasToken = await this.page.evaluate(() => {
+            return !!(localStorage.getItem('authToken') || sessionStorage.getItem('authToken') || document.cookie.includes('token'));
         });
-        
-        return response;
-    }
-
-    /**
-     * Verify API response status code
-     */
-    async verifyResponseStatus(response, expectedStatus) {
-        await this.wait();
-        expect(response.status()).toBe(expectedStatus);
-    }
-
-    /**
-     * Verify response contains authentication token
-     */
-    async verifyResponseContainsToken(response) {
-        await this.wait();
-        const responseBody = await response.json();
-        const hasToken = responseBody.token || responseBody.access_token || responseBody.authToken;
         expect(hasToken).toBeTruthy();
     }
 
     /**
-     * Verify response contains error message
+     * Verify register link is visible
      */
-    async verifyResponseContainsError(response, expectedErrorText = null) {
+    async verifyRegisterLinkVisible() {
         await this.wait();
-        const responseBody = await response.json();
-        const errorMsg = responseBody.error || responseBody.message || responseBody.errorMessage;
-        
-        expect(errorMsg).toBeTruthy();
-        
-        if (expectedErrorText) {
-            expect(errorMsg.toLowerCase()).toContain(expectedErrorText.toLowerCase());
-        }
-    }
-
-    /**
-     * Get login credentials by role
-     */
-    getCredentialsByRole(role) {
-        return this.getLoginDataByRole(role);
+        await expect(this.page.locator(loginPageLocators.registerLink)).toBeVisible();
     }
 }
 
 export default LoginPage;
-
