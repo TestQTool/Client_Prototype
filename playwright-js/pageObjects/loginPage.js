@@ -2,22 +2,20 @@
 // Generated for AG-Helix project
 
 // Login Form Elements
-export const emailInput = 'input[type="email"], input[name="email"], input[placeholder*="Email"], #email';
-export const passwordInput = 'input[type="password"], input[name="password"], input[placeholder*="Password"], #password';
-export const loginButton = 'button[type="submit"], button:has-text("Login"), #login-button, //button[contains(., "Login")]';
-export const registerLink = 'a:has-text("Register"), a[href*="register"], //a[contains(., "Register")]';
+export const usernameInput = '#username'; // TODO: verify selector against live app
+export const emailInput = '#email'; // TODO: verify selector against live app
+export const passwordInput = '#password'; // TODO: verify selector against live app
+export const loginButton = 'button[type="submit"]'; // TODO: verify selector against live app
+export const registerLink = 'a[href*="register"]'; // TODO: verify selector against live app
 
 // Error Messages
-export const errorMessage = '.error-message, .alert-danger, [role="alert"], .invalid-feedback, //div[contains(@class, "error")]';
-export const usernameErrorMessage = '.username-error, .email-error, //label[contains(., "Email")]/following::*[contains(@class, "error")][1]';
-export const passwordErrorMessage = '.password-error, //label[contains(., "Password")]/following::*[contains(@class, "error")][1]';
+export const errorMessage = '.error-message'; // TODO: verify selector against live app
+export const validationError = '[role="alert"]'; // TODO: verify selector against live app
+export const invalidCredentialsError = '//*[contains(text(), "invalid credentials")]'; // TODO: verify selector against live app
+export const missingUsernameError = '//*[contains(text(), "missing username") or contains(text(), "username is required")]'; // TODO: verify selector against live app
+export const missingPasswordError = '//*[contains(text(), "missing password") or contains(text(), "password is required")]'; // TODO: verify selector against live app
 
 // Success Indicators
-export const dashboardHeading = 'h1, .dashboard-title, [role="heading"]';
-export const logoutButton = 'button:has-text("Logout"), a:has-text("Logout"), #logout';
-
-// API Response Elements (for validation)
-export const responseStatusCode = 'status';
-export const authToken = 'token, access_token, authToken';
-export const responseErrorMessage = 'error, message, errorMessage';
-
+export const authToken = '[data-testid="auth-token"]'; // TODO: verify selector against live app
+export const dashboardHeading = 'h1'; // TODO: verify selector against live app
+export const userProfileIcon = '[data-testid="user-profile"]'; // TODO: verify selector against live app
