@@ -1,0 +1,27 @@
+{
+  "name": "cypress-bdd-cucumber",
+  "version": "1.0.0",
+  "description": "Cypress + BDD Cucumber Framework",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/validate-framework.js",
+    "test:e2e": "echo Generate client tests first, then enable the native runner.",
+    "test:authentication-smoke": "npx cypress run --spec 'cypress/e2e/features/Authentication.feature' --env tags=@smoke",
+    "test:authentication-regression": "npx cypress run --spec 'cypress/e2e/features/Authentication.feature' --env tags=@regression",
+    "test:authentication-all": "npx cypress run --spec 'cypress/e2e/features/Authentication.feature'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "cypress": "^13.13.0",
+    "@cucumber/cucumber": "^10.9.0",
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0"
+  },
+  "type": "module",
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "filterSpecs": true,
+    "omitFiltered": true
+  }
+}
