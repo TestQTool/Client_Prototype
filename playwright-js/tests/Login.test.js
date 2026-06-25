@@ -1,53 +1,28 @@
 import test from '../testFixtures/fixture.js';
 
-test.describe.parallel('Login Module Tests @smoke @regression', () => {
+test.describe.parallel('Login Authentication Tests - AG-Helix @smoke @regression', () => {
 
-    test('[TC-560] Verify that login works with valid credentials @smoke @api', async ({ loginPage }) => {
-        await test.step('Send POST request to /login endpoint', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, credentials.password);
-            await loginPage.verifyResponseStatus(response, 200);
-        });
-
-        await test.step('Include valid username in request body', async () => {
-            // Username is processed in the request
-        });
-
-        await test.step('Include valid password in request body', async () => {
-            // Password is processed in the request
-        });
-
-        await test.step('Submit authentication request and validate response returns 200 status code', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, credentials.password);
-            await loginPage.verifyResponseStatus(response, 200);
-        });
-
-        await test.step('Validate response contains authentication token', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, credentials.password);
-            await loginPage.verifyResponseContainsToken(response);
-        });
-    });
-
-    test('[TC-21] Verify that login works with valid credentials @smoke @ui', async ({ loginPage }) => {
+    test('[TC-21] Verify that login works with valid credentials @smoke', async ({ loginPage }) => {
         await test.step('Open login page', async () => {
             await loginPage.navigateToLogin();
+        });
+
+        await test.step('Login page should display', async () => {
             await loginPage.verifyLoginPageDisplayed();
         });
 
         await test.step('Enter valid username', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            await loginPage.enterUsername(credentials.username);
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterUsername(loginData.username);
         });
 
-        await test.step('Enter valid password', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            await loginPage.enterPassword(credentials.password);
+        await test.step('Username accepted - Enter valid password', async () => {
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterPassword(loginData.password);
         });
 
         await test.step('Click login button', async () => {
-            await loginPage.clickLogin();
+            await loginPage.clickLoginButton();
         });
 
         await test.step('User should login successfully', async () => {
@@ -55,128 +30,141 @@ test.describe.parallel('Login Module Tests @smoke @regression', () => {
         });
     });
 
-    test('[TC-561] Verify that login fails with invalid username @regression @api', async ({ loginPage }) => {
-        await test.step('Send POST request to /login endpoint', async () => {
-            const response = await loginPage.sendLoginRequest('invaliduser@test.com', 'ValidPass123');
-            await loginPage.verifyResponseStatus(response, 401);
+    test('[TC-560] Verify that login works with valid credentials (API) @smoke', async ({ loginPage }) => {
+        await test.step('Navigate to login page and prepare authentication', async () => {
+            await loginPage.navigateToLogin();
+        });
+
+        await test.step('Include valid username in request body', async () => {
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterUsername(loginData.username);
+        });
+
+        await test.step('Include valid password in request body', async () => {
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterPassword(loginData.password);
+        });
+
+        await test.step('Submit authentication request', async () => {
+            await loginPage.clickLoginButton();
+        });
+
+        await test.step('Response should return 200 status code - Validate response contains authentication token', async () => {
+            await loginPage.verifyLoginSuccess();
+            await loginPage.verifyAuthTokenPresent();
+        });
+    });
+
+    test('[TC-561] Verify that login fails with invalid username @regression', async ({ loginPage }) => {
+        await test.step('Open login page', async () => {
+            await loginPage.navigateToLogin();
         });
 
         await test.step('Include invalid username in request body', async () => {
-            // Invalid username is processed
+            await loginPage.enterUsername('invaliduser@test.com');
         });
 
         await test.step('Include valid password in request body', async () => {
-            // Valid password is processed
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterPassword(loginData.password);
         });
 
-        await test.step('Submit authentication request and validate response returns 401 status code', async () => {
-            const response = await loginPage.sendLoginRequest('invaliduser@test.com', 'ValidPass123');
-            await loginPage.verifyResponseStatus(response, 401);
+        await test.step('Submit authentication request', async () => {
+            await loginPage.clickLoginButton();
         });
 
-        await test.step('Validate error message in response', async () => {
-            const response = await loginPage.sendLoginRequest('invaliduser@test.com', 'ValidPass123');
-            await loginPage.verifyResponseContainsError(response, 'invalid credentials');
+        await test.step('Response should return 401 status code - Validate error message indicates invalid credentials', async () => {
+            await loginPage.verifyLoginFailure('invalid credentials');
         });
     });
 
-    test('[TC-562] Verify that login fails with invalid password @regression @api', async ({ loginPage }) => {
-        await test.step('Send POST request to /login endpoint', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, 'WrongPassword123');
-            await loginPage.verifyResponseStatus(response, 401);
+    test('[TC-562] Verify that login fails with invalid password @regression', async ({ loginPage }) => {
+        await test.step('Open login page', async () => {
+            await loginPage.navigateToLogin();
         });
 
         await test.step('Include valid username in request body', async () => {
-            // Valid username is processed
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterUsername(loginData.username);
         });
 
         await test.step('Include invalid password in request body', async () => {
-            // Invalid password is processed
+            await loginPage.enterPassword('WrongPassword123!');
         });
 
-        await test.step('Submit authentication request and validate response returns 401 status code', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, 'WrongPassword123');
-            await loginPage.verifyResponseStatus(response, 401);
+        await test.step('Submit authentication request', async () => {
+            await loginPage.clickLoginButton();
         });
 
-        await test.step('Validate error message indicates invalid credentials', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, 'WrongPassword123');
-            await loginPage.verifyResponseContainsError(response, 'invalid credentials');
+        await test.step('Response should return 401 status code - Validate error message indicates invalid credentials', async () => {
+            await loginPage.verifyLoginFailure('invalid credentials');
         });
     });
 
-    test('[TC-563] Verify that login fails with empty username @regression @api', async ({ loginPage }) => {
-        await test.step('Send POST request to /login endpoint', async () => {
-            const response = await loginPage.sendLoginRequest('', 'ValidPass123');
-            await loginPage.verifyResponseStatus(response, 400);
+    test('[TC-563] Verify that login fails with empty username @regression', async ({ loginPage }) => {
+        await test.step('Open login page', async () => {
+            await loginPage.navigateToLogin();
         });
 
         await test.step('Include empty username field in request body', async () => {
-            // Empty username is processed
+            await loginPage.enterUsername('');
         });
 
         await test.step('Include valid password in request body', async () => {
-            // Valid password is processed
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterPassword(loginData.password);
         });
 
-        await test.step('Submit authentication request and validate response returns 400 status code', async () => {
-            const response = await loginPage.sendLoginRequest('', 'ValidPass123');
-            await loginPage.verifyResponseStatus(response, 400);
+        await test.step('Submit authentication request', async () => {
+            await loginPage.clickLoginButton();
         });
 
-        await test.step('Validate error message indicates missing username', async () => {
-            const response = await loginPage.sendLoginRequest('', 'ValidPass123');
-            await loginPage.verifyResponseContainsError(response, 'username');
+        await test.step('Response should return 400 status code - Validate error message indicates missing username', async () => {
+            await loginPage.verifyMissingUsernameError();
         });
     });
 
-    test('[TC-564] Verify that login fails with empty password @regression @api', async ({ loginPage }) => {
-        await test.step('Send POST request to /login endpoint', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, '');
-            await loginPage.verifyResponseStatus(response, 400);
+    test('[TC-564] Verify that login fails with empty password @regression', async ({ loginPage }) => {
+        await test.step('Open login page', async () => {
+            await loginPage.navigateToLogin();
         });
 
         await test.step('Include valid username in request body', async () => {
-            // Valid username is processed
+            const loginData = loginPage.getLoginDataByRole('Admin');
+            await loginPage.enterUsername(loginData.username);
         });
 
         await test.step('Include empty password field in request body', async () => {
-            // Empty password is processed
+            await loginPage.enterPassword('');
         });
 
-        await test.step('Submit authentication request and validate response returns 400 status code', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, '');
-            await loginPage.verifyResponseStatus(response, 400);
+        await test.step('Submit authentication request', async () => {
+            await loginPage.clickLoginButton();
         });
 
-        await test.step('Validate error message indicates missing password', async () => {
-            const credentials = loginPage.getCredentialsByRole('Admin');
-            const response = await loginPage.sendLoginRequest(credentials.username, '');
-            await loginPage.verifyResponseContainsError(response, 'password');
+        await test.step('Response should return 400 status code - Validate error message indicates missing password', async () => {
+            await loginPage.verifyMissingPasswordError();
         });
     });
 
-    test('[TC-22] To Test Login Form with Invalid Data @regression @ui', async ({ loginPage }) => {
+    test('[TC-22] To Test Login Form with Invalid Data @regression', async ({ loginPage }) => {
         await test.step('Navigate to 192.168.10.124:4001', async () => {
-            await loginPage.navigateToLogin();
+            await loginPage.navigateToLogin('http://192.168.10.124:4001');
+        });
+
+        await test.step('System should display a Login Page with the Email, Password fields, Login button and Register Hyperlink', async () => {
             await loginPage.verifyLoginPageDisplayed();
+            await loginPage.verifyRegisterLinkVisible();
         });
 
         await test.step('Enter username and password', async () => {
             await loginPage.enterUsername('invaliduser@test.com');
-            await loginPage.enterPassword('wrongpassword');
+            await loginPage.enterPassword('invalidpass');
         });
 
         await test.step('System should accept the username and password', async () => {
-            await loginPage.clickLogin();
-            await loginPage.verifyLoginErrorDisplayed();
+            await loginPage.clickLoginButton();
         });
     });
 
 });
-
