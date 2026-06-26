@@ -7,12 +7,13 @@
 `mvn test -Psmoke`
 `mvn test -Psanity`
 `mvn test -Pregression`
+`mvn test -Pparallel`
+`mvn test -Psequential`
+
+## Direct Suite File
+`mvn test -DsuiteXmlFile=suites/smoke.xml`
 
 ## Allure
 `mvn allure:report`
 
-The framework owns driver creation, suite wiring, and reporting. Users should add page objects and tests only.
-## Parallel and Sequential Execution
-`mvn test -Dgroups=smoke -DthreadCount=4`
-`mvn test -Dgroups=regression -DthreadCount=1`
-Generated feature/page/step files should be added into this same framework; users should not need to create driver, listener, suite, or reporting files.
+Framework-owned files include driver factory, utilities, TestNG listeners, root suites, reporting, and configuration. Users should add tests, pages, and test data only.

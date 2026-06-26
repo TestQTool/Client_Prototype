@@ -49,6 +49,7 @@
                 <configuration>
                     <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
                     <failIfNoTests>false</failIfNoTests>
+                    <groups>${groups}</groups>
                 </configuration>
             </plugin>
             <plugin>
@@ -73,6 +74,24 @@
         </profile>
         <profile>
             <id>regression</id>
+            <properties>
+                <groups>regression</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>performance</id>
+            <properties>
+                <groups>performance</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>LeaveManagement-smoke</id>
+            <properties>
+                <groups>smoke &amp; TC-1378 | smoke &amp; TC-1379</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>LeaveManagement-regression</id>
             <properties>
                 <groups>regression</groups>
             </properties>
