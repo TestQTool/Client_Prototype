@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://192.168.10.124:4001",
+  "notVisibleText": "Element not visible. Validation failed.",
+  "requiredFieldMsg": "Required",
+  "invalidCredentialsMsg": "Invalid credentials",
+  "loginBtnText": "Login",
+  "forgotPasswordText": "Forgot your password?",
+  "dashboardUrlFragment": "/dashboard",
+  "loginUrlFragment": "/login",
+  "logoutUrlFragment": "/login",
+  "appName": "AG-Helix",
+  "emptyString": "",
+  "maxLengthString": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "specialChars": "!@#$%^&*()_+-=[]{}|;':,/<>?",
+  "whitespaceOnly": "   ",
+  "_comment": "Override these values per client via test-data/testdata.<clientId>.json or set in .env"
+}
