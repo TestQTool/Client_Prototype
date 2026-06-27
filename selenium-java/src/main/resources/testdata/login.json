@@ -1,0 +1,28 @@
+{
+  "validCredentials": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "invalidCredentials": {
+    "username": "invalid@test.com",
+    "password": "wrongpassword"
+  },
+  "emptyUsername": {
+    "username": "",
+    "password": "admin123"
+  },
+  "emptyPassword": {
+    "username": "admin",
+    "password": ""
+  },
+  "expectedMessages": {
+    "invalidCredentials": "Invalid credentials",
+    "requiredField": "Required",
+    "missingUsername": "Username is required",
+    "missingPassword": "Password is required"
+  },
+  "urls": {
+    "loginPage": "http://192.168.10.124:4001",
+    "dashboardFragment": "/dashboard"
+  }
+}
