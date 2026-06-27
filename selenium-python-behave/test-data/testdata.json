@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://192.168.10.124:4001",
+  "loginUrl": "http://192.168.10.124:4001/login",
+  "apiBaseUrl": "http://192.168.10.124:4001",
+  "notVisibleText": "Element not visible",
+  "requiredFieldMsg": "This field is required",
+  "invalidCredentialsMsg": "Invalid credentials",
+  "missingUsernameMsg": "Username is required",
+  "missingPasswordMsg": "Password is required",
+  "loginSuccessUrl": "/dashboard",
+  "emptyString": "",
+  "maxLength": 255,
+  "_comment": "Test data for AG-Helix project - Selenium Python Behave framework"
+}
