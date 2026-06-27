@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://192.168.10.124:4001",
+  "loginPageTitle": "Login",
+  "dashboardPageTitle": "Dashboard",
+  "invalidCredentialsMsg": "Invalid credentials",
+  "usernameRequiredMsg": "Username is required",
+  "passwordRequiredMsg": "Password is required",
+  "loginSuccessMsg": "Login successful",
+  "notVisibleText": "Element not visible. Validation failed.",
+  "emptyString": "",
+  "maxLengthString": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "specialChars": "!@#$%^&*()_+-=[]{}|;':,.<>?/",
+  "whitespaceOnly": "   ",
+  "_comment": "Override these values per client via environment variables or client-specific config"
+}
