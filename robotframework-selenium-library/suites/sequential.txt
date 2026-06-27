@@ -1,0 +1,1 @@
+robot --include regression tests
