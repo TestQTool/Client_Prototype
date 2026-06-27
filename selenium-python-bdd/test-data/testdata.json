@@ -1,0 +1,18 @@
+{
+  "baseUrl": "http://192.168.10.124:4001",
+  "loginUrl": "http://192.168.10.124:4001/login",
+  "notVisibleText": "Element not visible. Validation failed.",
+  "requiredFieldMsg": "Required",
+  "invalidCredentialsMsg": "Invalid credentials",
+  "invalidUsernameMsg": "Invalid username",
+  "invalidPasswordMsg": "Invalid password",
+  "emptyUsernameMsg": "Username is required",
+  "emptyPasswordMsg": "Password is required",
+  "loginBtnText": "Login",
+  "registerLinkText": "Register",
+  "emptyString": "",
+  "maxLengthString": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "specialChars": "!@#$%^&*()_+-=[]{}|;':',.<>?/",
+  "whitespaceOnly": "   ",
+  "_comment": "Override values per environment using .env or config files"
+}
