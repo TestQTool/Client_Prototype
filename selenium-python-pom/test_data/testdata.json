@@ -1,0 +1,12 @@
+{
+  "base_url": "http://192.168.10.124:4001",
+  "login_url": "http://192.168.10.124:4001/login",
+  "dashboard_url_fragment": "/dashboard",
+  "home_url_fragment": "/home",
+  "invalid_credentials_message": "Invalid credentials",
+  "required_field_message": "This field is required",
+  "authentication_error_message": "Authentication failed",
+  "empty_username_error": "Username is required",
+  "empty_password_error": "Password is required",
+  "_comment": "Test data for AG-Helix automation framework"
+}
