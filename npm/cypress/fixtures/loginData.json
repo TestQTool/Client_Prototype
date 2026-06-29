@@ -1,0 +1,42 @@
+{
+  "validCredentials": {
+    "username": "testuser@example.com",
+    "password": "ValidPass123!"
+  },
+  "invalidCredentials": {
+    "username": "invalid@example.com",
+    "password": "WrongPassword123!"
+  },
+  "disabledAccount": {
+    "username": "disabled@example.com",
+    "password": "DisabledPass123!"
+  },
+  "unicodeCharacters": {
+    "username": "测试用户@example.com",
+    "password": "Pāsswörd123!"
+  },
+  "specialCharacters": {
+    "username": "user+test@example.com",
+    "password": "Pass@#$%123!"
+  },
+  "sqlInjection": {
+    "username": "' OR '1'='1",
+    "password": "password123"
+  },
+  "maxLength": {
+    "username": "verylongusernamethatshouldtestthemaximumlengthallowedbytheapplication@example.com",
+    "password": "VeryLongPasswordThatShouldTestTheMaximumLengthAllowedByTheApplication123!"
+  },
+  "caseSensitive": {
+    "username": "TestUser@Example.COM",
+    "password": "ValidPass123!"
+  },
+  "whitespace": {
+    "username": "  testuser@example.com  ",
+    "password": "  ValidPass123!  "
+  },
+  "emptyCredentials": {
+    "username": "",
+    "password": ""
+  }
+}
