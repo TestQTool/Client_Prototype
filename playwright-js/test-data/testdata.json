@@ -1,0 +1,19 @@
+{
+  "projectName" : "Qentrix",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "playwright",
+  "language" : "javascript",
+  "frameworkType" : "testng",
+  "buildTool" : "npm",
+  "workItemIds" : [ "763" ],
+  "testCases" : [ {
+    "id" : "764",
+    "key" : "764",
+    "title" : "Leave Module",
+    "description" : "",
+    "priority" : "",
+    "type" : "Feature",
+    "expectedResult" : "",
+    "steps" : [ ]
+  } ]
+}
