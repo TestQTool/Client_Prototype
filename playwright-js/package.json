@@ -1,0 +1,23 @@
+{
+  "name": "playwright-bdd-employee-api-tests",
+  "version": "1.0.0",
+  "description": "Playwright BDD tests for Employee API validation",
+  "scripts": {
+    "test": "cucumber-js features/**/*.feature",
+    "test:api": "cucumber-js features/employee-api.feature",
+    "test:tags": "cucumber-js --tags"
+  },
+  "keywords": [
+    "playwright",
+    "bdd",
+    "cucumber",
+    "api-testing"
+  ],
+  "dependencies": {
+    "@cucumber/cucumber": "^10.0.0",
+    "@playwright/test": "^1.40.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
