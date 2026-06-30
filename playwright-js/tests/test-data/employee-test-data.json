@@ -1,0 +1,28 @@
+{
+  "employees": {
+    "firstEmployee": {
+      "firstName": "Lisa",
+      "lastName": "Anderson",
+      "employeeId": "EMP011"
+    },
+    "duplicateEmployee": {
+      "firstName": "Mark",
+      "lastName": "Taylor",
+      "employeeId": "EMP011"
+    }
+  },
+  "expectedResponses": {
+    "successStatus": 201,
+    "conflictStatus": 409,
+    "conflictMessages": [
+      "conflict",
+      "duplicate",
+      "already exists",
+      "employee id"
+    ]
+  },
+  "apiEndpoints": {
+    "createEmployee": "/web/index.php/api/v2/pim/employees",
+    "login": "/web/index.php/auth/login"
+  }
+}
