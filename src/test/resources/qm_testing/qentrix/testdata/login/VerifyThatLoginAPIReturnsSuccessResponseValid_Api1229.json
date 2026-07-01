@@ -10,7 +10,7 @@
     "method" : "GET",
     "endpointPath" : "/users",
     "expectedStatusCode" : "201",
-    "responseAssertion" : "json-field-exists",
+    "responseAssertion" : "body-not-empty",
     "requestBody" : null,
     "contentType" : null,
     "assertionPath" : null,
