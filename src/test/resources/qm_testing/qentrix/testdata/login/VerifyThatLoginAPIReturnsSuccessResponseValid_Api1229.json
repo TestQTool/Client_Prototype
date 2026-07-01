@@ -1,0 +1,25 @@
+{
+  "id" : "1229",
+  "backendId" : "1229",
+  "title" : "Verify that login API returns success response with valid credentials",
+  "module" : "login",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "GET",
+    "endpointPath" : "/users",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "json-field-exists",
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null
+  }
+}
