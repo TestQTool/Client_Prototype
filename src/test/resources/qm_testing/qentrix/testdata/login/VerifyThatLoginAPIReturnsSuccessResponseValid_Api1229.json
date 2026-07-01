@@ -9,7 +9,7 @@
   "apiDetails" : {
     "method" : "GET",
     "endpointPath" : "/users",
-    "expectedStatusCode" : "200",
+    "expectedStatusCode" : "201",
     "responseAssertion" : "json-field-exists",
     "requestBody" : null,
     "contentType" : null,
