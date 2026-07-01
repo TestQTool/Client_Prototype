@@ -7,15 +7,12 @@
   "projectName" : "Qentrix",
   "tags" : [ "API" ],
   "apiDetails" : {
-    "method" : "POST",
-    "endpointPath" : "/web/index.php/auth/login",
+    "method" : "GET",
+    "endpointPath" : "/users",
     "expectedStatusCode" : "200",
-    "responseAssertion" : "body-not-empty",
-    "requestBody" : {
-      "Username" : "Admin",
-      "password" : "admin123"
-    },
-    "contentType" : "application/json",
+    "responseAssertion" : "json-field-exists",
+    "requestBody" : null,
+    "contentType" : null,
     "assertionPath" : null,
     "expectedValue" : null,
     "responseHeader" : null,
