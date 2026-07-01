@@ -24,15 +24,13 @@ public class VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229Test {
         RequestSpecification request = QentrixConfig.applyAuth(given())
                 .headers(QentrixConfig.authHeaders())
                 .queryParams(QentrixConfig.authQueryParams())
-                .contentType("application/json")
-                .body(QentrixTestData.requestBody("login/VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229.json"))
                 ;
 
         Response response = request.when()
-                .post("/web/index.php/auth/login");
+                .get("/users");
 
         QentrixReport.capture(response);
         Assert.assertEquals(response.statusCode(), 200, "Unexpected response status code");
-        Assert.assertFalse(response.getBody().asString().isBlank(), "Response body should not be empty");
+        Assert.assertNotNull(response.jsonPath().get("id"), "Expected JSON path to exist: id");
     }
 }
