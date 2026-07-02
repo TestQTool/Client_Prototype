@@ -6,7 +6,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
-            <class name="tests.qm_testing.qentrix.api_test.VerifyThatLoginAPIRejectsRequestInvalidHTTP_Api1234Test"/>
+            <class name="tests.pagination.VerifyThatAPIReturnsPaginatedResultsFeedbackList_Api1327Test"/>
         </classes>
     </test>
 </suite>
