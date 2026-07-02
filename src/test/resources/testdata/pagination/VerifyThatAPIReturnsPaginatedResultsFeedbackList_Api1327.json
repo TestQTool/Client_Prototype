@@ -1,0 +1,25 @@
+{
+  "id" : "1327",
+  "backendId" : "1327",
+  "title" : "Verify that API returns paginated results when feedback list exceeds limit",
+  "module" : "pagination",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "GET",
+    "endpointPath" : "/user",
+    "expectedStatusCode" : "200",
+    "responseAssertion" : "body-not-empty",
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null
+  }
+}
