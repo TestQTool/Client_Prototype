@@ -1,0 +1,25 @@
+{
+  "id" : "1234",
+  "backendId" : "1234",
+  "title" : "Verify that login API rejects request with invalid HTTP method",
+  "module" : "api test",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "GET",
+    "endpointPath" : "/user",
+    "expectedStatusCode" : "202",
+    "responseAssertion" : "json-field-exists",
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null
+  }
+}
