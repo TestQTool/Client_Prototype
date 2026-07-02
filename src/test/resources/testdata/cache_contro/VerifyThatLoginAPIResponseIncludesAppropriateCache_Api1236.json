@@ -1,0 +1,25 @@
+{
+  "id" : "1236",
+  "backendId" : "1236",
+  "title" : "Verify that login API response includes appropriate cache control headers",
+  "module" : "cache contro",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "PATCH",
+    "endpointPath" : "/cache",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "response-time",
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null
+  }
+}
