@@ -1,0 +1,25 @@
+{
+  "id" : "1231",
+  "backendId" : "1231",
+  "title" : "Verify that login API returns error when username is missing in request",
+  "module" : "request",
+  "projectId" : "Qentrix",
+  "projectName" : "Qentrix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/user",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "body-not-empty",
+    "requestBody" : null,
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null
+  }
+}
