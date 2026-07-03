@@ -1,0 +1,19 @@
+{
+  "testCase5": {
+    "testCaseId": "5",
+    "title": "Test Login Form with Valid Data",
+    "priority": "2-Medium",
+    "type": "Functional",
+    "baseUrl": "http://192.168.10.124:4001",
+    "validCredentials": {
+      "email": "testuser@example.com",
+      "password": "TestPassword123"
+    },
+    "expectedElements": {
+      "emailField": true,
+      "passwordField": true,
+      "loginButton": true,
+      "registerLink": true
+    }
+  }
+}
