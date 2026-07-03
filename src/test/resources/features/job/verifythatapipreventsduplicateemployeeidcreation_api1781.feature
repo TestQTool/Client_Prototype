@@ -7,6 +7,6 @@ Feature: Verify that API prevents duplicate Employee ID creation
 
   Scenario: 1781
     Given path 'user'
-    When method GET
-    Then status 204
+    When method POST
+    Then status 202
     And match response != null
