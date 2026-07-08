@@ -1,0 +1,26 @@
+{
+  "name": "playwright-hybrid-framework",
+  "version": "1.0.0",
+  "description": "Playwright Hybrid Test Automation Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:login": "playwright test tests/login.spec.js",
+    "test:report": "playwright show-report",
+    "test:ui": "playwright test --ui"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "hybrid-framework"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "dependencies": {}
+}
