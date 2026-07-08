@@ -1,0 +1,44 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "1994",
+    "key" : "1994",
+    "title" : "Verify that login fails with invalid username",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\"",
+      "expected" : "Configured application URL should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"Admin\" and password \"admin123\"",
+      "expected" : "Configured credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Click Login button",
+      "expected" : "Login request should be submitted",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Verify error message is displayed",
+      "expected" : "Error message should indicate invalid credentials",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify user remains on login page",
+      "expected" : "User should not be redirected to dashboard",
+      "data" : ""
+    } ]
+  } ]
+}
