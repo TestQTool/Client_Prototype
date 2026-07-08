@@ -1,0 +1,44 @@
+{
+  "projectName" : "360GlobalNet",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "TypeScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2055" ],
+  "testCases" : [ {
+    "id" : "2159",
+    "key" : "2159",
+    "title" : "Verify that POST request to create policy endpoint returns 201 status code with valid payload",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Non Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\"",
+      "expected" : "Configured application URL should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"Admin\" and password \"Admin\"",
+      "expected" : "Configured credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Send POST request to policy creation endpoint with valid customer details, policy type, coverage amount, premium, and effective date",
+      "expected" : "API request should be sent",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Verify response status code is 201 Created",
+      "expected" : "API should return 201 status",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify response body contains policy number and confirmation message",
+      "expected" : "Policy creation confirmation should be returned in response",
+      "data" : ""
+    } ]
+  } ]
+}
