@@ -1,0 +1,32 @@
+{
+  "policy_creation": {
+    "valid_customer": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "1234567890",
+      "premium_amount": "1000"
+    },
+    "invalid_premium_alphabetic": {
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phone": "9876543210",
+      "premium_amount": "ABCDEF"
+    },
+    "invalid_premium_special_chars": {
+      "name": "Test User",
+      "email": "test.user@example.com",
+      "phone": "5555555555",
+      "premium_amount": "@#$%^"
+    }
+  },
+  "login": {
+    "valid_credentials": {
+      "username": "Admin",
+      "password": "admin123"
+    },
+    "invalid_credentials": {
+      "username": "InvalidUser",
+      "password": "InvalidPassword"
+    }
+  }
+}
