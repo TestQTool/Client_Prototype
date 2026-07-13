@@ -1,0 +1,39 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "Python",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "pip",
+  "workItemIds" : [ "1738" ],
+  "testCases" : [ {
+    "id" : "1803",
+    "key" : "1803",
+    "title" : "Verify that system validates mandatory Hiring Manager field when creating a job vacancy",
+    "description" : "",
+    "priority" : "2-Medium",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://hr.quality-matrix.us/web/index.php/auth/login\"",
+      "expected" : "Configured application URL should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"adminhrqa\" and password \"Adminhrqa@321\"",
+      "expected" : "Configured credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter Job Title \"DevOps Engineer\", Vacancy Name \"DO-2024-001\", leave Hiring Manager unselected, and enter Number of Positions \"2\"",
+      "expected" : "Hiring Manager field should remain empty",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click Save button and verify validation error is displayed",
+      "expected" : "System should display required field validation error for Hiring Manager",
+      "data" : ""
+    } ]
+  } ]
+}
