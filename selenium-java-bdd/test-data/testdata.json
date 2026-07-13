@@ -1,0 +1,39 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Selenium",
+  "language" : "Java",
+  "frameworkType" : "BDD",
+  "buildTool" : "maven",
+  "workItemIds" : [ "1738" ],
+  "testCases" : [ {
+    "id" : "1800",
+    "key" : "1800",
+    "title" : "Verify that HR recruiter can successfully create a new job vacancy with all mandatory fields",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://hr.quality-matrix.us/web/index.php/auth/login\"",
+      "expected" : "Configured application URL should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"adminhrqa\" and password \"Adminhrqa@321\"",
+      "expected" : "Configured credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter Job Title \"Software Engineer\", Vacancy Name \"SE-2024-001\", select Hiring Manager, and enter Number of Positions \"3\"",
+      "expected" : "All mandatory fields should be filled successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click Save button and verify vacancy appears in vacancy list",
+      "expected" : "New job vacancy should be saved and displayed in the vacancy list",
+      "data" : ""
+    } ]
+  } ]
+}
