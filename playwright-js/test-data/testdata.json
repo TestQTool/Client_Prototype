@@ -1,0 +1,39 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1738" ],
+  "testCases" : [ {
+    "id" : "1802",
+    "key" : "1802",
+    "title" : "Verify that system validates mandatory Vacancy Name field when creating a job vacancy",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://hr.quality-matrix.us/web/index.php/auth/login\"",
+      "expected" : "Configured application URL should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"adminhrqa\" and password \"Adminhrqa@321\"",
+      "expected" : "Configured credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter Job Title \"QA Engineer\", leave Vacancy Name empty, select Hiring Manager, and enter Number of Positions \"1\"",
+      "expected" : "Vacancy Name field should remain empty",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click Save button and verify validation error is displayed",
+      "expected" : "System should display required field validation error for Vacancy Name",
+      "data" : ""
+    } ]
+  } ]
+}
