@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="648f184a-0616-459f-85a4-ba14a78698f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/AssertionKeys.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/AssertionUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/RestUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/reporting/CSVReportGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/reporting/ExtentReportManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/reporting/Retry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/reporting/Setup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restUtils/reporting/sendEmail_outlook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/DateUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ExcelUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/JsonUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/RandomDataGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/RandomDataTypeNames.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/karate/ApiTestRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/QentrixConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/QentrixReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/QentrixTestData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/pagination/VerifyThatAPIReturnsPaginatedResultsFeedbackList_Api1327Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/QentrixConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/QentrixReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/QentrixTestData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/api_test/VerifyThatLoginAPIRejectsRequestInvalidHTTP_Api1234Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/login/VerifyThatLoginAPIReturnsErrorUsernameMissing_Api1231Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/qm_testing/qentrix/login/VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/resertpassword/verifythatresetpasswordapiendpointreturnssuccess_api1292.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/karate-config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/qm_testing/qentrix/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/qm_testing/qentrix/testdata/api_test/VerifyThatLoginAPIRejectsRequestInvalidHTTP_Api1234.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/qm_testing/qentrix/testdata/login/VerifyThatLoginAPIReturnsErrorUsernameMissing_Api1231.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/qm_testing/qentrix/testdata/login/VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/testdata/pagination/VerifyThatAPIReturnsPaginatedResultsFeedbackList_Api1327.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/login/test_verifythatloginapireturnspropercontenttype_api1233.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="3GRZzhrkWuG7I0LNZPAJaKpvXmf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/AdithyaRao/Client_Prototype"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Client_Prototype" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Client_Prototype" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="648f184a-0616-459f-85a4-ba14a78698f7" name="Changes" comment="" />
+      <created>1783936606004</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1783936606004</updated>
+    </task>
+    <servers />
+  </component>
+</project>
