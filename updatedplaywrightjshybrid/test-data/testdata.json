@@ -1,0 +1,45 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "2344",
+    "key" : "2344",
+    "title" : "Verify that login handles username with maximum character length",
+    "description" : "",
+    "priority" : "2-Medium",
+    "type" : "Functional",
+    "tags" : [ ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://parabank.parasoft.com/parabank/index.htm?utm_source=chatgpt.com\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username with 255 characters in the username field",
+      "expected" : "Maximum length username should be entered",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"demo\" in the password field",
+      "expected" : "Password should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click the login button",
+      "expected" : "Login request should be submitted for authentication",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify appropriate response is displayed",
+      "expected" : "System should handle maximum length username appropriately with validation or authentication response",
+      "data" : ""
+    } ]
+  } ]
+}
