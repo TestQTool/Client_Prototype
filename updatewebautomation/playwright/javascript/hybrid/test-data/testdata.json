@@ -1,0 +1,44 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "2337",
+    "key" : "2337",
+    "title" : "Verify that user can login successfully with valid credentials",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://parabank.parasoft.com/parabank/index.htm?utm_source=chatgpt.com\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"john\" in the username field",
+      "expected" : "Username should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"demo\" in the password field",
+      "expected" : "Password should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click the login button",
+      "expected" : "Login request should be submitted",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify user is redirected to account overview page",
+      "expected" : "Account overview page should be displayed with user account details",
+      "data" : ""
+    } ]
+  } ]
+}
