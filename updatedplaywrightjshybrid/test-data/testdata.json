@@ -1,0 +1,49 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "2338",
+    "key" : "2338",
+    "title" : "Verify that login fails when username field is empty",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "Functional",
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://parabank.parasoft.com/parabank/index.htm?utm_source=chatgpt.com\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Leave username field empty",
+      "expected" : "Username field should remain blank",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"demo\" in the password field",
+      "expected" : "Password should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click the login button",
+      "expected" : "Login request should be submitted for validation",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify username required error message is displayed",
+      "expected" : "Error message indicating username is required should appear",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify user remains on login page",
+      "expected" : "User should not be redirected to authenticated area",
+      "data" : ""
+    } ]
+  } ]
+}
