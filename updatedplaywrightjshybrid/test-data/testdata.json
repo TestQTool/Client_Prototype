@@ -1,0 +1,50 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "2343",
+    "key" : "2343",
+    "title" : "Verify that login fails with both invalid username and password",
+    "description" : "",
+    "priority" : "2-Medium",
+    "type" : "Functional",
+    "tags" : [ ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://parabank.parasoft.com/parabank/index.htm?utm_source=chatgpt.com\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"invalidUser999\" in the username field",
+      "expected" : "Invalid username should be entered",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"wrongPassword123\" in the password field",
+      "expected" : "Invalid password should be entered",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click the login button",
+      "expected" : "Login request should be submitted for authentication",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify invalid credentials error message is displayed",
+      "expected" : "Error message indicating authentication failure should appear",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify user remains on login page",
+      "expected" : "User should not be redirected to authenticated area",
+      "data" : ""
+    } ]
+  } ]
+}
