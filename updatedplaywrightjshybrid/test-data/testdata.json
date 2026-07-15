@@ -1,0 +1,50 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1737" ],
+  "testCases" : [ {
+    "id" : "2412",
+    "key" : "2412",
+    "title" : "Verify that login handles username with single character",
+    "description" : "",
+    "priority" : "3-Low",
+    "type" : "Functional",
+    "tags" : [ ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"A\" in the username field",
+      "expected" : "Single character username should be entered",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"admin123\" in the password field",
+      "expected" : "Valid password should be entered",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click the Login button",
+      "expected" : "Login request should be submitted for authentication",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify invalid credentials error message is displayed",
+      "expected" : "Error message \"Invalid credentials\" should be displayed",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify user remains on login page",
+      "expected" : "User should not be redirected to dashboard",
+      "data" : ""
+    } ]
+  } ]
+}
