@@ -1,8 +1,8 @@
 # Qentrix Generated API Tests
 
-- Framework: Pytest Requests
+- Framework: Karate
 - Base URL: `https://www.amazon.in/`
 - Test cases: `4`
-- Run command: `pytest`
+- Run command: `mvn test`
 
-Qentrix updated the existing compatible framework branch.
+Qentrix initialized the framework files on the selected branch.
