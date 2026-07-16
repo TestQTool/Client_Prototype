@@ -7,7 +7,7 @@ def test_verifythatloginapireturnssuccessresponsevalid_api2478(api_config, auth_
     headers = {**auth_headers, **{}}
     params = {}
     response = requests.request(
-        "GET",
+        "PUT",
         url,
         headers=headers,
         params=params,
