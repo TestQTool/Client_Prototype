@@ -1,0 +1,25 @@
+{
+  "id" : "2478",
+  "backendId" : "2478",
+  "title" : "Verify that login API returns success response with valid credentials",
+  "module" : "login",
+  "projectId" : "Backend",
+  "projectName" : "Backend",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "GET",
+    "endpointPath" : "/users/",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "body-not-empty",
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : null
+  }
+}
