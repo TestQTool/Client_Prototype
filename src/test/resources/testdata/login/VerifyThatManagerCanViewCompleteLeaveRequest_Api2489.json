@@ -1,0 +1,25 @@
+{
+  "id" : "2489",
+  "backendId" : "2489",
+  "title" : "Verify that manager can view complete leave request details for a pending request",
+  "module" : "login",
+  "projectId" : "Backend",
+  "projectName" : "Backend",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/users/",
+    "expectedStatusCode" : "201",
+    "responseAssertion" : "body-not-empty",
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : null
+  }
+}
