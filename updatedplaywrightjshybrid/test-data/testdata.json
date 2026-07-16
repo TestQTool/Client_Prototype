@@ -1,0 +1,45 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "1991" ],
+  "testCases" : [ {
+    "id" : "2458",
+    "key" : "2458",
+    "title" : "Verify that user can login successfully with valid credentials",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "",
+    "tags" : [ "Smoke" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://.\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"vamc\" in the username field",
+      "expected" : "Username should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter password \"1234\" in the password field",
+      "expected" : "Password should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Click on the login button",
+      "expected" : "Login request should be submitted",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify user is redirected to the dashboard or home page",
+      "expected" : "User should see the authenticated home page",
+      "data" : ""
+    } ]
+  } ]
+}
