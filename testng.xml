@@ -7,6 +7,8 @@
     <test verbose="2" preserve-order="true" name="Qentrix Generated API Tests">
         <classes>
             <class name="tests.login.VerifyThatLoginAPIReturnsSuccessResponseValid_Api2478Test"/>
+            <class name="tests.login.VerifyThatLoginAPIRejectsRequestMissingUsername_Api2480Test"/>
+            <class name="tests.login.VerifyThatManagerCanViewCompleteLeaveRequest_Api2489Test"/>
         </classes>
     </test>
 </suite>
