@@ -1,0 +1,50 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2609" ],
+  "testCases" : [ {
+    "id" : "2696",
+    "key" : "2696",
+    "title" : "Verify that registration fails when username field is empty",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to registration page from url \"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\"",
+      "expected" : "Registration page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Leave username field empty",
+      "expected" : "Username field should remain blank",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter valid email \"test@example.com\", password \"ValidPass@123\", and confirm password \"ValidPass@123\"",
+      "expected" : "Other required fields should be filled",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Submit the registration form",
+      "expected" : "Registration request should be submitted for validation",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify username required validation message is displayed",
+      "expected" : "User should see error message for username field",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify user remains on registration page",
+      "expected" : "Registration should not be completed",
+      "data" : ""
+    } ]
+  } ]
+}
