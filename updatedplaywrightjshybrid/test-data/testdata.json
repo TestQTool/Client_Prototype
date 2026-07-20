@@ -1,0 +1,45 @@
+{
+  "projectName" : "360GlobalNet",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2182" ],
+  "testCases" : [ {
+    "id" : "2814",
+    "key" : "2814",
+    "title" : "Verify that login fails when both username and password fields are empty",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://school.moodledemo.net/login/index.php\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Leave both username and password fields empty",
+      "expected" : "Both fields should remain blank",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Click the login button",
+      "expected" : "Login form should attempt submission",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Verify validation error messages are displayed for both fields",
+      "expected" : "Error messages indicating both username and password are required should appear",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify user remains on login page",
+      "expected" : "User should not be redirected and login page should still be visible",
+      "data" : ""
+    } ]
+  } ]
+}
