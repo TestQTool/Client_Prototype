@@ -1,0 +1,35 @@
+{
+  "projectName" : "360GlobalNet",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2182" ],
+  "testCases" : [ {
+    "id" : "2830",
+    "key" : "2830",
+    "title" : "Verify that user can navigate to login page directly via URL",
+    "description" : "",
+    "priority" : "3-Low",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://school.moodledemo.net/login/index.php\"",
+      "expected" : "Login page should load successfully",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Verify login form is displayed",
+      "expected" : "Username field, password field, and login button should be visible",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Verify page title or heading indicates login page",
+      "expected" : "Page should display appropriate login page identifier",
+      "data" : ""
+    } ]
+  } ]
+}
