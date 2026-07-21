@@ -6,8 +6,8 @@ export default class LoginPage extends BasePage {
     super(page);
     this.page = page;
     // TODO: Verify selectors during exploration
-    this.usernameInput = page.getByLabel('Username');
-    this.passwordInput = page.getByLabel('Password');
+    this.usernameInput = page.locator('[name="username"], [id="username"], input[autocomplete="username"]');
+    this.passwordInput = page.locator('input[type="password"], [name="password"], [id="password"]');
     this.loginButton = page.getByRole('button', { name: /log in/i });
     this.dashboardContainer = page.locator('[data-region="drawer"], .page-content, #page-wrapper');
     this.userProfile = page.locator('.userpicture, .user-menu, [data-userid]');
