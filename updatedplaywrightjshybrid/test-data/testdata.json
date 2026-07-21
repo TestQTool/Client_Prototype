@@ -1,0 +1,40 @@
+{
+  "projectName" : "360GlobalNet",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2182" ],
+  "testCases" : [ {
+    "id" : "2829",
+    "key" : "2829",
+    "title" : "Verify that login page displays username and password input fields",
+    "description" : "",
+    "priority" : "3-Low",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://school.moodledemo.net/login/index.php\"",
+      "expected" : "Login page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Verify username input field is visible",
+      "expected" : "Username field should be present and accessible",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Verify password input field is visible",
+      "expected" : "Password field should be present and accessible",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Verify login button is visible",
+      "expected" : "Login button should be present and clickable",
+      "data" : ""
+    } ]
+  } ]
+}
