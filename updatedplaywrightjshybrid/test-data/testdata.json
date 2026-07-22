@@ -1,0 +1,55 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "3215" ],
+  "testCases" : [ {
+    "id" : "3219",
+    "key" : "3219",
+    "title" : "Verify that user can successfully register with valid unique username and password",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "",
+    "tags" : [ "Smoke" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://www.demoblaze.com/\"",
+      "expected" : "Home page should load successfully",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Click the Sign Up button",
+      "expected" : "Registration modal should open",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter unique username \"newuser_20240515_143022\" in Username field",
+      "expected" : "Username should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Enter password \"ValidPass123\" in Password field",
+      "expected" : "Password should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Click Sign Up button in the modal",
+      "expected" : "Registration request should be submitted",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify success message is displayed",
+      "expected" : "System should display account creation success message",
+      "data" : ""
+    }, {
+      "number" : "7",
+      "action" : "Verify registration modal closes",
+      "expected" : "Modal should close after successful registration",
+      "data" : ""
+    } ]
+  } ]
+}
