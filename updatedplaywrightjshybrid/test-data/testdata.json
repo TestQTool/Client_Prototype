@@ -1,0 +1,60 @@
+{
+  "projectName" : "360GlobalNet",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2055" ],
+  "testCases" : [ {
+    "id" : "2579",
+    "key" : "2579",
+    "title" : "Verify that insurance agent can successfully create a new policy with all valid customer and policy details",
+    "description" : "",
+    "priority" : "1-High",
+    "type" : "",
+    "tags" : [ "Smoke" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://school.moodledemo.net/login/index.php\"",
+      "expected" : "Login page should open",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter username \"student\" and password \"moodle26\"",
+      "expected" : "Valid credentials should be entered successfully",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Submit the login form",
+      "expected" : "Login request should be submitted successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Navigate to policy creation module",
+      "expected" : "Policy creation form should be displayed",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Enter valid customer details including name, contact information, and address",
+      "expected" : "Customer details should be captured successfully",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Enter valid policy information including policy type, coverage options, premium amount, and effective dates",
+      "expected" : "Policy information should be captured successfully",
+      "data" : ""
+    }, {
+      "number" : "7",
+      "action" : "Submit the policy creation form",
+      "expected" : "Policy validation should be triggered",
+      "data" : ""
+    }, {
+      "number" : "8",
+      "action" : "Verify policy is created successfully and confirmation message is displayed",
+      "expected" : "Policy should be issued with unique policy number",
+      "data" : ""
+    } ]
+  } ]
+}
