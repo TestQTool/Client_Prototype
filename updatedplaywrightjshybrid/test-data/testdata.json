@@ -1,0 +1,50 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "3246" ],
+  "testCases" : [ {
+    "id" : "3249",
+    "key" : "3249",
+    "title" : "Verify that authenticated user can place an order after login",
+    "description" : "",
+    "priority" : "2-Medium",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to url \"https://www.demoblaze.com/\" and log in with username \"testqentrix\" and password \"testqentrix@12345\"",
+      "expected" : "User should be authenticated successfully",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Add a product to cart and navigate to Cart page",
+      "expected" : "Cart should display the selected product",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Click Place Order button",
+      "expected" : "Order form modal should open",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Fill in required order details including name, country, city, credit card, month, and year",
+      "expected" : "All order fields should be populated with valid data",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Click Purchase button",
+      "expected" : "Order should be processed successfully",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify order confirmation message is displayed with purchase details",
+      "expected" : "Confirmation modal should show order ID and amount",
+      "data" : ""
+    } ]
+  } ]
+}
