@@ -1,0 +1,50 @@
+{
+  "projectName" : "Backend",
+  "sourceType" : "AZURE_DEVOPS",
+  "engine" : "Playwright",
+  "language" : "JavaScript",
+  "frameworkType" : "Hybrid",
+  "buildTool" : "npm",
+  "workItemIds" : [ "2609" ],
+  "testCases" : [ {
+    "id" : "2695",
+    "key" : "2695",
+    "title" : "Verify that user can register with all fields including optional fields filled",
+    "description" : "",
+    "priority" : "2-Medium",
+    "type" : "",
+    "tags" : [ "Regression" ],
+    "expectedResult" : "",
+    "steps" : [ {
+      "number" : "1",
+      "action" : "Navigate to registration page from url \"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\"",
+      "expected" : "Registration page should be displayed",
+      "data" : ""
+    }, {
+      "number" : "2",
+      "action" : "Enter valid username \"newuser003\", email \"newuser003@example.com\", password \"ValidPass@789\", and confirm password \"ValidPass@789\"",
+      "expected" : "All required fields should be filled",
+      "data" : ""
+    }, {
+      "number" : "3",
+      "action" : "Enter optional fields including phone number \"1234567890\" and address \"123 Main Street\"",
+      "expected" : "Optional fields should be filled successfully",
+      "data" : ""
+    }, {
+      "number" : "4",
+      "action" : "Submit the registration form",
+      "expected" : "Registration request should be submitted",
+      "data" : ""
+    }, {
+      "number" : "5",
+      "action" : "Verify successful registration message is displayed",
+      "expected" : "User should see confirmation message",
+      "data" : ""
+    }, {
+      "number" : "6",
+      "action" : "Verify all entered data is saved correctly",
+      "expected" : "User profile should contain all submitted information",
+      "data" : ""
+    } ]
+  } ]
+}
