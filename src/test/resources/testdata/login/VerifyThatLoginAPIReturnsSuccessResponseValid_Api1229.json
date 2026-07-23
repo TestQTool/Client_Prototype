@@ -7,9 +7,9 @@
   "projectName" : "Qentrix",
   "tags" : [ "API" ],
   "apiDetails" : {
-    "method" : "PUT",
+    "method" : "POST",
     "endpointPath" : "/https:/demo.nopcommerce.com/",
-    "expectedStatusCode" : "202",
+    "expectedStatusCode" : "201",
     "responseAssertion" : "json-field-exists",
     "contentType" : null,
     "assertionPath" : null,
