@@ -27,10 +27,10 @@ public class VerifyThatLoginAPIReturnsSuccessResponseValid_Api1229Test {
                 ;
 
         Response response = request.when()
-                .put("/https:/demo.nopcommerce.com/");
+                .post("/https:/demo.nopcommerce.com/");
 
         QentrixReport.capture(response);
-        Assert.assertEquals(response.statusCode(), 202, "Unexpected response status code");
+        Assert.assertEquals(response.statusCode(), 201, "Unexpected response status code");
         Assert.assertNotNull(response.jsonPath().get("id"), "Expected JSON path to exist: id");
     }
 }
