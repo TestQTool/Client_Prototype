@@ -15,19 +15,21 @@ import tests.QentrixTestData;
 import static io.restassured.RestAssured.given;
 
 @Listeners(Setup.class)
-public class VerifyThatRegistrationAPIRejectsRequestInvalidEmail_Api2714Test {
+public class VerifyThatLoginAPIReturnsErrorResponseInvalid_Api2833Test {
 
-    @Test(description = "Verify that registration API rejects request with invalid email format")
-    public void verifyThatRegistrationAPIRejectsRequestWithInvalidEmailFormat() {
+    @Test(description = "Verify that login API returns error response with invalid credentials")
+    public void verifyThatLoginAPIReturnsErrorResponseWithInvalidCredentials() {
         RestAssured.baseURI = QentrixConfig.get("base.url");
 
         RequestSpecification request = QentrixConfig.applyAuth(given())
                 .headers(QentrixConfig.authHeaders())
                 .queryParams(QentrixConfig.authQueryParams())
+                .contentType("application/json")
+                .body(QentrixTestData.requestBody("login/VerifyThatLoginAPIReturnsErrorResponseInvalid_Api2833.json"))
                 ;
 
         Response response = request.when()
-                .post("/users/");
+                .post("/api/login");
 
         QentrixReport.capture(response);
         Assert.assertEquals(response.statusCode(), 200, "Unexpected response status code");

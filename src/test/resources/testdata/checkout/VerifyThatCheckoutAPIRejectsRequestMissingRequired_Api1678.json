@@ -1,0 +1,51 @@
+{
+  "id" : "1678",
+  "backendId" : "1678",
+  "title" : "Verify that checkout API rejects request with missing required fields",
+  "module" : "checkout",
+  "projectId" : "AG-Helix",
+  "projectName" : "AG-Helix",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/api/v1/orders/checkout",
+    "expectedStatusCode" : "204",
+    "responseAssertion" : "json-field-equals",
+    "contentType" : "application/json",
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : null,
+    "queryParams" : {
+      "status" : "Delivered",
+      "page" : 1,
+      "limit" : 10,
+      "sort" : "desc"
+    },
+    "headers" : {
+      "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+      "Content-Type" : "application/json",
+      "Accept" : "application/json",
+      "X-Request-Id" : "REQ-1001",
+      "X-Correlation-Id" : "CORR-2001",
+      "User-Agent" : "PostmanRuntime/7.45.0"
+    },
+    "requestBody" : {
+      "customerId" : 101,
+      "cartId" : 5001,
+      "paymentMethod" : "CARD",
+      "shippingAddress" : {
+        "name" : "Kalyan",
+        "address" : "12 MG Road",
+        "city" : "Hyderabad",
+        "state" : "Telangana",
+        "country" : "India",
+        "postalCode" : "500001"
+      },
+      "couponCode" : "SAVE20",
+      "giftWrap" : false
+    }
+  }
+}
