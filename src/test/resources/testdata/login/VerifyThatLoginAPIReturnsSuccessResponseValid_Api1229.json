@@ -8,8 +8,8 @@
   "tags" : [ "API" ],
   "apiDetails" : {
     "method" : "POST",
-    "endpointPath" : "/https:/demo.nopcommerce.com/",
-    "expectedStatusCode" : "201",
+    "endpointPath" : "/users/",
+    "expectedStatusCode" : "200",
     "responseAssertion" : "json-field-exists",
     "contentType" : null,
     "assertionPath" : null,
@@ -17,8 +17,8 @@
     "responseHeader" : null,
     "maxResponseTimeMs" : null,
     "schema" : null,
-    "pathParams" : { },
-    "queryParams" : null,
+    "pathParams" : null,
+    "queryParams" : { },
     "headers" : null,
     "requestBody" : null
   }
