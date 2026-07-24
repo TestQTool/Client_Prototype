@@ -1,0 +1,25 @@
+{
+  "id" : "2832",
+  "backendId" : "2832",
+  "title" : "Verify that login API returns success response with valid credentials",
+  "module" : "login",
+  "projectId" : "360GlobalNet",
+  "projectName" : "360GlobalNet",
+  "tags" : [ "API" ],
+  "apiDetails" : {
+    "method" : "POST",
+    "endpointPath" : "/users/",
+    "expectedStatusCode" : "200",
+    "responseAssertion" : "json-field-exists",
+    "contentType" : null,
+    "assertionPath" : null,
+    "expectedValue" : null,
+    "responseHeader" : null,
+    "maxResponseTimeMs" : null,
+    "schema" : null,
+    "pathParams" : { },
+    "queryParams" : null,
+    "headers" : null,
+    "requestBody" : null
+  }
+}
